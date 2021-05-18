@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UsersListViewController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button layoutX="44.0" layoutY="35.0" mnemonicParsing="false" text="BACK" />
+            <Label layoutX="205.0" layoutY="37.0" text="USERS LIST">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <TableView fx:id="userTableView" layoutX="71.0" layoutY="115.0" prefHeight="200.0" prefWidth="408.0">
+              <columns>
+                <TableColumn fx:id="username" prefWidth="104.0" text="Username" />
+                <TableColumn fx:id="firstName" prefWidth="100.0" text="First Name" />
+                  <TableColumn fx:id="lastName" prefWidth="111.0" text="Last name" />
+                  <TableColumn fx:id="role" prefWidth="92.0" text="Role" />
+              </columns>
+            </TableView>
+            <Button layoutX="497.0" layoutY="115.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="72.0" prefWidth="122.0" text="DELETE USER PERMANENTLY" textAlignment="CENTER" wrapText="true" />
+            <Button layoutX="497.0" layoutY="243.0" mnemonicParsing="false" onAction="#openUserInterface" prefHeight="72.0" prefWidth="122.0" text="OPEN USER'S INTERFACE" textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="71.0" layoutY="342.0" text="Total users:" />
+            <Label fx:id="numberOfUsers" layoutX="169.0" layoutY="342.0" text="-totalUsers-" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

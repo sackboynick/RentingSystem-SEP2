@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="559.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersListViewController">
+   <AnchorPane VBox.vgrow="ALWAYS">
+      <Button layoutX="58.0" layoutY="39.0" mnemonicParsing="false" onAction="#back" text="BACK" />
+      <Label layoutX="289.0" layoutY="42.0" text="OFFERS LIST">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <ListView fx:id="offerListView" layoutX="58.0" layoutY="132.0" prefHeight="295.0" prefWidth="416.0" />
+      <Label layoutX="536.0" layoutY="132.0" text="FILTERS" />
+      <Label layoutX="536.0" layoutY="180.0" text="Price:" />
+      <Label layoutX="537.0" layoutY="227.0" text="Number of rooms: (min)" />
+      <Label layoutX="536.0" layoutY="272.0" text="Type:" />
+      <Label layoutX="536.0" layoutY="314.0" text="Floor:" />
+      <Label layoutX="536.0" layoutY="359.0" text="Deposit (max):" />
+      <CheckBox layoutX="536.0" layoutY="409.0" mnemonicParsing="false" text="Free Wi-Fi" />
+      <CheckBox layoutX="535.0" layoutY="444.0" mnemonicParsing="false" text="Pets allowed" />
+      <CheckBox layoutX="535.0" layoutY="479.0" mnemonicParsing="false" text="Smoking allowed" />
+      <CheckBox layoutX="535.0" layoutY="514.0" mnemonicParsing="false" text="Balcony" />
+      <TextField layoutX="585.0" layoutY="175.0" prefHeight="26.0" prefWidth="64.0" />
+      <Text layoutX="657.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="25.69091796875" />
+      <TextField layoutX="670.0" layoutY="175.0" prefHeight="26.0" prefWidth="64.0" />
+      <TextField layoutX="702.0" layoutY="222.0" prefHeight="26.0" prefWidth="64.0" />
+      <TextField layoutX="584.0" layoutY="309.0" prefHeight="26.0" prefWidth="64.0" />
+      <TextField layoutX="641.0" layoutY="354.0" prefHeight="26.0" prefWidth="70.0" />
+      <Button layoutX="58.0" layoutY="466.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN OFFER DETAILS" />
+      <Button layoutX="279.0" layoutY="453.0" mnemonicParsing="false" onAction="#publishOffer" text="PUBLISH AN OFFER" />
+      <Button layoutX="283.0" layoutY="510.0" mnemonicParsing="false" text="SEND A MESSAGE" />
+   </AnchorPane>
+</VBox>

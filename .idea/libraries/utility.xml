@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="utility">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Desktop/JavaFX/utility" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Desktop/JavaFX" />
+    </SOURCES>
+  </library>
+</component>
