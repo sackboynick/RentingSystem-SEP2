@@ -92,7 +92,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
-        this.propertyChangeSupport
+        this.propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
     }
 
     @Override
