@@ -2,23 +2,19 @@ package model;
 
 import mediator.RmiClient;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements Model, PropertyChangeListener {
-    private final RmiClient rmiClient;
-    private final OnlineUserList onlineUserList;
-    private final OfferList offerList;
+public class ModelManager implements Model {
+    private OnlineUserList onlineUserList;
+    private OfferList offerList;
     private final PropertyChangeSupport propertyChangeSupport;
 
 
-    public ModelManager(RmiClient rmiClient){
-        this.rmiClient=rmiClient;
-        this.rmiClient.addListener("OnlineUser",this);
+    public ModelManager(){
         this.propertyChangeSupport=new PropertyChangeSupport(this);
         this.onlineUserList=new OnlineUserList();
-        this.offerList=rmiClient.getOffers();
+        this.offerList=new OfferList();
     }
 
     @Override
@@ -38,10 +34,15 @@ public class ModelManager implements Model, PropertyChangeListener {
 
     @Override
     public User login(String username, String password) {
-        User client=rmiClient.login(username, password);
-        this.onlineUserList.getUsers().clear();
-        this.onlineUserList.getUsers().addAll(this.rmiClient.getUsersOnline().getUsers());
-        return client;
+        return onlineUserList.(username, password);
+    }
+
+    @Override public void updateOnlineUserList(OnlineUserList onlineUserList){
+        this.onlineUserList=onlineUserList;
+    }
+
+    @Override public void updateOffersList(OfferList offerList){
+        this.offerList=offerList;
     }
 
     @Override
@@ -49,19 +50,6 @@ public class ModelManager implements Model, PropertyChangeListener {
         rmiClient.signUp(user);
     }
 
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()){
-            case "OnlineUsers":
-                this.propertyChangeSupport.firePropertyChange("OnlineUser",null,evt.getNewValue());
-                break;
-            case "Offers":
-                this.propertyChangeSupport.firePropertyChange("Offers",null,evt.getNewValue());
-                break;
-        }
-
-    }
 
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {

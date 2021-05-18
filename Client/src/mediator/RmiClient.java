@@ -1,13 +1,9 @@
 package mediator;
 
-import model.Offer;
-import model.OfferList;
-import model.OnlineUserList;
-import model.User;
+import model.*;
 import utility.NamedPropertyChangeSubject;
 import utility.observer.event.ObserverEvent;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
@@ -15,12 +11,15 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class RmiClient implements RentingSystem, utility.observer.listener.RemoteListener<String, User>, NamedPropertyChangeSubject {
-    private PropertyChangeSupport propertyChangeSupport;
+    private final PropertyChangeSupport propertyChangeSupport;
     private RemoteModel server;
+    private final Model model;
 
-    public RmiClient(){
+    public RmiClient(Model model){
+        this.model=model;
+
+        this.propertyChangeSupport=new PropertyChangeSupport(this);
         try {
-            this.propertyChangeSupport=new PropertyChangeSupport(this);
             this.server = (RemoteModel) Naming.lookup("rmi://localhost:1099/HousingSystem");
             UnicastRemoteObject.exportObject(this, 0);
             server.addListener(this,"OnlineUsers");
@@ -29,8 +28,6 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
             e.printStackTrace();
         }
     }
-
-
 
     @Override
     public String addOffer(Offer offer) {
@@ -45,6 +42,8 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public User login(String username, String password) {
         try {
+            model.updateOnlineUserList(server.getUsersOnline());
+            model.updateOffersList(server.getOfferList());
             return server.login(username, password);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -97,6 +96,6 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
 
     @Override
     public void removeListener(String propertyName, PropertyChangeListener listener) {
-
+        this.propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
     }
 }

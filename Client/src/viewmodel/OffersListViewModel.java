@@ -15,8 +15,8 @@ import java.beans.PropertyChangeListener;
 
 public class OffersListViewModel implements PropertyChangeListener {
     private ObservableList<Offer> offers;
-    private StringProperty minPrice,maxPrice,minRooms,type,floor,maxDeposit;
-    private BooleanProperty pets,smoking,balcony,freeWiFi;
+    private final StringProperty minPrice,maxPrice,minRooms,type,floor,maxDeposit;
+    private final BooleanProperty pets,smoking,balcony,freeWiFi;
 
     public OffersListViewModel(Model model){
         model.addListener("Offers",this);
@@ -38,9 +38,11 @@ public class OffersListViewModel implements PropertyChangeListener {
     }
 
     public void applyFilters(){
-        if(minPrice.get().equals(""))
+        if(!minPrice.get().equals(""))
             setMinPrice(Double.parseDouble(minPrice.get()));
+        if(!maxPrice.get().equals("")){
 
+        }
     }
 
     public void setMinPrice(double minPrice){

@@ -62,7 +62,6 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
     @Override
     public OnlineUserList getUsersOnline() throws RemoteException {
-        System.out.println(getUsersOnline().getUsers().toString());
         return model.getUsersOnline();
     }
 

@@ -64,7 +64,7 @@
             <Label fx:id="area" layoutX="494.0" layoutY="192.0" text="-area-" />
             <Label fx:id="floor" layoutX="496.0" layoutY="228.0" text="-floor-" />
             <Label fx:id="numberOfRooms" layoutX="166.0" layoutY="362.0" text="-numberOfRooms-" />
-            <Label layoutX="358.0" layoutY="267.0" text="Landlord:" />
+            <Label layoutX="345.0" layoutY="267.0" text="Landlord:" />
             <Label fx:id="landlordName" layoutX="460.0" layoutY="267.0" text="-landlordusername-" />
             <TextArea fx:id="messageToLandlord" layoutX="369.0" layoutY="289.0" prefHeight="99.0" prefWidth="155.0" />
             <Button layoutX="541.0" layoutY="336.0" mnemonicParsing="false" onAction="#sendMessageToLandlord" prefHeight="47.0" prefWidth="87.0" text="SEND MESSAGE" textAlignment="CENTER" wrapText="true" />
