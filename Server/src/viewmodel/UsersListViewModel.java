@@ -51,7 +51,6 @@ public class UsersListViewModel implements PropertyChangeListener {
     public void removeUser(User user){
         this.model.getUsers().getUsersArraylist().remove(user);
         this.users.remove(user);
-
         this.numberOfUsers.setValue(Integer.toString(users.size()));
     }
 

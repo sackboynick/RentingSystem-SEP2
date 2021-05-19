@@ -32,10 +32,11 @@ public abstract class ViewCreator {
     protected ViewController loadFromFXML(String id) throws IOException {
         String fxmlFile = switch (id) {
             case "mainView" -> "mainView.fxml";
-            case "Chat" -> "chatClient.fxml";
             case "userInterface" -> "userView.fxml";
             case "offerView" -> "offerView.fxml";
             case "usersList" -> "usersListView.fxml";
+            case "offersList" -> "offersListView.fxml";
+            case "serverOverview" -> "serverOverview.fxml";
             default -> throw new IllegalStateException("Unexpected value: " + id);
         };
         FXMLLoader loader = new FXMLLoader();

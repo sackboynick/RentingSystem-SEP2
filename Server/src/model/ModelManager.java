@@ -42,6 +42,7 @@ public class ModelManager implements Model{
 
     @Override
     public String signUp(User user) {
+        this.propertyChangeSupport.firePropertyChange("User",null,user);
         return userList.addUser(user);
     }
 
