@@ -40,7 +40,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
-      prefWidth="794.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserViewController">
+      prefWidth="794.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
       <Button onAction="#onBack" layoutX="64.0" layoutY="39.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="68.0" text="BACK"/>
       <Label fx:id="username" layoutX="237.0" layoutY="41.0" text="-username-">

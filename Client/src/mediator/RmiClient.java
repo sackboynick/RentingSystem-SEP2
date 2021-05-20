@@ -10,7 +10,7 @@ import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RmiClient implements RentingSystem, utility.observer.listener.RemoteListener<String, User>, NamedPropertyChangeSubject {
+public class RmiClient implements RentingSystem, utility.observer.listener.RemoteListener<String, Object>, NamedPropertyChangeSubject {
     private final PropertyChangeSupport propertyChangeSupport;
     private RemoteModel server;
 
@@ -19,8 +19,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         try {
             this.server = (RemoteModel) Naming.lookup("rmi://localhost:1099/HousingSystem");
             UnicastRemoteObject.exportObject(this, 0);
-            server.addListener(this,"OnlineUsers");
-            server.addListener(this,"Offers");
+            server.addListener(this);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -86,14 +85,6 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
 
 
     @Override
-    public void propertyChange(ObserverEvent<String, User> event) throws RemoteException {
-        switch (event.getPropertyName()) {
-            case "OnlineUsers" -> this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, event.getValue2());
-            case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
-        }
-    }
-
-    @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
         this.propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
     }
@@ -101,5 +92,13 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public void removeListener(String propertyName, PropertyChangeListener listener) {
         this.propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+    }
+
+    @Override
+    public void propertyChange(ObserverEvent<String, Object> event) throws RemoteException {
+        switch (event.getPropertyName()) {
+            case "OnlineUsers" -> this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, event.getValue2());
+            case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
+        }
     }
 }

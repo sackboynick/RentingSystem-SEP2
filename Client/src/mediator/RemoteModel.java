@@ -8,7 +8,7 @@ import utility.observer.subject.RemoteSubject;
 
 import java.rmi.RemoteException;
 
-public interface RemoteModel extends RemoteSubject<String,User>{
+public interface RemoteModel extends RemoteSubject<String,Object>{
     String addOffer(Offer offer) throws RemoteException;
     User login(String username,String password) throws RemoteException;
     void signUp(User user) throws RemoteException;

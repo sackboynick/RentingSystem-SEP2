@@ -5,21 +5,28 @@ import javafx.beans.property.StringProperty;
 
 
 public class UserViewViewModel {
-    private StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals;
+    private final StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals;
 
     public UserViewViewModel(){
+        this.username=new SimpleStringProperty();
+        this.firstName=new SimpleStringProperty();
+        this.middleName=new SimpleStringProperty();
+        this.lastName=new SimpleStringProperty();
+        this.phone=new SimpleStringProperty();
+        this.role=new SimpleStringProperty();
+        this.numberOfDeals=new SimpleStringProperty();
         if(ViewState.getInstance().getDisplayedUser()!=null)
             setUserInfo();
     }
 
     public void setUserInfo(){
-        this.username=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getUsername());
-        this.firstName=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getFirstName());
-        this.middleName=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getMiddleName());
-        this.lastName=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getLastName());
-        this.phone=new SimpleStringProperty(Long.toString(ViewState.getInstance().getDisplayedUser().getPhone()));
-        this.role=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getRole());
-        this.numberOfDeals=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getDisplayedUser().getDealsClosed()));
+        this.username.set(ViewState.getInstance().getDisplayedUser().getUsername());
+        this.firstName.set(ViewState.getInstance().getDisplayedUser().getFirstName());
+        this.middleName.set(ViewState.getInstance().getDisplayedUser().getMiddleName());
+        this.lastName.set(ViewState.getInstance().getDisplayedUser().getLastName());
+        this.phone.set(Long.toString(ViewState.getInstance().getDisplayedUser().getPhone()));
+        this.role.set(ViewState.getInstance().getDisplayedUser().getRole());
+        this.numberOfDeals.set(Integer.toString(ViewState.getInstance().getDisplayedUser().getDealsClosed()));
     }
 
     public StringProperty getUsername() {

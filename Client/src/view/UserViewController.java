@@ -15,10 +15,6 @@ public class UserViewController extends ViewController {
 
     @Override
     protected void init() {
-        reset();
-    }
-
-    public void reset(){
         this.username.textProperty().bind(getViewModelFactory().getUserViewViewModel().getUsername());
         this.firstName.textProperty().bind(getViewModelFactory().getUserViewViewModel().getFirstName());
         this.middleName.textProperty().bind(getViewModelFactory().getUserViewViewModel().getMiddleName());
@@ -27,6 +23,10 @@ public class UserViewController extends ViewController {
         this.deals.textProperty().bind(getViewModelFactory().getUserViewViewModel().getNumberOfDeals());
         this.role.textProperty().bind(getViewModelFactory().getUserViewViewModel().getRole());
         this.message.setText("");
+    }
+
+    public void reset(){
+
     }
 
     @FXML public void sendMessage(){

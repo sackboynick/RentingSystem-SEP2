@@ -32,7 +32,14 @@ public class HomePageViewController extends ViewController{
         User user=this.onlineUsers.getSelectionModel().getSelectedItem();
         if(user!=null) {
             ViewState.getInstance().setDisplayedUser(user);
+            getViewModelFactory().getUserViewViewModel().setUserInfo();
             getViewHandler().openView("userInterface");
         }
+    }
+
+    @FXML void openYourProfileInterface(){
+        ViewState.getInstance().setDisplayedUser(ViewState.getInstance().getUser());
+        getViewModelFactory().getUserViewViewModel().setUserInfo();
+        getViewHandler().openView("userInterface");
     }
 }

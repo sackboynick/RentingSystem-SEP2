@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="501.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HomePageViewController">
+<VBox prefHeight="501.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HomePageViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
         <Label layoutX="62.0" layoutY="47.0" text="-username" />
         <ListView layoutX="297.0" layoutY="151.0" prefHeight="200.0" prefWidth="200.0" />
@@ -55,6 +55,6 @@
         <Label layoutX="26.0" layoutY="126.0" text="MESSAGES" />
         <Label layoutX="299.0" layoutY="126.0" text="LAST DEALS" />
         <Label layoutX="557.0" layoutY="126.0" text="USERS ONLINE" />
-        <Button layoutX="512.0" layoutY="43.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="235.0" text="SHOW MORE DETAILS ABOUT YOUR PROFILE" textAlignment="CENTER" wrapText="true" />
+        <Button onAction="#openYourProfileInterface" layoutX="512.0" layoutY="43.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="235.0" text="SHOW MORE DETAILS ABOUT YOUR PROFILE" textAlignment="CENTER" wrapText="true" />
     </AnchorPane>
 </VBox>

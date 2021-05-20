@@ -20,7 +20,7 @@ public class OffersListViewModel implements PropertyChangeListener {
 
     public OffersListViewModel(Model model){
         this.model=model;
-        this.model.addListener("User",this);
+        this.model.addListener("Offer",this);
         this.offers= FXCollections.observableArrayList(model.getOffers().getOffers());
         this.title=new SimpleStringProperty();
         this.landlordName=new SimpleStringProperty();

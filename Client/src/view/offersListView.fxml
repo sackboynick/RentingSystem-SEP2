@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="559.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersListViewController">
+<VBox prefHeight="559.0" prefWidth="825.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersListViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
       <Button layoutX="58.0" layoutY="39.0" mnemonicParsing="false" onAction="#back" text="BACK" />
       <Label layoutX="289.0" layoutY="42.0" text="OFFERS LIST">

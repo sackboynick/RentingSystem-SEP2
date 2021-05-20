@@ -3,10 +3,11 @@ package model;
 import mediator.RmiClient;
 import viewmodel.ViewState;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class ModelManager implements Model {
+public class ModelManager implements Model,PropertyChangeListener {
     private OnlineUserList onlineUserList;
     private OfferList offerList;
     private final PropertyChangeSupport propertyChangeSupport;
@@ -66,5 +67,19 @@ public class ModelManager implements Model {
     @Override
     public void removeListener(String propertyName, PropertyChangeListener listener) {
         this.propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "OnlineUsers" -> {
+                this.onlineUserList.getUsers().add((User) evt.getNewValue());
+                this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, evt.getNewValue());
+            }
+            case "Offers" -> {
+                this.offerList.addOffer((Offer) evt.getNewValue());
+                this.propertyChangeSupport.firePropertyChange("Offers", null, evt.getNewValue());
+            }
+        }
     }
 }
