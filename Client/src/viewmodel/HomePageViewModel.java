@@ -16,7 +16,13 @@ public class HomePageViewModel implements PropertyChangeListener {
     public HomePageViewModel(Model model){
         this.model=model;
         this.model.addListener("OnlineUsers",this);
+        updateLists();
         this.onlineUsers=getOnlineUsersFromModel();
+    }
+
+    public void updateLists(){
+        model.updateOffersList();
+        model.updateOnlineUserList();
     }
 
     public ObservableList<User> getOnlineUsersFromModel(){

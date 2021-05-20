@@ -30,6 +30,8 @@ public class LoginViewModel {
     public User login() {
         User user=model.login(username.get(), password.get());
         ViewState.getInstance().setUser(user);
+        model.updateOffersList();
+        model.updateOnlineUserList();
         return user;
     }
 

@@ -16,9 +16,9 @@ public class ModelManager implements Model,PropertyChangeListener {
 
     public ModelManager(RmiClient rmiClient){
         this.propertyChangeSupport=new PropertyChangeSupport(this);
+        this.rmiClient=rmiClient;
         this.onlineUserList=new OnlineUserList();
         this.offerList=new OfferList();
-        this.rmiClient=rmiClient;
     }
 
     @Override
@@ -40,17 +40,17 @@ public class ModelManager implements Model,PropertyChangeListener {
     public User login(String username, String password) {
         User user=rmiClient.login(username, password);
         ViewState.getInstance().setUser(user);
-        updateOnlineUserList();
-        updateOffersList();
         return user;
     }
 
     @Override public void updateOnlineUserList(){
-        this.onlineUserList=rmiClient.getUsersOnline();
+        this.onlineUserList.getUsers().clear();
+        this.onlineUserList.getUsers().addAll(rmiClient.getUsersOnline().getUsers());
     }
 
     @Override public void updateOffersList(){
-        this.offerList=rmiClient.getOffers();
+        this.offerList.getOffers().clear();
+        this.offerList.getOffers().addAll(rmiClient.getOffers().getOffers());
     }
 
     @Override

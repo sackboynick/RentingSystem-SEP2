@@ -38,6 +38,6 @@ public class UserViewController extends ViewController {
 
     @FXML
     public void onBack(){
-        getViewHandler().openView("homePage");
+        getViewHandler().openView("mainView");
     }
 }

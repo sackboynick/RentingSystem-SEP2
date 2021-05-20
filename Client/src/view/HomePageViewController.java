@@ -15,15 +15,18 @@ public class HomePageViewController extends ViewController{
     }
 
     public void reset(){
-        this.onlineUsers.setItems(getViewModelFactory().getHomePageViewModel().getOnlineUsers());
+        getViewModelFactory().getHomePageViewModel().updateLists();
     }
+
     @Override
     protected void init() {
         reset();
+        this.onlineUsers.setItems(getViewModelFactory().getHomePageViewModel().getOnlineUsers());
     }
 
     @FXML
     public void openOffersList(){
+        reset();
         getViewHandler().openView("offersList");
     }
 

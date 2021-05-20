@@ -13,6 +13,6 @@ public interface RemoteModel extends RemoteSubject<String,Object>{
     User login(String username,String password) throws RemoteException;
     void signUp(User user) throws RemoteException;
     OnlineUserList getUsersOnline() throws RemoteException;
-    OfferList getOfferList() throws RemoteException;
+    OfferList getOffers() throws RemoteException;
     void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException;
 }

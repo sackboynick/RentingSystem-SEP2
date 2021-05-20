@@ -67,7 +67,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public OfferList getOffers() {
         try {
-            return server.getOfferList();
+            return server.getOffers();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
