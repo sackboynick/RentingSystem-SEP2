@@ -71,8 +71,8 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     }
 
     @Override
-    public UserList getUserList() throws RemoteException {
-        return model.getUsers();
+    public void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException {
+        this.model.getDealsList().addDeal(new Deal(offer,landlord,tenant));
     }
 
 

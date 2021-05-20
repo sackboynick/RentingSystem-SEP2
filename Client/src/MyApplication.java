@@ -11,8 +11,8 @@ import java.io.IOException;
 public class MyApplication extends Application
 {
   public void start(Stage primaryStage) throws IOException {
-    Model model = new ModelManager();
-    RmiClient rmiClient=new RmiClient(model);
+    RmiClient rmiClient=new RmiClient();
+    Model model = new ModelManager(rmiClient);
     ViewModelFactory viewModelFactory = new ViewModelFactory(model);
     ViewHandler view = new ViewHandler(viewModelFactory);
     view.start(primaryStage);

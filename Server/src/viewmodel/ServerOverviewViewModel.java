@@ -22,7 +22,7 @@ public class ServerOverviewViewModel implements PropertyChangeListener {
         this.numberOfClosedDeals=new SimpleStringProperty();
         this.numberOfTenants=new SimpleStringProperty();
         this.numberOfLandlords=new SimpleStringProperty();
-
+        update();
     }
 
     public StringProperty getNumberOfUsers(){

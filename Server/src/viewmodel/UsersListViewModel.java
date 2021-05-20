@@ -18,7 +18,7 @@ public class UsersListViewModel implements PropertyChangeListener {
 
     public UsersListViewModel(Model model){
         this.model=model;
-        this.model.addListener("Users",this);
+        this.model.addListener("User",this);
         this.users= FXCollections.observableArrayList(model.getUsers().getUsersArraylist());
         this.username=new SimpleStringProperty();
         this.firstName=new SimpleStringProperty();

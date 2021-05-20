@@ -11,16 +11,13 @@ public class OnlineUserList implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757690L;
     private final ArrayList<User> users;
-    private final Model model;
 
-
-    public OnlineUserList(Model model){
-        this.users= new ArrayList<>();
-        this.model=model;
+    public OnlineUserList(){
+        this.users=new ArrayList<>();
     }
 
-    public User loginInUser(String username,String password){
-        for(User user : model.getUsers().getUsersArraylist()) {
+    public User loginInUser(String username,String password,UserList userList){
+        for(User user : userList.getUsersArraylist()) {
             if (user.forLogin(username, password)) {
                 this.users.add(0,user);
                 return user;

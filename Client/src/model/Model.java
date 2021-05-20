@@ -9,6 +9,6 @@ public interface Model extends NamedPropertyChangeSubject {
     void signUp(User user);
     OnlineUserList getUsersOnline();
     OfferList getOffers();
-    void updateOnlineUserList(OnlineUserList usersOnline);
-    void updateOffersList(OfferList offerList);
+    void updateOnlineUserList();
+    void updateOffersList();
 }

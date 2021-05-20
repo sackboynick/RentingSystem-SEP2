@@ -8,13 +8,15 @@ public class ModelManager implements Model{
     private final OnlineUserList onlineUserList;
     private final OfferList offerList;
     private final UserList userList;
+    private final DealList dealList;
     private final PropertyChangeSupport propertyChangeSupport;
 
     public ModelManager(){
-        this.onlineUserList=new OnlineUserList(this);
+        this.onlineUserList=new OnlineUserList();
         this.propertyChangeSupport=new PropertyChangeSupport(this);
         this.offerList=new OfferList();
         this.userList=new UserList();
+        this.dealList=new DealList();
         this.offerList.addOffer(new Offer("title","description",345,345,"Horsens","room",453, 3,4,new User("dfdss","fds","","","",345246,"")));
     }
 
@@ -26,7 +28,7 @@ public class ModelManager implements Model{
 
     @Override
     public User login(String username, String password) {
-        User user=this.onlineUserList.loginInUser(username,password);
+        User user=this.onlineUserList.loginInUser(username,password,userList);
         this.propertyChangeSupport.firePropertyChange("OnlineUsers",null,user);
         return user;
     }
@@ -41,9 +43,14 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public String signUp(User user) {
+    public DealList getDealsList() {
+        return dealList;
+    }
+
+    @Override
+    public void signUp(User user) {
         this.propertyChangeSupport.firePropertyChange("User",null,user);
-        return userList.addUser(user);
+        userList.addUser(user);
     }
 
     @Override

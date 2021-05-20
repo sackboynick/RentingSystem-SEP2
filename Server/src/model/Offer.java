@@ -18,6 +18,8 @@ public class Offer implements Serializable {
     private double pricePerMonth, deposit,area;
     private Date availableDate;
     private static final String[] FEATURES = {"Wi-Fi", "Pets", "Smoking", "Balcony"};
+    private static final String[] STATUSES = {"Available", "Pending", "Closed"};
+    private String status;
     private User landlord;
 
     private final ArrayList<String> featuresList;
@@ -34,7 +36,7 @@ public class Offer implements Serializable {
         setFloor(floor);
         setRoomsNumber(numberOfRooms);
         setLandlord(landlord);
-
+        setStatus(STATUSES[0]);
         this.availableDate=new Date();
         this.featuresList = new ArrayList<>();
     }
@@ -66,6 +68,10 @@ public class Offer implements Serializable {
 
     public void setLandlord(User landlord) {
         this.landlord = landlord;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setAvailableDate(Date availableDate) {
@@ -140,6 +146,9 @@ public class Offer implements Serializable {
         return roomsNumber;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
     public double getPricePerMonth() {
         return pricePerMonth;
@@ -147,6 +156,16 @@ public class Offer implements Serializable {
 
     public double getDeposit() {
         return deposit;
+    }
+
+    public void sendFinalRequest(){
+        if(status.equals(STATUSES[0]))
+            this.status=STATUSES[1];
+    }
+
+    public void acceptRequest(){
+        if(status.equals(STATUSES[1]))
+            this.status=STATUSES[2];
     }
 
     public ArrayList<String> getFeaturesList() {

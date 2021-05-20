@@ -13,11 +13,8 @@ import java.rmi.server.UnicastRemoteObject;
 public class RmiClient implements RentingSystem, utility.observer.listener.RemoteListener<String, User>, NamedPropertyChangeSubject {
     private final PropertyChangeSupport propertyChangeSupport;
     private RemoteModel server;
-    private final Model model;
 
-    public RmiClient(Model model){
-        this.model=model;
-
+    public RmiClient(){
         this.propertyChangeSupport=new PropertyChangeSupport(this);
         try {
             this.server = (RemoteModel) Naming.lookup("rmi://localhost:1099/HousingSystem");
@@ -42,8 +39,6 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public User login(String username, String password) {
         try {
-            model.updateOnlineUserList(server.getUsersOnline());
-            model.updateOffersList(server.getOfferList());
             return server.login(username, password);
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -78,6 +73,15 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void closeDeal(Offer offer,User landlord,User tenant) {
+        try {
+            server.closeDeal(offer, landlord, tenant);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -22,6 +22,10 @@ public class UsersListViewController extends ViewController{
         this.lastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLastName()));
         this.role.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRole()));
         this.numberOfUsers.textProperty().bind(getViewModelFactory().getUsersListViewModel().getNumberOfUsers());
+        reset();
+    }
+    public void reset(){
+        this.userTableView.setItems(getViewModelFactory().getUsersListViewModel().getUsers());
     }
 
     @FXML public void deleteUser(){

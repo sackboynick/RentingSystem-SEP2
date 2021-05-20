@@ -12,4 +12,5 @@ public interface RentingSystem {
     void signUp(User user);
     OnlineUserList getUsersOnline();
     OfferList getOffers();
+    void closeDeal(Offer offer,User landlord,User tenant);
 }

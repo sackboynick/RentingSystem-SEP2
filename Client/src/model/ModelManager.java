@@ -1,6 +1,7 @@
 package model;
 
 import mediator.RmiClient;
+import viewmodel.ViewState;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -9,12 +10,14 @@ public class ModelManager implements Model {
     private OnlineUserList onlineUserList;
     private OfferList offerList;
     private final PropertyChangeSupport propertyChangeSupport;
+    private final RmiClient rmiClient;
 
 
-    public ModelManager(){
+    public ModelManager(RmiClient rmiClient){
         this.propertyChangeSupport=new PropertyChangeSupport(this);
         this.onlineUserList=new OnlineUserList();
         this.offerList=new OfferList();
+        this.rmiClient=rmiClient;
     }
 
     @Override
@@ -34,15 +37,19 @@ public class ModelManager implements Model {
 
     @Override
     public User login(String username, String password) {
-        return onlineUserList.(username, password);
+        User user=rmiClient.login(username, password);
+        ViewState.getInstance().setUser(user);
+        updateOnlineUserList();
+        updateOffersList();
+        return user;
     }
 
-    @Override public void updateOnlineUserList(OnlineUserList onlineUserList){
-        this.onlineUserList=onlineUserList;
+    @Override public void updateOnlineUserList(){
+        this.onlineUserList=rmiClient.getUsersOnline();
     }
 
-    @Override public void updateOffersList(OfferList offerList){
-        this.offerList=offerList;
+    @Override public void updateOffersList(){
+        this.offerList=rmiClient.getOffers();
     }
 
     @Override

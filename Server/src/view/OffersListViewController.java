@@ -37,7 +37,7 @@ public class OffersListViewController extends ViewController {
         if(offer!=null) {
             ViewState.getInstance().setOffer(offer);
             getViewModelFactory().getOfferViewViewModel().setInterface();
-            getViewHandler().openView("offerInterface");
+            getViewHandler().openView("offerView");
         }
     }
 
