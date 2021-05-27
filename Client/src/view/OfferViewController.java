@@ -3,6 +3,7 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import model.Message;
 import viewmodel.ViewState;
 
 public class OfferViewController extends ViewController{
@@ -35,7 +36,7 @@ public class OfferViewController extends ViewController{
     }
 
     @FXML public void sendMessageToLandlord(){
-        ViewState.getInstance().getOffer().getLandlord().addMessageOrRequest(messageToLandlord.getText());
+        ViewState.getInstance().getOffer().getLandlord().addMessageOrRequest(new Message(messageToLandlord.getText(),ViewState.getInstance().getUser()));
         this.messageToLandlord.setText("");
     }
 }

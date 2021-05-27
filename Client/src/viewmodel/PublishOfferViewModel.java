@@ -83,6 +83,6 @@ public class PublishOfferViewModel {
     }
 
     public void publishOffer(){
-        model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(pricePerMonth.get()),address.get(), type.get(), Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
+        model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(deposit.get()),address.get(), type.get(), Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
     }
 }

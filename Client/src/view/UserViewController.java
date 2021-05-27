@@ -4,6 +4,7 @@ package view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import model.Message;
 import viewmodel.ViewState;
 
 
@@ -32,7 +33,7 @@ public class UserViewController extends ViewController {
     @FXML public void sendMessage(){
         String message=this.message.getText();
         if(message!=null && message.equals(""))
-             ViewState.getInstance().getDisplayedUser().addMessageOrRequest(message);
+             ViewState.getInstance().getDisplayedUser().addMessageOrRequest(new Message(message,ViewState.getInstance().getUser()));
     }
 
     @FXML

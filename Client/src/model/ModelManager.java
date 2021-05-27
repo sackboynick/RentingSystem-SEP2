@@ -19,6 +19,8 @@ public class ModelManager implements Model,PropertyChangeListener {
         this.rmiClient=rmiClient;
         this.onlineUserList=new OnlineUserList();
         this.offerList=new OfferList();
+        this.rmiClient.addListener("OnlineUsers",this);
+        this.rmiClient.addListener("Offers",this);
     }
 
     @Override

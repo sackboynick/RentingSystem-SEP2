@@ -35,24 +35,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersListViewController">
-  <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <Button layoutX="47.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBack" text="BACK" />
-            <TableView fx:id="offerTableView" layoutX="47.0" layoutY="100.0" prefHeight="224.0" prefWidth="454.0">
-              <columns>
-                <TableColumn fx:id="title" prefWidth="111.0" text="Offer title" />
-                <TableColumn fx:id="landlord" prefWidth="99.0" text="Landlord" />
-                  <TableColumn fx:id="type" prefWidth="113.0" text="Type" />
-                  <TableColumn fx:id="pricePerMonth" prefWidth="130.0" text="Price per month" />
-              </columns>
-            </TableView>
-            <Button layoutX="532.0" layoutY="100.0" mnemonicParsing="false" onAction="#deleteOffer" prefHeight="77.0" prefWidth="94.0" text="REMOVE OFFER" textAlignment="CENTER" wrapText="true" />
-            <Button layoutX="532.0" layoutY="247.0" mnemonicParsing="false" onAction="#openOfferInterface" prefHeight="77.0" prefWidth="94.0" text="OPEN OFFER'S INTERFACE" textAlignment="CENTER" wrapText="true" />
-            <Label layoutX="74.0" layoutY="347.0" text="Number of offers:" />
-            <Label fx:id="numberOfOffers" layoutX="216.0" layoutY="347.0" text="-numberOfOffers-" />
-         </children>
+<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="view.OffersListViewController">
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <Button layoutX="47.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBack" text="BACK"/>
+        <TableView fx:id="offerTableView" layoutX="47.0" layoutY="100.0" prefHeight="224.0" prefWidth="454.0">
+          <columns>
+              <TableColumn fx:id="title" prefWidth="111.0" text="Offer title"/>
+              <TableColumn fx:id="landlord" prefWidth="99.0" text="Landlord"/>
+              <TableColumn fx:id="type" prefWidth="113.0" text="Type"/>
+              <TableColumn fx:id="pricePerMonth" prefWidth="130.0" text="Price per month"/>
+          </columns>
+        </TableView>
+        <Button layoutX="532.0" layoutY="100.0" mnemonicParsing="false" onAction="#deleteOffer" prefHeight="77.0"
+                prefWidth="94.0" text="REMOVE OFFER" textAlignment="CENTER" wrapText="true"/>
+        <Button layoutX="532.0" layoutY="247.0" mnemonicParsing="false" onAction="#openOfferInterface"
+                prefHeight="77.0" prefWidth="94.0" text="OPEN OFFER'S INTERFACE" textAlignment="CENTER"
+                wrapText="true"/>
+        <Label layoutX="74.0" layoutY="347.0" text="Number of offers:"/>
+        <Label fx:id="numberOfOffers" layoutX="216.0" layoutY="347.0" text="-numberOfOffers-"/>
     </AnchorPane>
-  </children>
 </VBox>

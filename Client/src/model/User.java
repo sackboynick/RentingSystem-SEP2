@@ -10,7 +10,7 @@ public class User  implements Serializable {
     private String username, password,firstName,middleName,lastName,role;
     private long phone;
     private int dealsClosed;
-    private final ArrayList<String> messagesAndRequests;
+    private final ArrayList<Message> messagesAndRequests;
 
     private static final String[] ROLES={"Admin","Landlord","Tenant"};
 
@@ -94,7 +94,7 @@ public class User  implements Serializable {
         return this.username.equals(username) && this.password.equals(password);
     }
 
-    public void addMessageOrRequest(String message){
+    public void addMessageOrRequest(Message message){
         this.messagesAndRequests.add(message);
     }
     @Override

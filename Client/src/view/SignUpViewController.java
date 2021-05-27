@@ -35,4 +35,8 @@ public class SignUpViewController extends ViewController{
         getViewModelFactory().getSignUpViewModel().signUp();
         getViewHandler().openView("Login");
     }
+
+    @FXML public void onBack(){
+        getViewHandler().openView("Login");
+    }
 }
