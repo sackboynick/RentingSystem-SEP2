@@ -20,6 +20,7 @@ public class PublishOfferViewController extends ViewController{
     @Override
     protected void init() {
         title.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getTitle());
+        description.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getDescription());
         deposit.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getDeposit());
         pricePerMonth.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getPricePerMonth());
         address.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getAddress());
