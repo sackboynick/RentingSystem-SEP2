@@ -2,14 +2,15 @@ package model;
 
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Renting  implements Serializable {
     private final User tenant;
     private final User landlord;
     private final Offer offer;
+    private final Date date;
 
     private String tenantFeedback,landlordFeedback;
-    private boolean approved;
 
 
     public Renting(User tenant,User landlord,Offer offer){
@@ -18,15 +19,9 @@ public class Renting  implements Serializable {
         this.offer=offer;
         this.tenantFeedback="";
         this.landlordFeedback="";
-        this.approved=false;
+        this.date=new Date();
     }
 
-    public void approve(){
-        this.approved=true;
-    }
-    public boolean isApproved() {
-        return approved;
-    }
 
     public void setLandlordFeedback(String landlordFeedback) {
         this.landlordFeedback = landlord.getUsername()+" said that : "+landlordFeedback;
@@ -54,6 +49,10 @@ public class Renting  implements Serializable {
 
     public Offer getOffer() {
         return offer;
+    }
+
+    public Date getDate() {
+        return date;
     }
 
     public String toString(){

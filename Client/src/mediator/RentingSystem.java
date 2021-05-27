@@ -9,8 +9,9 @@ import model.User;
 public interface RentingSystem {
     String addOffer(Offer offer);
     User login(String username,String password);
-    void signUp(User user);
+    boolean signUp(User user);
     OnlineUserList getUsersOnline();
     OfferList getOffers();
     void closeDeal(Offer offer,User landlord,User tenant);
+    String sendMessage(String username, String body);
 }

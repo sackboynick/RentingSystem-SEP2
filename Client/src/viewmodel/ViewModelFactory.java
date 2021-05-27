@@ -11,6 +11,7 @@ public class ViewModelFactory {
     private final OffersListViewModel offersListViewModel;
     private final PublishOfferViewModel publishOfferViewModel;
     private final OfferViewViewModel offerViewViewModel;
+    private final SendMessageViewModel sendMessageViewModel;
 
     public ViewModelFactory(Model model){
         this.loginViewModel=new LoginViewModel(model);
@@ -20,6 +21,7 @@ public class ViewModelFactory {
         this.offersListViewModel=new OffersListViewModel(model);
         this.publishOfferViewModel=new PublishOfferViewModel(model);
         this.offerViewViewModel=new OfferViewViewModel(model);
+        this.sendMessageViewModel=new SendMessageViewModel(model);
     }
 
     public LoginViewModel getLoginViewModel() {
@@ -48,5 +50,9 @@ public class ViewModelFactory {
 
     public OfferViewViewModel getOfferViewViewModel() {
         return offerViewViewModel;
+    }
+
+    public SendMessageViewModel getSendMessageViewModel() {
+        return sendMessageViewModel;
     }
 }

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public interface Model extends NamedPropertyChangeSubject {
     String addOffer(Offer offer);
     User login(String username,String password);
-    void signUp(User user);
+    boolean signUp(User user);
     OnlineUserList getUsersOnline();
     OfferList getOffers();
     UserList getUsers();
-    DealList getDealsList();
+    RentingList getRentingList();
 }

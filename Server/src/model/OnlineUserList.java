@@ -19,7 +19,10 @@ public class OnlineUserList implements Serializable {
     public User loginInUser(String username,String password,UserList userList){
         for(User user : userList.getUsersArraylist()) {
             if (user.forLogin(username, password)) {
-                this.users.add(0,user);
+                {
+                    if(!users.contains(user))
+                        this.users.add(0, user);
+                }
                 return user;
             }
         }

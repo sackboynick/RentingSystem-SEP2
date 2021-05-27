@@ -37,6 +37,7 @@ public class OffersListViewModel implements PropertyChangeListener {
         return offers;
     }
 
+
     public void applyFilters(){
         if(!minPrice.get().equals(""))
             setMinPrice(Double.parseDouble(minPrice.get()));

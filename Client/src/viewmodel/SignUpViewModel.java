@@ -52,15 +52,19 @@ public class SignUpViewModel {
         return role;
     }
 
-    public void signUp(){
-        User user;
-        if(username.get().equals("") || password.get().equals("") || firstName.get().equals("") || middleName.get().equals("") || lastName.get().equals("") || phone.get().equals("") || role.get().equals("")) {
+    public String signUp(String role){
+        if(username.get().equals("") || password.get().equals("") || firstName.get().equals("")  || lastName.get().equals("") || phone.get().equals("") || role.equals("")) {
             {
-                user = new User(username.get(), firstName.get(), middleName.get(), lastName.get(), password.get(), Long.parseLong(phone.get()), role.get());
-                model.signUp(user);
+                return "Please do not leave any blank field.";
             }
         }
+        else if(password.get().length()<5) {
+            this.password.set("");
+            return "The password should be at least 5 characters long.";
+        }
+        else if(model.signUp(new User(username.get(), firstName.get(), middleName.get(), lastName.get(), password.get(), Long.parseLong(phone.get()), role)))
+            return "Valid";
         else
-            System.out.println("NULLL during sign up");
+            return "The user already exists.";
     }
 }

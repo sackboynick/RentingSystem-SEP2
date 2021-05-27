@@ -1,6 +1,7 @@
 package viewmodel;
 
 import model.Offer;
+import model.Renting;
 import model.User;
 
 public class ViewState {
@@ -8,6 +9,7 @@ public class ViewState {
     private User user;
     private Offer offer;
     private User displayedUser;
+    private Renting displayedRenting;
 
     private ViewState(){}
 
@@ -15,6 +17,14 @@ public class ViewState {
         if(instance==null)
             instance=new ViewState();
         return instance;
+    }
+
+    public void setDisplayedRenting(Renting displayedRenting) {
+        this.displayedRenting = displayedRenting;
+    }
+
+    public Renting getDisplayedRenting() {
+        return displayedRenting;
     }
 
     public void setUser(User user) {

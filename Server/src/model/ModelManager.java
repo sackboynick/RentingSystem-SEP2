@@ -8,7 +8,7 @@ public class ModelManager implements Model{
     private final OnlineUserList onlineUserList;
     private final OfferList offerList;
     private final UserList userList;
-    private final DealList dealList;
+    private final RentingList rentingList;
     private final PropertyChangeSupport propertyChangeSupport;
 
     public ModelManager(){
@@ -16,8 +16,8 @@ public class ModelManager implements Model{
         this.propertyChangeSupport=new PropertyChangeSupport(this);
         this.offerList=new OfferList();
         this.userList=new UserList();
-        this.dealList=new DealList();
-        this.offerList.addOffer(new Offer("title","description",345,345,"Horsens","room",453, 3,4,new User("dfdss","fds","","","",345246,"")));
+        this.rentingList=new RentingList();
+        this.offerList.addOffer(new Offer("title","description",345,1000,"Horsens","room",453, 3,4,new User("dfdss","fds","","","",345246,"")));
     }
 
     @Override
@@ -29,8 +29,11 @@ public class ModelManager implements Model{
     @Override
     public User login(String username, String password) {
         User user=this.onlineUserList.loginInUser(username,password,userList);
-        this.propertyChangeSupport.firePropertyChange("OnlineUsers",null,user);
-        return user;
+        if(user!=null) {
+            this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, user);
+            return user;
+        }
+        return null;
     }
     @Override
     public OfferList getOffers(){
@@ -43,14 +46,18 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public DealList getDealsList() {
-        return dealList;
+    public RentingList getRentingList() {
+        return rentingList;
     }
 
     @Override
-    public void signUp(User user) {
-        this.propertyChangeSupport.firePropertyChange("User",null,user);
-        userList.addUser(user);
+    public boolean signUp(User user) {
+        if(!userList.getUsersArraylist().contains(user)) {
+            this.propertyChangeSupport.firePropertyChange("User",null,user);
+            userList.addUser(user);
+            return true;
+        }
+        return false;
     }
 
     @Override

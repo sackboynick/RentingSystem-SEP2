@@ -10,6 +10,7 @@ public class ViewModelFactory {
     private final UsersListViewModel usersListViewModel;
     private final OffersListViewModel offersListViewModel;
     private final ServerOverviewViewModel serverOverviewViewModel;
+    private final RentingListViewModel rentingListViewModel;
 
     public ViewModelFactory(Model model){
         this.mainViewViewModel=new MainViewViewModel(model);
@@ -18,6 +19,7 @@ public class ViewModelFactory {
         this.usersListViewModel=new UsersListViewModel(model);
         this.offersListViewModel=new OffersListViewModel(model);
         this.serverOverviewViewModel=new ServerOverviewViewModel(model);
+        this.rentingListViewModel=new RentingListViewModel(model);
     }
 
     public MainViewViewModel getMainViewViewModel() {
@@ -42,5 +44,9 @@ public class ViewModelFactory {
 
     public ServerOverviewViewModel getServerOverviewViewModel() {
         return serverOverviewViewModel;
+    }
+
+    public RentingListViewModel getRentingListViewModel() {
+        return rentingListViewModel;
     }
 }

@@ -63,4 +63,8 @@ public class MainViewController extends ViewController{
     @FXML public void openServerOverview(){
         getViewHandler().openView("serverOverview");
     }
+
+    @FXML public void openRentingList(){
+        getViewHandler().openView("rentingList");
+    }
 }

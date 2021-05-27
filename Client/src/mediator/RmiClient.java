@@ -46,12 +46,13 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     }
 
     @Override
-    public void signUp(User user) {
+    public boolean signUp(User user) {
         try {
-            server.signUp(user);
+            return server.signUp(user);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -81,6 +82,16 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String sendMessage(String username, String body) {
+        try {
+            return server.sendMessage(username, body);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 

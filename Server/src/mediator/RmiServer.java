@@ -51,13 +51,14 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     @Override
     public User login(String username,String password) throws RemoteException {
         User user=model.login(username, password);
-        this.propertyChangeHandler.firePropertyChange("OnlineUsers",null,user);
+        if(user!=null)
+            this.propertyChangeHandler.firePropertyChange("OnlineUsers",null,user);
         return user;
     }
 
     @Override
-    public void signUp(User user) throws RemoteException {
-        model.signUp(user);
+    public boolean signUp(User user) throws RemoteException {
+        return model.signUp(user);
     }
 
     @Override
@@ -72,7 +73,7 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
     @Override
     public void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException {
-        this.model.getDealsList().addDeal(new Deal(offer,landlord,tenant));
+        this.model.getRentingList().getRentingArrayList().add(new Renting(tenant,landlord,offer));
     }
 
 

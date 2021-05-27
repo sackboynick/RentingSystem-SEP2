@@ -56,8 +56,13 @@ public class ModelManager implements Model,PropertyChangeListener {
     }
 
     @Override
-    public void signUp(User user) {
-        rmiClient.signUp(user);
+    public String sendMessage(String username, String body) {
+        return rmiClient.sendMessage(username,body);
+    }
+
+    @Override
+    public boolean signUp(User user) {
+        return rmiClient.signUp(user);
     }
 
 

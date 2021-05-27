@@ -16,13 +16,12 @@ public class Offer implements Serializable {
     private int roomsNumber, floor;
     private double pricePerMonth, deposit,area;
     private Date availableDate;
+    private boolean wiFi,pets,smoking,balcony;
+    private String usernameOfOfferer;
     private static final String[] FEATURES = {"Wi-Fi", "Pets", "Smoking", "Balcony"};
     private User landlord;
 
-    private final ArrayList<String> featuresList;
-
     public Offer(String title, String description, double pricePerMonth, double deposit, String location, String type,double area, int floor, int numberOfRooms, User landlord) {
-        Random rand = new Random();
         setTitle(title);
         setDescription(description);
         setPricePerMonth(pricePerMonth);
@@ -33,18 +32,12 @@ public class Offer implements Serializable {
         setFloor(floor);
         setRoomsNumber(numberOfRooms);
         setLandlord(landlord);
-
         this.availableDate=new Date();
-        this.featuresList = new ArrayList<>();
     }
 
 
     private void getAvailableDate(Date date) {
         this.availableDate = date;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
     }
 
     public void setTitle(String title) {
@@ -61,6 +54,10 @@ public class Offer implements Serializable {
 
     public void setFloor(int floor) {
         this.floor = floor;
+    }
+
+    public void makeOffer(String usernameOfOfferer) {
+        this.usernameOfOfferer = usernameOfOfferer;
     }
 
     public void setLandlord(User landlord) {
@@ -102,12 +99,15 @@ public class Offer implements Serializable {
         return title;
     }
 
+    public String getUsernameOfOfferer() {
+        return usernameOfOfferer;
+    }
 
     public String getDescription() {
         return description;
     }
 
-    public String[] getAllTypes() {
+    public static String[] getAllTypes() {
         return TYPE;
     }
 
@@ -148,26 +148,6 @@ public class Offer implements Serializable {
         return deposit;
     }
 
-    public ArrayList<String> getFeaturesList() {
-        return featuresList;
-    }
-
-
-    public String addFeature(String feature) {
-        if (!featuresList.contains(feature)) {
-            featuresList.add(feature);
-            return feature + " added!";
-        }
-        return "Problem while adding the feature";
-    }
-
-    public String removeFeature(String feature) {
-        if (featuresList.contains(feature)) {
-            featuresList.remove(feature);
-            return feature + " removed.";
-        }
-        return "Problem while removing the feature";
-    }
 
     @Override
     public String toString(){
