@@ -16,9 +16,7 @@ public class Offer implements Serializable {
     private int roomsNumber, floor;
     private double pricePerMonth, deposit,area;
     private Date availableDate;
-    private boolean wiFi,pets,smoking,balcony;
     private String usernameOfOfferer;
-    private static final String[] FEATURES = {"Wi-Fi", "Pets", "Smoking", "Balcony"};
     private User landlord;
 
     public Offer(String title, String description, double pricePerMonth, double deposit, String location, String type,double area, int floor, int numberOfRooms, User landlord) {

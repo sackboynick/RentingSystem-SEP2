@@ -50,10 +50,6 @@
       <Label layoutX="584.0" layoutY="263.0" text="Type:" />
       <Label layoutX="584.0" layoutY="305.0" text="Floor:" />
       <Label layoutX="584.0" layoutY="350.0" text="Deposit (max):" />
-      <CheckBox layoutX="584.0" layoutY="400.0" mnemonicParsing="false" text="Free Wi-Fi" />
-      <CheckBox layoutX="583.0" layoutY="435.0" mnemonicParsing="false" text="Pets allowed" />
-      <CheckBox layoutX="583.0" layoutY="470.0" mnemonicParsing="false" text="Smoking allowed" />
-      <CheckBox layoutX="583.0" layoutY="505.0" mnemonicParsing="false" text="Balcony" />
       <TextField layoutX="633.0" layoutY="166.0" prefHeight="26.0" prefWidth="64.0" />
       <Text layoutX="705.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="25.69091796875" />
       <TextField layoutX="718.0" layoutY="166.0" prefHeight="26.0" prefWidth="64.0" />

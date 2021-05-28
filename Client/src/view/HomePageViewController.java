@@ -57,7 +57,6 @@ public class HomePageViewController extends ViewController{
         Offer offer=this.offerListView.getSelectionModel().getSelectedItem();
         if(offer!=null){
             ViewState.getInstance().setOffer(offer);
-            getViewModelFactory().getOfferViewViewModel().setInterface();
             getViewHandler().openView("offerView");
         }
     }
