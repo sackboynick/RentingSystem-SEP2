@@ -3,6 +3,7 @@ package viewmodel;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Message;
 import model.Model;
 import model.Offer;
 import model.User;
@@ -14,6 +15,7 @@ public class HomePageViewModel implements PropertyChangeListener {
     private final Model model;
     private final ObservableList<User> onlineUsers;
     private final ObservableList<Offer> offers;
+    private ObservableList<Message> messages;
 
     public HomePageViewModel(Model model){
         this.model=model;
@@ -27,6 +29,10 @@ public class HomePageViewModel implements PropertyChangeListener {
     public void updateLists(){
         model.updateOffersList();
         model.updateOnlineUserList();
+    }
+
+    public void updateMessageList(){
+        this.messages=FXCollections.observableArrayList(ViewState.getInstance().getUser().getMessagesAndRequests());
     }
 
     public ObservableList<User> getOnlineUsersFromModel(){
@@ -45,15 +51,16 @@ public class HomePageViewModel implements PropertyChangeListener {
         return offers;
     }
 
+    public ObservableList<Message> getMessages() {
+        return messages;
+    }
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()){
-            case "OnlineUsers":
-                Platform.runLater(() -> this.onlineUsers.add(0, (User) evt.getNewValue()));
-                break;
-            case "Offers":
-                Platform.runLater(() -> this.offers.add(0, (Offer) evt.getNewValue()));
-                break;
+        switch (evt.getPropertyName()) {
+            case "OnlineUsers" -> Platform.runLater(() -> this.onlineUsers.add(0, (User) evt.getNewValue()));
+            case "Offers" -> Platform.runLater(() -> this.offers.add(0, (Offer) evt.getNewValue()));
+            case "Message" -> Platform.runLater(() -> this.messages.add(0, (Message) evt.getNewValue()));
         }
 
     }

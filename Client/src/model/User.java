@@ -26,6 +26,10 @@ public class User  implements Serializable {
         this.messagesAndRequests=new ArrayList<>();
     }
 
+    public ArrayList<Message> getMessagesAndRequests() {
+        return messagesAndRequests;
+    }
+
     public String getUsername() {
         return username;
     }

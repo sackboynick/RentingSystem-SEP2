@@ -2,12 +2,15 @@ package viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.Model;
 
 
 public class UserViewViewModel {
-    private final StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals;
+    private final Model model;
+    private final StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals,message;
 
-    public UserViewViewModel(){
+    public UserViewViewModel(Model model){
+        this.model=model;
         this.username=new SimpleStringProperty();
         this.firstName=new SimpleStringProperty();
         this.middleName=new SimpleStringProperty();
@@ -15,6 +18,7 @@ public class UserViewViewModel {
         this.phone=new SimpleStringProperty();
         this.role=new SimpleStringProperty();
         this.numberOfDeals=new SimpleStringProperty();
+        this.message=new SimpleStringProperty();
         if(ViewState.getInstance().getDisplayedUser()!=null)
             setUserInfo();
     }
@@ -27,6 +31,7 @@ public class UserViewViewModel {
         this.phone.set(Long.toString(ViewState.getInstance().getDisplayedUser().getPhone()));
         this.role.set(ViewState.getInstance().getDisplayedUser().getRole());
         this.numberOfDeals.set(Integer.toString(ViewState.getInstance().getDisplayedUser().getDealsClosed()));
+        this.message.set("");
     }
 
     public StringProperty getUsername() {
@@ -55,6 +60,15 @@ public class UserViewViewModel {
 
     public StringProperty getNumberOfDeals() {
         return numberOfDeals;
+    }
+
+    public StringProperty getMessageToLandlord() {
+        return message;
+    }
+
+    public void sendMessage(){
+        if(!message.get().equals(""))
+            this.model.sendMessage(ViewState.getInstance().getUser(), username.get(), message.toString());
     }
 
 }

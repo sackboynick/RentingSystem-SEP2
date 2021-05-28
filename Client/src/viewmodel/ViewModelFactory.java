@@ -17,7 +17,7 @@ public class ViewModelFactory {
         this.loginViewModel=new LoginViewModel(model);
         this.signUpViewModel=new SignUpViewModel(model);
         this.homePageViewModel=new HomePageViewModel(model);
-        this.userViewViewModel=new UserViewViewModel();
+        this.userViewViewModel=new UserViewViewModel(model);
         this.offersListViewModel=new OffersListViewModel(model);
         this.publishOfferViewModel=new PublishOfferViewModel(model);
         this.offerViewViewModel=new OfferViewViewModel(model);

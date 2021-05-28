@@ -15,5 +15,6 @@ public interface RemoteModel extends RemoteSubject<String,Object>{
     OnlineUserList getUsersOnline() throws RemoteException;
     OfferList getOffers() throws RemoteException;
     void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException;
-    String sendMessage(String username, String body) throws RemoteException;
+    String sendMessage(User sender, String receiver,String body) throws RemoteException;
+    void sendRequest(String offerer, Offer offer) throws RemoteException;
 }

@@ -14,7 +14,7 @@ public class ViewModelFactory {
 
     public ViewModelFactory(Model model){
         this.mainViewViewModel=new MainViewViewModel(model);
-        this.userViewViewModel=new UserViewViewModel();
+        this.userViewViewModel=new UserViewViewModel(model);
         this.offerViewViewModel=new OfferViewViewModel(model);
         this.usersListViewModel=new UsersListViewModel(model);
         this.offersListViewModel=new OffersListViewModel(model);

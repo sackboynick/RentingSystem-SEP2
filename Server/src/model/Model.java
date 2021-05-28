@@ -14,4 +14,6 @@ public interface Model extends NamedPropertyChangeSubject {
     OfferList getOffers();
     UserList getUsers();
     RentingList getRentingList();
+    String sendMessage(User sender,String receiver, String body);
+    void sendRequest(String offerer, Offer offer);
 }

@@ -31,9 +31,8 @@ public class UserViewController extends ViewController {
     }
 
     @FXML public void sendMessage(){
-        String message=this.message.getText();
-        if(message!=null && message.equals(""))
-             ViewState.getInstance().getDisplayedUser().addMessageOrRequest(new Message(message,ViewState.getInstance().getUser()));
+        getViewModelFactory().getUserViewViewModel().sendMessage();
+        this.message.setText("");
     }
 
     @FXML

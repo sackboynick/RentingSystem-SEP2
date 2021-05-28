@@ -3,15 +3,14 @@ package model;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class User implements Serializable {
+public class User  implements Serializable {
     @Serial
     private static final long serialVersionUID = 6529685098267757690L;
     private String username, password,firstName,middleName,lastName,role;
     private long phone;
     private int dealsClosed;
-    private final ArrayList<String> messagesAndRequests;
+    private final ArrayList<Message> messagesAndRequests;
 
     private static final String[] ROLES={"Admin","Landlord","Tenant"};
 
@@ -25,6 +24,10 @@ public class User implements Serializable {
         setRole(role);
         setDealsClosed(0);
         this.messagesAndRequests=new ArrayList<>();
+    }
+
+    public ArrayList<Message> getMessagesAndRequests() {
+        return messagesAndRequests;
     }
 
     public String getUsername() {
@@ -95,7 +98,7 @@ public class User implements Serializable {
         return this.username.equals(username) && this.password.equals(password);
     }
 
-    public void addMessageOrRequest(String message){
+    public void addMessageOrRequest(Message message){
         this.messagesAndRequests.add(message);
     }
     @Override

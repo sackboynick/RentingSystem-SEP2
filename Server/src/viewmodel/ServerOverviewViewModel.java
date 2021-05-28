@@ -17,6 +17,7 @@ public class ServerOverviewViewModel implements PropertyChangeListener {
         this.model=model;
         this.model.addListener("Offers",this);
         this.model.addListener("User",this);
+        this.model.addListener("Renting",this);
         this.numberOfUsers=new SimpleStringProperty();
         this.numberOfOffers=new SimpleStringProperty();
         this.numberOfClosedDeals=new SimpleStringProperty();
@@ -44,6 +45,7 @@ public class ServerOverviewViewModel implements PropertyChangeListener {
     public void update(){
         this.numberOfUsers.setValue(Integer.toString(this.model.getUsers().getUsersArraylist().size()));
         this.numberOfOffers.setValue(Integer.toString(this.model.getOffers().getOffers().size()));
+        this.numberOfClosedDeals.setValue(Integer.toString(this.model.getRentingList().getRentingArrayList().size()));
         this.numberOfTenants.setValue(getTenantsSize());
         this.numberOfLandlords.setValue(getLandlordSize());
     }

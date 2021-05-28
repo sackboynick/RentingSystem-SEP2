@@ -10,14 +10,11 @@ import viewmodel.ViewState;
 
 
 public class MainViewController extends ViewController{
-    @FXML
-    public ListView<Renting> dealsList;
+
     @FXML
     public ListView<Offer> offersList;
     @FXML
     private ListView<User> onlineUsersList;
-
-    @FXML private Label messageStatus;
 
     public MainViewController(){
 
@@ -27,7 +24,6 @@ public class MainViewController extends ViewController{
     protected void init(){
         this.onlineUsersList.setItems(getViewModelFactory().getMainViewViewModel().getUsers());
         this.offersList.setItems(getViewModelFactory().getMainViewViewModel().getOffers());
-        this.messageStatus.setText("");
     }
 
     public void reset(){

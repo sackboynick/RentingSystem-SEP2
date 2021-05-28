@@ -56,8 +56,13 @@ public class ModelManager implements Model,PropertyChangeListener {
     }
 
     @Override
-    public String sendMessage(String username, String body) {
-        return rmiClient.sendMessage(username,body);
+    public String sendMessage(User sender,String receiver, String body) {
+        return rmiClient.sendMessage(sender,receiver,body);
+    }
+
+    @Override
+    public void sendRequest(String offerer, Offer offer) {
+        this.rmiClient.sendRequest(offerer,offer);
     }
 
     @Override
@@ -86,6 +91,12 @@ public class ModelManager implements Model,PropertyChangeListener {
             case "Offers" -> {
                 this.offerList.addOffer((Offer) evt.getNewValue());
                 this.propertyChangeSupport.firePropertyChange("Offers", null, evt.getNewValue());
+            }
+            case "Message" -> {
+                if(evt.getOldValue().equals(ViewState.getInstance().getUser().getUsername())) {
+                    ViewState.getInstance().getUser().addMessageOrRequest((Message) evt.getNewValue());
+                    this.propertyChangeSupport.firePropertyChange("Message",null,evt.getNewValue());
+                }
             }
         }
     }

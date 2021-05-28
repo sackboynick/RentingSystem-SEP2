@@ -9,11 +9,17 @@ public class Message implements Serializable {
     private static final long serialVersionUID = 652968509867757691L;
     private final String body;
     private LocalDateTime localDateTime;
-    private final User sender;
+    private User sender;
+    private String senderIntText;
 
     public Message(String body, User sender){
         this.sender=sender;
         this.body=body;
+    }
+
+    public Message(String body){
+        this.body=body;
+        this.senderIntText="SERVER";
     }
 
     public LocalDateTime getLocalDateTime() {

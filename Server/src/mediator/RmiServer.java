@@ -16,13 +16,11 @@ import java.rmi.server.UnicastRemoteObject;
 public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     private final PropertyChangeHandler<String,Object> propertyChangeHandler;
     private final PropertyChangeSupport propertyChangeSupport;
-    private int usersOnline;
     private final Model model;
 
     public RmiServer(Model model){
         this.propertyChangeHandler =new PropertyChangeHandler<>(this,true);
         this.propertyChangeSupport=new PropertyChangeSupport(this);
-        this.usersOnline=0;
         this.model=model;
         try {
             startRegistry();
@@ -74,6 +72,17 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     @Override
     public void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException {
         this.model.getRentingList().getRentingArrayList().add(new Renting(tenant,landlord,offer));
+    }
+
+    @Override
+    public String sendMessage(User sender, String receiver, String body) throws RemoteException {
+        this.propertyChangeHandler.firePropertyChange("Message",receiver,new Message(receiver,sender));
+        return this.model.sendMessage(sender,receiver,body);
+    }
+
+    @Override
+    public void sendRequest(String offerer, Offer offer) throws RemoteException {
+        this.model.sendRequest(offerer,offer);
     }
 
 

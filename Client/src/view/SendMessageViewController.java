@@ -2,10 +2,7 @@ package view;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.User;
 import viewmodel.ViewState;
 
@@ -15,6 +12,7 @@ public class SendMessageViewController extends ViewController{
     @FXML
     private TextField receiver;
     @FXML private TextArea body;
+    @FXML private Label error;
 
     @Override
     protected void init() {
@@ -39,5 +37,7 @@ public class SendMessageViewController extends ViewController{
             if(user!=null) {
                 username.setText(user.getUsername());
             }
+            else
+                this.error.setText("Select an user first!");
     }
 }

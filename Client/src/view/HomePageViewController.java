@@ -1,6 +1,7 @@
 package view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import model.Message;
@@ -14,6 +15,7 @@ public class HomePageViewController extends ViewController{
     @FXML private ListView<Offer> offerListView;
     @FXML private ListView<Message> messageListView;
     @FXML private Label username;
+    @FXML private Button userOffersButton;
 
 
     public HomePageViewController(){
@@ -22,7 +24,10 @@ public class HomePageViewController extends ViewController{
 
     public void reset(){
         getViewModelFactory().getHomePageViewModel().updateLists();
+        getViewModelFactory().getHomePageViewModel().updateMessageList();
         this.username.setText(ViewState.getInstance().getUser().getUsername());
+        if(!ViewState.getInstance().getUser().getRole().equals("Tenant"))
+            userOffersButton.setVisible(false);
     }
 
     @Override
@@ -30,6 +35,7 @@ public class HomePageViewController extends ViewController{
         reset();
         this.onlineUsers.setItems(getViewModelFactory().getHomePageViewModel().getOnlineUsers());
         this.offerListView.setItems(getViewModelFactory().getHomePageViewModel().getOffers());
+        this.messageListView.setItems(getViewModelFactory().getHomePageViewModel().getMessages());
     }
 
     @FXML
@@ -65,5 +71,13 @@ public class HomePageViewController extends ViewController{
         ViewState.getInstance().setDisplayedUser(ViewState.getInstance().getUser());
         getViewModelFactory().getUserViewViewModel().setUserInfo();
         getViewHandler().openView("userInterface");
+    }
+
+    @FXML void openUserOfferList(){
+
+    }
+
+    @FXML void openSendMessageInterface(){
+        getViewHandler().openView("sendMessageView");
     }
 }

@@ -1,8 +1,10 @@
 package view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import model.Message;
 import viewmodel.ViewState;
 
 public class OfferViewController extends ViewController{
@@ -23,6 +25,7 @@ public class OfferViewController extends ViewController{
         this.area.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getArea());
         this.floor.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getFloor());
         this.landlordName.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getLandlordName());
+        this.messageToLandlord.textProperty().bindBidirectional(getViewModelFactory().getOfferViewViewModel().getMessageToLandlord());
     }
 
     public void reset(){
@@ -34,7 +37,9 @@ public class OfferViewController extends ViewController{
     }
 
     @FXML public void sendMessageToLandlord(){
-        ViewState.getInstance().getOffer().getLandlord().addMessageOrRequest(messageToLandlord.getText());
+        getViewModelFactory().getOfferViewViewModel().sendMessage();
         this.messageToLandlord.setText("");
     }
+
+
 }

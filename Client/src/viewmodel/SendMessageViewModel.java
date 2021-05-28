@@ -14,7 +14,7 @@ import java.beans.PropertyChangeListener;
 
 public class SendMessageViewModel implements PropertyChangeListener {
     private final ObservableList<User> onlineUsers;
-    private final StringProperty receiver, body;
+    private final StringProperty receiver, body,error;
     private final Model model;
 
     public SendMessageViewModel(Model model){
@@ -23,6 +23,7 @@ public class SendMessageViewModel implements PropertyChangeListener {
         model.addListener("OnlineUsers",this);
         this.receiver=new SimpleStringProperty();
         this.body=new SimpleStringProperty();
+        this.error=new SimpleStringProperty();
     }
 
     public ObservableList<User> getOnlineUsers() {
@@ -37,19 +38,25 @@ public class SendMessageViewModel implements PropertyChangeListener {
         return receiver;
     }
 
-    public String sendMessage(){
+    public void sendMessage(){
+        String result;
         if(body.get().equals(""))
-            return "Please write something in the body";
+            error.set("Please write something in the body");
         else if(receiver.get().equals(""))
-            return "Please insert an username";
-        else
-            return this.model.sendMessage(getReceiver().get(),getBody().get());
+            error.set("Please insert an username");
+        else {
+            result = this.model.sendMessage(ViewState.getInstance().getUser(), getReceiver().get(), getBody().get());
+            if(result.equals("Valid"))
+                error.set("");
+            else
+                error.set(result);
+        }
 
     }
 
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        Platform.runLater(() -> this.onlineUsers.add((User) evt.getNewValue()));
+        Platform.runLater(() -> this.onlineUsers.add(0,(User) evt.getNewValue()));
     }
 }

@@ -27,4 +27,9 @@ public class Message implements Serializable {
     public User getSender() {
         return sender;
     }
+
+    @Override
+    public String toString(){
+        return "From "+sender.getUsername()+": "+body;
+    }
 }

@@ -10,7 +10,7 @@ import javax.swing.text.View;
 
 public class OfferViewViewModel {
     private final Model model;
-    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName;
+    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,messageToLandlord;
     private BooleanProperty pets,smoking,balcony,freeWifi;
 
     public OfferViewViewModel(Model model){
@@ -34,6 +34,7 @@ public class OfferViewViewModel {
         this.smoking=new SimpleBooleanProperty();
         this.balcony=new SimpleBooleanProperty();
         this.freeWifi=new SimpleBooleanProperty();
+        this.messageToLandlord=new SimpleStringProperty();
     }
     public StringProperty getTitle() {
         return title;
@@ -89,5 +90,14 @@ public class OfferViewViewModel {
 
     public BooleanProperty isSmoking() {
         return smoking;
+    }
+
+    public StringProperty getMessageToLandlord() {
+        return messageToLandlord;
+    }
+
+    public void sendMessage(){
+        if(!messageToLandlord.get().equals(""))
+            this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getOffer().getLandlord().getUsername(), messageToLandlord.toString());
     }
 }

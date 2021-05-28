@@ -85,13 +85,22 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     }
 
     @Override
-    public String sendMessage(String username, String body) {
+    public String sendMessage(User sender, String receiver, String body) {
         try {
-            return server.sendMessage(username, body);
+            return server.sendMessage(sender,receiver, body);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void sendRequest(String offerer, Offer offer) {
+        try{
+            this.server.sendRequest(offerer, offer);
+        } catch (RemoteException e){
+            e.printStackTrace();
+        }
     }
 
 
@@ -110,6 +119,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         switch (event.getPropertyName()) {
             case "OnlineUsers" -> this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, event.getValue2());
             case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
+            case "Message" -> this.propertyChangeSupport.firePropertyChange("Message",event.getValue1(),event.getValue2());
         }
     }
 }

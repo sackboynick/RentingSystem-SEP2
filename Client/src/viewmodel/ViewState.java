@@ -5,12 +5,19 @@ import javafx.collections.ObservableList;
 import model.Offer;
 import model.Renting;
 import model.User;
+import utility.NamedPropertyChangeSubject;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 public class ViewState {
     private static ViewState instance;
     private User user;
     private Offer offer;
     private User displayedUser;
+
+    private ViewState(){
+    }
 
 
     public static ViewState getInstance(){
@@ -42,4 +49,5 @@ public class ViewState {
     public User getDisplayedUser() {
         return displayedUser;
     }
+
 }

@@ -2,12 +2,15 @@ package viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.Model;
 
 
 public class UserViewViewModel {
-    private StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals;
+    private final Model model;
+    private StringProperty username,firstName,middleName,lastName,phone,role,numberOfDeals,messageToLandlord;
 
-    public UserViewViewModel(){
+    public UserViewViewModel(Model model){
+        this.model=model;
         if(ViewState.getInstance().getDisplayedUser()!=null)
             setUserInfo();
     }
@@ -20,6 +23,7 @@ public class UserViewViewModel {
         this.phone=new SimpleStringProperty(Long.toString(ViewState.getInstance().getDisplayedUser().getPhone()));
         this.role=new SimpleStringProperty(ViewState.getInstance().getDisplayedUser().getRole());
         this.numberOfDeals=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getDisplayedUser().getDealsClosed()));
+        this.messageToLandlord=new SimpleStringProperty();
     }
 
     public StringProperty getUsername() {
@@ -49,5 +53,7 @@ public class UserViewViewModel {
     public StringProperty getNumberOfDeals() {
         return numberOfDeals;
     }
+
+
 
 }

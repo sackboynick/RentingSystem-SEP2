@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Offer;
-import model.Renting;
 import model.User;
 import viewmodel.ViewState;
 

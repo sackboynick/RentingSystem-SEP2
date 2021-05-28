@@ -8,7 +8,7 @@ import model.Model;
 
 public class OfferViewViewModel {
     private final Model model;
-    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName;
+    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,password,messageToLandlord;
     private BooleanProperty pets,smoking,balcony,freeWifi;
 
     public OfferViewViewModel(Model model){
@@ -28,10 +28,12 @@ public class OfferViewViewModel {
         this.floor=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
         this.numberOfRooms=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
         this.landlordName=new SimpleStringProperty(ViewState.getInstance().getOffer().getLandlord().getUsername());
+        this.password=new SimpleStringProperty();
         this.pets=new SimpleBooleanProperty();
         this.smoking=new SimpleBooleanProperty();
         this.balcony=new SimpleBooleanProperty();
         this.freeWifi=new SimpleBooleanProperty();
+        this.messageToLandlord=new SimpleStringProperty();
     }
     public StringProperty getTitle() {
         return title;
@@ -61,6 +63,10 @@ public class OfferViewViewModel {
         return floor;
     }
 
+    public StringProperty getPassword() {
+        return password;
+    }
+
     public StringProperty getNumberOfRooms() {
         return numberOfRooms;
     }
@@ -87,5 +93,20 @@ public class OfferViewViewModel {
 
     public BooleanProperty isSmoking() {
         return smoking;
+    }
+
+    public StringProperty getMessageToLandlord() {
+        return messageToLandlord;
+    }
+
+    public void sendRequest(){
+        if(ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") && ViewState.getInstance().getUser().getUsername().equals(password.get()))
+            this.model.sendRequest(ViewState.getInstance().getUser().getUsername(),ViewState.getInstance().getOffer());
+    }
+
+
+    public void sendMessage(){
+        if(!messageToLandlord.get().equals(""))
+            this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getOffer().getLandlord().getUsername(), messageToLandlord.toString());
     }
 }

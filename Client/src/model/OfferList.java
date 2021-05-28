@@ -1,10 +1,5 @@
 package model;
 
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.value.ObservableListValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -19,12 +14,10 @@ public class OfferList  implements Serializable {
         this.offers= new ArrayList<>();
     }
 
-    public String addOffer(Offer offer){
+    public void addOffer(Offer offer){
         if(!offers.contains(offer)) {
             offers.add(offer);
-            return "Offer #"+offer.getID()+" has been added!";
         }
-        return "There has been a problem adding the offer";
     }
     public String removeOffer(String ID){
         for(Offer offer: offers){

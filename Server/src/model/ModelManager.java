@@ -51,6 +51,23 @@ public class ModelManager implements Model{
     }
 
     @Override
+    public String sendMessage(User sender,String receiver, String body) {
+        for(User user: userList.getUsersArraylist()){
+            if(user.getUsername().equals(receiver))
+                user.addMessageOrRequest(new Message(body, sender));
+        }
+        return null;
+    }
+
+    @Override
+    public void sendRequest(String offerer, Offer offer) {
+        for(Offer off: offerList.getOffers()){
+            if(off.getTitle().equals(offer.getTitle()))
+                off.makeOffer(offerer);
+        }
+    }
+
+    @Override
     public boolean signUp(User user) {
         if(!userList.getUsersArraylist().contains(user)) {
             this.propertyChangeSupport.firePropertyChange("User",null,user);
