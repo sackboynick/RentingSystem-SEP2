@@ -55,6 +55,7 @@ public class Renting  implements Serializable {
         return date;
     }
 
+    @Override
     public String toString(){
         return "Offer: "+offer.getTitle()+" Landlord: "+getLandlord().getUsername()+" Tenant: "+tenant.getUsername();
     }

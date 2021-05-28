@@ -13,22 +13,26 @@ import java.beans.PropertyChangeListener;
 
 public class HomePageViewModel implements PropertyChangeListener {
     private final Model model;
-    private final ObservableList<User> onlineUsers;
-    private final ObservableList<Offer> offers;
+    private ObservableList<User> onlineUsers;
+    private ObservableList<Offer> offers;
     private ObservableList<Message> messages;
 
     public HomePageViewModel(Model model){
         this.model=model;
         this.model.addListener("OnlineUsers",this);
         this.model.addListener("Offers",this);
-        updateLists();
-        this.onlineUsers=getOnlineUsersFromModel();
-        this.offers=getOffersFromModel();
+        this.model.addListener("Message",this);
+        this.onlineUsers=FXCollections.observableArrayList();
+        this.offers=FXCollections.observableArrayList();
+        this.messages=FXCollections.observableArrayList();
     }
 
     public void updateLists(){
         model.updateOffersList();
         model.updateOnlineUserList();
+        this.onlineUsers=getOnlineUsersFromModel();
+        this.offers=getOffersFromModel();
+        updateMessageList();
     }
 
     public void updateMessageList(){

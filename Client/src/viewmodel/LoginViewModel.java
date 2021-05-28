@@ -7,8 +7,8 @@ import model.User;
 
 
 public class LoginViewModel {
-    private StringProperty username;
-    private StringProperty password;
+    private final StringProperty username;
+    private final StringProperty password;
     private final Model model;
 
     public LoginViewModel(Model model){
@@ -28,14 +28,7 @@ public class LoginViewModel {
 
 
     public User login() {
-        User user=model.login(username.get(), password.get());
-        if(user!=null) {
-            ViewState.getInstance().setUser(user);
-            model.updateOffersList();
-            model.updateOnlineUserList();
-            return user;
-        }
-        return null;
+        return model.login(username.get(), password.get());
     }
 
 

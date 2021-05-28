@@ -76,4 +76,9 @@ public class PublishOfferViewController extends ViewController{
         getViewModelFactory().getPublishOfferViewModel().publishOffer();
         getViewHandler().openView("offersList");
     }
+
+    @FXML public void onBack(){
+
+        getViewHandler().openView("offersList");
+    }
 }

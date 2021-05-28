@@ -19,25 +19,35 @@ public class SendMessageViewController extends ViewController{
         this.userTableView.setItems(getViewModelFactory().getSendMessageViewModel().getOnlineUsers());
         this.username.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
         this.role.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getRole()));
+        this.error.textProperty().bindBidirectional(getViewModelFactory().getSendMessageViewModel().getError());
+        this.receiver.textProperty().bindBidirectional(getViewModelFactory().getSendMessageViewModel().getReceiver());
+        this.body.textProperty().bindBidirectional(getViewModelFactory().getSendMessageViewModel().getBody());
         reset();
     }
 
     public void reset(){
         this.receiver.setText("");
         this.body.setText("");
+        this.error.setText("");
     }
 
     @FXML
     public void sendMessage(){
         getViewModelFactory().getSendMessageViewModel().sendMessage();
+        reset();
     }
 
     @FXML public void selectUser(){
             User user=this.userTableView.getSelectionModel().getSelectedItem();
             if(user!=null) {
-                username.setText(user.getUsername());
+                receiver.setText(user.getUsername());
+                this.error.setText("");
             }
             else
                 this.error.setText("Select an user first!");
+    }
+
+    @FXML public void onBack(){
+        getViewHandler().openView("homePage");
     }
 }

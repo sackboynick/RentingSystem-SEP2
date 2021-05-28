@@ -6,9 +6,11 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Model;
 
+import javax.swing.text.View;
+
 public class OfferViewViewModel {
     private final Model model;
-    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,password,messageToLandlord;
+    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,password,messageToLandlord,error;
     private BooleanProperty pets,smoking,balcony,freeWifi;
 
     public OfferViewViewModel(Model model){
@@ -33,7 +35,8 @@ public class OfferViewViewModel {
         this.smoking=new SimpleBooleanProperty();
         this.balcony=new SimpleBooleanProperty();
         this.freeWifi=new SimpleBooleanProperty();
-        this.messageToLandlord=new SimpleStringProperty();
+        this.messageToLandlord=new SimpleStringProperty("");
+        this.error=new SimpleStringProperty("");
     }
     public StringProperty getTitle() {
         return title;
@@ -99,14 +102,31 @@ public class OfferViewViewModel {
         return messageToLandlord;
     }
 
+    public StringProperty getError() {
+        return error;
+    }
+
     public void sendRequest(){
-        if(ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") && ViewState.getInstance().getUser().getUsername().equals(password.get()))
+        if(ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") && ViewState.getInstance().getUser().getPassword().equals(password.get()))
             this.model.sendRequest(ViewState.getInstance().getUser().getUsername(),ViewState.getInstance().getOffer());
+    }
+
+    public void acceptRequest(){
+        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
+            this.model.acceptRequest(ViewState.getInstance().getOffer().getUsernameOfOfferer(),ViewState.getInstance().getOffer());
     }
 
 
     public void sendMessage(){
-        if(!messageToLandlord.get().equals(""))
-            this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getOffer().getLandlord().getUsername(), messageToLandlord.toString());
+        String result;
+        if(messageToLandlord.get().equals(""))
+            error.set("Please write something in the body");
+        else {
+            result = this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getOffer().getLandlord().getUsername(), messageToLandlord.get());
+            if(result.equals("Valid"))
+                error.set("");
+            else
+                error.set(result);
+        }
     }
 }

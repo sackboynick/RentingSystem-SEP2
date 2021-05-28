@@ -16,6 +16,7 @@ public class OffersListViewController extends ViewController{
 
     @Override
     protected void init() {
+        reset();
         this.offerTableView.setItems(getViewModelFactory().getOffersListViewModel().getOffers());
         this.title.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
         this.landlord.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLandlord().getUsername()));
@@ -25,7 +26,7 @@ public class OffersListViewController extends ViewController{
     }
 
     public void reset(){
-
+        getViewModelFactory().getOffersListViewModel().updateOffersListFromModel();
     }
 
     @FXML public void back(){

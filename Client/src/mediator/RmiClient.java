@@ -26,13 +26,12 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     }
 
     @Override
-    public String addOffer(Offer offer) {
+    public void addOffer(Offer offer) {
         try {
-            return server.addOffer(offer);
+            server.addOffer(offer);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return "Error adding the offer.";
     }
 
     @Override
@@ -75,14 +74,6 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         return null;
     }
 
-    @Override
-    public void closeDeal(Offer offer,User landlord,User tenant) {
-        try {
-            server.closeDeal(offer, landlord, tenant);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public String sendMessage(User sender, String receiver, String body) {
@@ -91,7 +82,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return null;
+        return "Problem during the connection";
     }
 
     @Override
@@ -99,6 +90,34 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         try{
             this.server.sendRequest(offerer, offer);
         } catch (RemoteException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public RentingList getRentingList(String username) {
+        try {
+            return this.server.getRentingList(username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void publishFeedback(String role, String s,Renting renting) {
+        try {
+            this.server.publishFeedback(role,s,renting);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void acceptRequest(String usernameOfOfferer, Offer offer) {
+        try {
+            this.server.acceptRequest(usernameOfOfferer, offer);
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
@@ -120,6 +139,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
             case "OnlineUsers" -> this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, event.getValue2());
             case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
             case "Message" -> this.propertyChangeSupport.firePropertyChange("Message",event.getValue1(),event.getValue2());
+            case "Renting" -> this.propertyChangeSupport.firePropertyChange("Renting",event.getValue1(),event.getValue2());
         }
     }
 }

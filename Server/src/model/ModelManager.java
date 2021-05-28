@@ -21,9 +21,9 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public String addOffer(Offer offer) {
+    public void addOffer(Offer offer) {
         this.propertyChangeSupport.firePropertyChange("Offers",null,offer);
-        return offerList.addOffer(offer);
+        offerList.addOffer(offer);
     }
 
     @Override
@@ -53,10 +53,12 @@ public class ModelManager implements Model{
     @Override
     public String sendMessage(User sender,String receiver, String body) {
         for(User user: userList.getUsersArraylist()){
-            if(user.getUsername().equals(receiver))
+            if(user.getUsername().equals(receiver)) {
                 user.addMessageOrRequest(new Message(body, sender));
+                return "Valid";
+            }
         }
-        return null;
+        return "The username you inserted does not exist, try again.";
     }
 
     @Override
@@ -68,13 +70,50 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public boolean signUp(User user) {
-        if(!userList.getUsersArraylist().contains(user)) {
-            this.propertyChangeSupport.firePropertyChange("User",null,user);
-            userList.addUser(user);
-            return true;
+    public RentingList getUserRentingList(String username) {
+        RentingList rentings=new RentingList();
+        for(Renting renting: this.rentingList.getRentingArrayList()){
+            if(renting.getLandlord().getUsername().equals(username) || renting.getTenant().getUsername().equals(username))
+                rentings.getRentingArrayList().add(renting);
         }
-        return false;
+        return rentings;
+    }
+
+    @Override
+    public void publishFeedback(String role, String s,Renting renting) {
+        for(Renting renting1:rentingList.getRentingArrayList()){
+            if(renting1.toString().equals(renting.toString())) {
+                if(role.equals("Landlord")) {
+                    renting1.setLandlordFeedback(s);
+                }
+                else
+                    renting1.setTenantFeedback(s);
+            }
+        }
+    }
+
+    @Override
+    public void closeDeal(String usernameOfOfferer, Offer offer) {
+        offerList.getOffers().removeIf(offer1 -> offer.toString().equals(offer1.toString()));
+        User tenant;
+        for(User user:userList.getUsersArraylist()){
+            if(user.getUsername().equals(usernameOfOfferer)) {
+                tenant = user;
+                rentingList.getRentingArrayList().add(new Renting(tenant, offer.getLandlord(), offer));
+            }
+        }
+    }
+
+    @Override
+    public boolean signUp(User user) {
+        for(User x: userList.getUsersArraylist())
+        {
+            if(x.getUsername().equals(user.getUsername()))
+                return false;
+        }
+        this.propertyChangeSupport.firePropertyChange("User",null,user);
+        userList.addUser(user);
+        return true;
     }
 
     @Override

@@ -24,7 +24,6 @@ public class HomePageViewController extends ViewController{
 
     public void reset(){
         getViewModelFactory().getHomePageViewModel().updateLists();
-        getViewModelFactory().getHomePageViewModel().updateMessageList();
         this.username.setText(ViewState.getInstance().getUser().getUsername());
         if(!ViewState.getInstance().getUser().getRole().equals("Tenant"))
             userOffersButton.setVisible(false);
@@ -42,10 +41,6 @@ public class HomePageViewController extends ViewController{
     public void openOffersList(){
         reset();
         getViewHandler().openView("offersList");
-    }
-
-    @FXML public void openDealsList(){
-        getViewHandler().openView("dealsList");
     }
 
     @FXML
@@ -74,7 +69,11 @@ public class HomePageViewController extends ViewController{
     }
 
     @FXML void openUserOfferList(){
+        getViewHandler().openView("userOffersList");
+    }
 
+    @FXML public void openRentingList(){
+        getViewHandler().openView("rentingListView");
     }
 
     @FXML void openSendMessageInterface(){

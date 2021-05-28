@@ -12,13 +12,13 @@ public class SignUpViewController extends ViewController{
     @FXML private Label error;
 
     public void reset(){
-        getViewModelFactory().getSignUpViewModel().getUsername().set("");
-        getViewModelFactory().getSignUpViewModel().getPassword().set("");
-        getViewModelFactory().getSignUpViewModel().getFirstName().set("");
+        getViewModelFactory().getSignUpViewModel().getUsername().set("nick");
+        getViewModelFactory().getSignUpViewModel().getPassword().set("password");
+        getViewModelFactory().getSignUpViewModel().getFirstName().set("Nicola");
         getViewModelFactory().getSignUpViewModel().getMiddleName().set("");
-        getViewModelFactory().getSignUpViewModel().getLastName().set("");
-        getViewModelFactory().getSignUpViewModel().getPhone().set("");
-        getViewModelFactory().getSignUpViewModel().getRole().set("");
+        getViewModelFactory().getSignUpViewModel().getLastName().set("Santolini");
+        getViewModelFactory().getSignUpViewModel().getPhone().set("456435");
+        getViewModelFactory().getSignUpViewModel().getRole().set("Tenant");
         error.setText("");
     }
     @Override

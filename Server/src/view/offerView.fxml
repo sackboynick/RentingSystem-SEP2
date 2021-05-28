@@ -36,38 +36,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.OfferViewController">
+<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OfferViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
-      <Button layoutX="52.0" layoutY="41.0" mnemonicParsing="false" onAction="#onBack" text="BACK"/>
+      <Button layoutX="52.0" layoutY="41.0" mnemonicParsing="false" onAction="#onBack" text="BACK" />
       <Label layoutX="246.0" layoutY="37.0" text="offerName">
          <font>
-            <Font size="28.0"/>
+            <Font size="28.0" />
          </font>
       </Label>
-      <Label layoutX="70.0" layoutY="122.0" text="Title:"/>
-      <Label layoutX="47.0" layoutY="164.0" text="Description:"/>
-      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="158.0" layoutY="164.0"
-             prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER"/>
-      <Label fx:id="title" layoutX="165.0" layoutY="122.0" text="-title-"/>
-      <Label layoutX="61.0" layoutY="284.0" text="Address:"/>
-      <Label fx:id="address" layoutX="165.0" layoutY="284.0" text="-address-"/>
-      <Label layoutX="72.0" layoutY="322.0" text="Type:"/>
-      <Label fx:id="type" layoutX="176.0" layoutY="322.0" text="-type-"/>
-      <Label layoutX="321.0" layoutY="122.0" text="Price per month:"/>
-      <Label layoutX="348.0" layoutY="156.0" text="Deposit:"/>
-      <Label layoutX="358.0" layoutY="192.0" text="Area:"/>
-      <Label layoutX="30.0" layoutY="362.0" text="Number of rooms:"/>
-      <Label layoutX="357.0" layoutY="228.0" text="Floor:"/>
-      <Label fx:id="pricePerMonth" layoutX="460.0" layoutY="122.0" text="-pricePerMonth."/>
-      <Label fx:id="deposit" layoutX="483.0" layoutY="156.0" text="-deposit-"/>
-      <Label fx:id="area" layoutX="494.0" layoutY="192.0" text="-area-"/>
-      <Label fx:id="floor" layoutX="496.0" layoutY="228.0" text="-floor-"/>
-      <Label fx:id="numberOfRooms" layoutX="166.0" layoutY="362.0" text="-numberOfRooms-"/>
-      <Label layoutX="345.0" layoutY="267.0" text="Landlord:"/>
-      <Label fx:id="landlordName" layoutX="460.0" layoutY="267.0" text="-landlordusername-"/>
-      <TextArea fx:id="messageToLandlord" layoutX="369.0" layoutY="289.0" prefHeight="99.0" prefWidth="155.0"/>
-      <Button layoutX="541.0" layoutY="336.0" mnemonicParsing="false" onAction="#sendMessageToLandlord"
-              prefHeight="47.0" prefWidth="87.0" text="SEND MESSAGE" textAlignment="CENTER" wrapText="true"/>
+      <Label layoutX="70.0" layoutY="122.0" text="Title:" />
+      <Label layoutX="47.0" layoutY="164.0" text="Description:" />
+      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="158.0" layoutY="164.0" prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER" />
+      <Label fx:id="title" layoutX="165.0" layoutY="122.0" text="-title-" />
+      <Label layoutX="61.0" layoutY="284.0" text="Address:" />
+      <Label fx:id="address" layoutX="165.0" layoutY="284.0" text="-address-" />
+      <Label layoutX="72.0" layoutY="322.0" text="Type:" />
+      <Label fx:id="type" layoutX="176.0" layoutY="322.0" text="-type-" />
+      <Label layoutX="321.0" layoutY="122.0" text="Price per month:" />
+      <Label layoutX="348.0" layoutY="156.0" text="Deposit:" />
+      <Label layoutX="358.0" layoutY="192.0" text="Area:" />
+      <Label layoutX="30.0" layoutY="362.0" text="Number of rooms:" />
+      <Label layoutX="357.0" layoutY="228.0" text="Floor:" />
+      <Label fx:id="pricePerMonth" layoutX="460.0" layoutY="122.0" text="-pricePerMonth." />
+      <Label fx:id="deposit" layoutX="483.0" layoutY="156.0" text="-deposit-" />
+      <Label fx:id="area" layoutX="494.0" layoutY="192.0" text="-area-" />
+      <Label fx:id="floor" layoutX="496.0" layoutY="228.0" text="-floor-" />
+      <Label fx:id="numberOfRooms" layoutX="166.0" layoutY="362.0" text="-numberOfRooms-" />
+      <Label layoutX="345.0" layoutY="267.0" text="Landlord:" />
+      <Label fx:id="landlordName" layoutX="460.0" layoutY="267.0" text="-landlordusername-" />
    </AnchorPane>
 </VBox>

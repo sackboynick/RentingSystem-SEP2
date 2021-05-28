@@ -1,12 +1,9 @@
 package model;
 
-import javafx.collections.ObservableList;
 import utility.NamedPropertyChangeSubject;
 
-import java.rmi.RemoteException;
-
 public interface Model extends NamedPropertyChangeSubject {
-    String addOffer(Offer offer);
+    void addOffer(Offer offer);
     User login(String username,String password);
     boolean signUp(User user);
     OnlineUserList getUsersOnline();
@@ -15,4 +12,7 @@ public interface Model extends NamedPropertyChangeSubject {
     void updateOffersList();
     String sendMessage(User sender, String receiver,String body);
     void sendRequest(String offerer,Offer offer);
+    RentingList getRentingList(String username);
+    void publishFeedback(String tenant, String s, Renting displayedRenting);
+    void acceptRequest(String usernameOfOfferer, Offer offer);
 }

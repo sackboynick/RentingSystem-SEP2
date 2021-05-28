@@ -9,8 +9,7 @@ import viewmodel.ViewState;
 
 public class OfferViewController extends ViewController{
     @FXML private Label title, description, address,type, numberOfRooms,pricePerMonth,deposit,area,floor,landlordName;
-    @FXML
-    private TextArea messageToLandlord;
+
 
 
     @Override
@@ -25,20 +24,14 @@ public class OfferViewController extends ViewController{
         this.area.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getArea());
         this.floor.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getFloor());
         this.landlordName.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getLandlordName());
-        this.messageToLandlord.textProperty().bindBidirectional(getViewModelFactory().getOfferViewViewModel().getMessageToLandlord());
     }
 
     public void reset(){
-        this.messageToLandlord.setText("");
+        
     }
 
     @FXML public void onBack(){
         getViewHandler().openView("mainView");
-    }
-
-    @FXML public void sendMessageToLandlord(){
-        getViewModelFactory().getOfferViewViewModel().sendMessage();
-        this.messageToLandlord.setText("");
     }
 
 

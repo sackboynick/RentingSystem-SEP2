@@ -34,6 +34,7 @@ public class Offer implements Serializable {
         setRoomsNumber(numberOfRooms);
         setLandlord(landlord);
         this.availableDate=new Date();
+        this.usernameOfOfferer="";
     }
 
 

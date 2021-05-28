@@ -9,18 +9,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import model.Offer;
+import model.User;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class OffersListViewModel implements PropertyChangeListener {
     private ObservableList<Offer> offers;
+    private final Model model;
     private final StringProperty minPrice,maxPrice,minRooms,type,floor,maxDeposit;
     private final BooleanProperty pets,smoking,balcony,freeWiFi;
 
     public OffersListViewModel(Model model){
-        model.addListener("Offers",this);
-        this.offers=FXCollections.observableArrayList(model.getOffers().getOffers());
+        this.model=model;
+        this.model.addListener("Offers",this);
+        this.offers=FXCollections.observableArrayList();
         this.minPrice=new SimpleStringProperty();
         this.maxPrice=new SimpleStringProperty();
         this.minRooms=new SimpleStringProperty();
@@ -32,6 +35,11 @@ public class OffersListViewModel implements PropertyChangeListener {
         this.balcony=new SimpleBooleanProperty();
         this.freeWiFi=new SimpleBooleanProperty();
     }
+
+    public void updateOffersListFromModel(){
+        this.offers=FXCollections.observableArrayList(model.getOffers().getOffers());
+    }
+
 
     public ObservableList<Offer> getOffers() {
         return offers;

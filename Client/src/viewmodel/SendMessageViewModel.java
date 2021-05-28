@@ -21,9 +21,9 @@ public class SendMessageViewModel implements PropertyChangeListener {
         this.model=model;
         this.onlineUsers= FXCollections.observableArrayList(model.getUsersOnline().getUsers());
         model.addListener("OnlineUsers",this);
-        this.receiver=new SimpleStringProperty();
-        this.body=new SimpleStringProperty();
-        this.error=new SimpleStringProperty();
+        this.receiver=new SimpleStringProperty("");
+        this.body=new SimpleStringProperty("");
+        this.error=new SimpleStringProperty("");
     }
 
     public ObservableList<User> getOnlineUsers() {
@@ -38,8 +38,12 @@ public class SendMessageViewModel implements PropertyChangeListener {
         return receiver;
     }
 
+    public StringProperty getError() {
+        return error;
+    }
+
     public void sendMessage(){
-        String result;
+        String result="";
         if(body.get().equals(""))
             error.set("Please write something in the body");
         else if(receiver.get().equals(""))

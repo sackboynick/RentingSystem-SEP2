@@ -7,7 +7,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface Model extends NamedPropertyChangeSubject {
-    String addOffer(Offer offer);
+    void addOffer(Offer offer);
     User login(String username,String password);
     boolean signUp(User user);
     OnlineUserList getUsersOnline();
@@ -16,4 +16,7 @@ public interface Model extends NamedPropertyChangeSubject {
     RentingList getRentingList();
     String sendMessage(User sender,String receiver, String body);
     void sendRequest(String offerer, Offer offer);
+    RentingList getUserRentingList(String username);
+    void publishFeedback(String role, String s,Renting renting);
+    void closeDeal(String usernameOfOfferer, Offer offer);
 }

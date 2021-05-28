@@ -41,9 +41,9 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
 
     @Override
-    public String addOffer(Offer offer) throws RemoteException {
+    public void addOffer(Offer offer) throws RemoteException {
         this.propertyChangeHandler.firePropertyChange("Offers",null,offer);
-        return this.model.addOffer(offer);
+        this.model.addOffer(offer);
     }
 
     @Override
@@ -76,13 +76,30 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
     @Override
     public String sendMessage(User sender, String receiver, String body) throws RemoteException {
-        this.propertyChangeHandler.firePropertyChange("Message",receiver,new Message(receiver,sender));
-        return this.model.sendMessage(sender,receiver,body);
+        String result=this.model.sendMessage(sender,receiver,body);
+        if(result.equals("Valid"))
+            this.propertyChangeHandler.firePropertyChange("Message",receiver,new Message(body,sender));
+        return result;
     }
 
     @Override
     public void sendRequest(String offerer, Offer offer) throws RemoteException {
         this.model.sendRequest(offerer,offer);
+    }
+
+    @Override
+    public RentingList getRentingList(String username) throws RemoteException {
+        return this.model.getUserRentingList(username);
+    }
+
+    @Override
+    public void publishFeedback(String role, String s,Renting renting) throws RemoteException {
+        this.model.publishFeedback(role,s,renting);
+    }
+
+    @Override
+    public void acceptRequest(String usernameOfOfferer, Offer offer) {
+        this.model.closeDeal(usernameOfOfferer,offer);
     }
 
 

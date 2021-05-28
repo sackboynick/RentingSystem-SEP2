@@ -13,7 +13,7 @@ public class OfferViewController extends ViewController{
     @FXML
     private TextArea messageToLandlord;
     @FXML private TextField password;
-    @FXML private Button sendOrAcceptRequest;
+    @FXML private Button sendRequest,accept,refuse;
 
 
 
@@ -30,15 +30,39 @@ public class OfferViewController extends ViewController{
         this.floor.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getFloor());
         this.landlordName.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getLandlordName());
         this.password.textProperty().bindBidirectional(getViewModelFactory().getOfferViewViewModel().getPassword());
+        this.error.textProperty().bindBidirectional(getViewModelFactory().getOfferViewViewModel().getError());
         reset();
     }
 
     public void reset(){
-        if(ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername()) && !ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
-            alertMessage.setText(ViewState.getInstance().getOffer().getUsernameOfOfferer()+ " made an offer for this property! Press and insert your password to accept it, or refuse it.");
-        this.messageToLandlord.setText("");
-        this.error.setText("");
-        this.error.setVisible(false);
+        if((ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") || ViewState.getInstance().getOffer().getUsernameOfOfferer()==null) && ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername())) {
+            alertMessage.setText("No requests available at the moment!");
+            this.accept.setVisible(false);
+            this.refuse.setVisible(false);
+            this.password.setVisible(false);
+            this.sendRequest.setVisible(false);
+        }
+        else if((ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") || ViewState.getInstance().getOffer().getUsernameOfOfferer()==null) && !ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername())){
+            alertMessage.setText("*this action will be unreversible, therefore you need to insert your password to be able to send a request to the landlord*");
+            this.accept.setVisible(false);
+            this.refuse.setVisible(false);
+            this.sendRequest.setVisible(true);
+            this.password.setVisible(true);
+        }
+        else if((!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") || ViewState.getInstance().getOffer().getUsernameOfOfferer()!=null)&& ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername())){
+            alertMessage.setText("*this action will be unreversible, therefore you need to insert your password to be able to send a request to the landlord*");
+            this.accept.setVisible(true);
+            this.refuse.setVisible(true);
+            this.sendRequest.setVisible(false);
+            this.password.setVisible(true);
+        }
+        else{
+            alertMessage.setText("There is already a request in pending.");
+            this.accept.setVisible(false);
+            this.refuse.setVisible(false);
+            this.sendRequest.setVisible(false);
+            this.password.setVisible(false);
+        }
     }
 
     @FXML public void onBack(){
@@ -52,6 +76,7 @@ public class OfferViewController extends ViewController{
 
     @FXML public void sendRequest(){
         getViewModelFactory().getOfferViewViewModel().sendRequest();
+        reset();
     }
 
 }

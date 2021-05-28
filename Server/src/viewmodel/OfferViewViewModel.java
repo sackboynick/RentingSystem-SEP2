@@ -92,12 +92,5 @@ public class OfferViewViewModel {
         return smoking;
     }
 
-    public StringProperty getMessageToLandlord() {
-        return messageToLandlord;
-    }
 
-    public void sendMessage(){
-        if(!messageToLandlord.get().equals(""))
-            this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getOffer().getLandlord().getUsername(), messageToLandlord.toString());
-    }
 }

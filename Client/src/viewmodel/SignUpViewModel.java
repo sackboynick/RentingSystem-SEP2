@@ -9,18 +9,18 @@ import model.User;
 public class SignUpViewModel {
     private StringProperty username;
     private StringProperty password;
-    private StringProperty firstName,middleName,lastName,phone,role;
-    private Model model;
+    private final StringProperty firstName,middleName,lastName,phone,role;
+    private final Model model;
 
     public SignUpViewModel(Model model){
         this.model=model;
-        this.username=new SimpleStringProperty();
-        this.password=new SimpleStringProperty();
-        this.firstName=new SimpleStringProperty();
-        this.middleName=new SimpleStringProperty();
-        this.lastName=new SimpleStringProperty();
-        this.phone=new SimpleStringProperty();
-        this.role=new SimpleStringProperty();
+        this.username=new SimpleStringProperty("");
+        this.password=new SimpleStringProperty("");
+        this.firstName=new SimpleStringProperty("");
+        this.middleName=new SimpleStringProperty("");
+        this.lastName=new SimpleStringProperty("");
+        this.phone=new SimpleStringProperty("");
+        this.role=new SimpleStringProperty("");
     }
 
 

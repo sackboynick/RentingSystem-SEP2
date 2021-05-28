@@ -36,27 +36,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="501.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.SendMessageViewController">
-    <AnchorPane VBox.vgrow="ALWAYS">
-        <Button onAction="#onBack" layoutX="70.0" layoutY="56.0" mnemonicParsing="false" text="BACK" />
-        <Label layoutX="254.0" layoutY="62.0" text="SEND A MESSAGE">
-            <font>
-                <Font size="32.0" />
-            </font>
-        </Label>
-        <TextArea fx:id="body" layoutX="294.0" layoutY="231.0" prefHeight="200.0" prefWidth="413.0" wrapText="true" />
-        <TextField fx:id="receiver" layoutX="294.0" layoutY="154.0" />
-        <Button layoutX="636.0" layoutY="445.0" mnemonicParsing="false" onAction="#sendMessage" text="SEND MESSAGE" />
-        <Label fx:id="error" layoutX="541.0" layoutY="146.0" text="-errorLabel-" textFill="RED" />
-        <Label layoutX="221.0" layoutY="159.0" text="Username" />
-        <Label layoutX="250.0" layoutY="243.0" text="Body:" />
-        <TableView fx:id="userTableView" layoutX="14.0" layoutY="111.0" prefHeight="322.0" prefWidth="200.0">
-            <columns>
-                <TableColumn fx:id="username" prefWidth="115.0" text="Username" />
-                <TableColumn fx:id="role" prefWidth="84.0" text="Role" />
-            </columns>
-        </TableView>
-        <Label layoutX="66.0" layoutY="94.0" text="USERS ONLINE" />
-        <Button layoutX="61.0" layoutY="451.0" mnemonicParsing="false" onAction="#selectUser" text="SELECT USER" />
-    </AnchorPane>
+<VBox prefHeight="589.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.OffersListViewController">
+   <AnchorPane prefHeight="593.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
+      <Button layoutX="58.0" layoutY="39.0" mnemonicParsing="false" onAction="#back" text="BACK" />
+      <Label layoutX="327.0" layoutY="42.0" text="OFFERS LIST">
+         <font>
+            <Font size="39.0" />
+         </font>
+      </Label>
+      <Button layoutX="58.0" layoutY="466.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN OFFER DETAILS" />
+      <Button layoutX="331.0" layoutY="453.0" mnemonicParsing="false" onAction="#publishOffer" text="PUBLISH AN OFFER" />
+      <TableView fx:id="offerTableView" layoutX="47.0" layoutY="128.0" prefHeight="303.0" prefWidth="510.0">
+        <columns>
+            <TableColumn fx:id="title" prefWidth="112.0" text="Title" />
+          <TableColumn fx:id="pricePerMonth" prefWidth="124.0" text="Price per month" />
+          <TableColumn fx:id="deposit" text="Deposit" />
+            <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="landlord" prefWidth="118.0" text="Landlord" />
+        </columns>
+      </TableView>
+   </AnchorPane>
 </VBox>
