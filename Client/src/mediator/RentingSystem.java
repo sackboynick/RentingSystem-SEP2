@@ -3,7 +3,7 @@ package mediator;
 import model.*;
 
 public interface RentingSystem {
-    void addOffer(Offer offer);
+    String addOffer(Offer offer);
     User login(String username,String password);
     boolean signUp(User user);
     OnlineUserList getUsersOnline();
@@ -13,4 +13,5 @@ public interface RentingSystem {
     RentingList getRentingList(String username);
     void publishFeedback(String role, String s,Renting renting);
     void acceptRequest(String usernameOfOfferer, Offer offer);
+    void refuseRequest(Offer offer);
 }

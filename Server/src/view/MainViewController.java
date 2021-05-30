@@ -23,11 +23,12 @@ public class MainViewController extends ViewController{
     @Override
     protected void init(){
         this.onlineUsersList.setItems(getViewModelFactory().getMainViewViewModel().getUsers());
-        this.offersList.setItems(getViewModelFactory().getMainViewViewModel().getOffers());
+        reset();
     }
 
     public void reset(){
 
+        this.offersList.setItems(getViewModelFactory().getMainViewViewModel().getOffers());
     }
     @FXML
     public void openUserInterface(){

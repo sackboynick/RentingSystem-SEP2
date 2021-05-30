@@ -35,6 +35,18 @@ public class HomePageViewModel implements PropertyChangeListener {
         updateMessageList();
     }
 
+    public void addUser(User user){
+        boolean result=false;
+        for(User x:onlineUsers){
+            if (x.getUsername().equals(user.getUsername())) {
+                result = true;
+                break;
+            }
+        }
+        if(!result)
+            this.onlineUsers.add(0,user);
+    }
+
     public void updateMessageList(){
         this.messages=FXCollections.observableArrayList(ViewState.getInstance().getUser().getMessagesAndRequests());
     }
@@ -62,7 +74,7 @@ public class HomePageViewModel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "OnlineUsers" -> Platform.runLater(() -> this.onlineUsers.add(0, (User) evt.getNewValue()));
+            case "OnlineUsers" -> Platform.runLater(() -> addUser( (User) evt.getNewValue()));
             case "Offers" -> Platform.runLater(() -> this.offers.add(0, (Offer) evt.getNewValue()));
             case "Message" -> Platform.runLater(() -> this.messages.add(0, (Message) evt.getNewValue()));
         }

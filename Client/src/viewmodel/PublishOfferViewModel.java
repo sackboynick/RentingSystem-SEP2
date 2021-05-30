@@ -10,8 +10,8 @@ import model.Offer;
 
 public class PublishOfferViewModel {
     private final Model model;
-    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms;
-    private BooleanProperty pets,smoking,balcony,freeWifi;
+    private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,error;
+
 
     public PublishOfferViewModel(Model model){
         this.model=model;
@@ -24,10 +24,7 @@ public class PublishOfferViewModel {
         this.area=new SimpleStringProperty();
         this.floor=new SimpleStringProperty();
         this.numberOfRooms=new SimpleStringProperty();
-        this.pets=new SimpleBooleanProperty();
-        this.smoking=new SimpleBooleanProperty();
-        this.balcony=new SimpleBooleanProperty();
-        this.freeWifi=new SimpleBooleanProperty();
+        this.error=new SimpleStringProperty();
     }
 
     public StringProperty getTitle() {
@@ -66,23 +63,13 @@ public class PublishOfferViewModel {
         return type;
     }
 
-    public BooleanProperty isBalcony() {
-        return balcony;
-    }
-
-    public BooleanProperty isFreeWifi() {
-        return freeWifi;
-    }
-
-    public BooleanProperty isPets() {
-        return pets;
-    }
-
-    public BooleanProperty isSmoking() {
-        return smoking;
-    }
 
     public void publishOffer(){
-        model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(deposit.get()),address.get(), type.get(), Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
-    }
+        String result=model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(deposit.get()),address.get(), type.get(), Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
+        if(!result.equals("Valid"))
+            error.set(result);
+        else
+            error.set("");
+        }
+
 }

@@ -24,6 +24,9 @@ public class HomePageViewController extends ViewController{
 
     public void reset(){
         getViewModelFactory().getHomePageViewModel().updateLists();
+        this.onlineUsers.setItems(getViewModelFactory().getHomePageViewModel().getOnlineUsers());
+        this.offerListView.setItems(getViewModelFactory().getHomePageViewModel().getOffers());
+        this.messageListView.setItems(getViewModelFactory().getHomePageViewModel().getMessages());
         this.username.setText(ViewState.getInstance().getUser().getUsername());
         if(!ViewState.getInstance().getUser().getRole().equals("Tenant"))
             userOffersButton.setVisible(false);
@@ -32,9 +35,6 @@ public class HomePageViewController extends ViewController{
     @Override
     protected void init() {
         reset();
-        this.onlineUsers.setItems(getViewModelFactory().getHomePageViewModel().getOnlineUsers());
-        this.offerListView.setItems(getViewModelFactory().getHomePageViewModel().getOffers());
-        this.messageListView.setItems(getViewModelFactory().getHomePageViewModel().getMessages());
     }
 
     @FXML
@@ -65,6 +65,14 @@ public class HomePageViewController extends ViewController{
         ViewState.getInstance().setDisplayedUser(ViewState.getInstance().getUser());
         getViewModelFactory().getUserViewViewModel().setUserInfo();
         getViewHandler().openView("userInterface");
+    }
+
+    @FXML public void openMessage(){
+        Message message=this.messageListView.getSelectionModel().getSelectedItem();
+        if(message!=null){
+            ViewState.getInstance().setDisplayedMessage(message);
+            getViewHandler().openView("messageView");
+        }
     }
 
     @FXML void openUserOfferList(){

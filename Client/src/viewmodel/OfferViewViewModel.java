@@ -14,24 +14,38 @@ public class OfferViewViewModel {
 
     public OfferViewViewModel(Model model){
         this.model=model;
+        this.title=new SimpleStringProperty();
+        this.description=new SimpleStringProperty();
+        this.pricePerMonth=new SimpleStringProperty();
+        this.deposit=new SimpleStringProperty();
+        this.address=new SimpleStringProperty();
+        this.type=new SimpleStringProperty();
+        this.area=new SimpleStringProperty();
+        this.floor=new SimpleStringProperty();
+        this.numberOfRooms=new SimpleStringProperty();
+        this.landlordName=new SimpleStringProperty();
+        this.password=new SimpleStringProperty();
+        this.messageToLandlord=new SimpleStringProperty();
+        this.error=new SimpleStringProperty();
         if(ViewState.getInstance().getOffer()!=null)
             setInterface();
     }
 
     public void setInterface(){
-        this.title=new SimpleStringProperty(ViewState.getInstance().getOffer().getTitle());
-        this.description=new SimpleStringProperty(ViewState.getInstance().getOffer().getDescription());
-        this.pricePerMonth=new SimpleStringProperty(Double.toString(ViewState.getInstance().getOffer().getPricePerMonth()));
-        this.deposit=new SimpleStringProperty(Double.toString(ViewState.getInstance().getOffer().getDeposit()));
-        this.address=new SimpleStringProperty(ViewState.getInstance().getOffer().getLocation());
-        this.type=new SimpleStringProperty(ViewState.getInstance().getOffer().getType());
-        this.area=new SimpleStringProperty(Double.toString(ViewState.getInstance().getOffer().getArea()));
-        this.floor=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
-        this.numberOfRooms=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
-        this.landlordName=new SimpleStringProperty(ViewState.getInstance().getOffer().getLandlord().getUsername());
-        this.password=new SimpleStringProperty();
-        this.messageToLandlord=new SimpleStringProperty("");
-        this.error=new SimpleStringProperty("");
+        this.title.set(ViewState.getInstance().getOffer().getTitle());
+        this.description.set(ViewState.getInstance().getOffer().getDescription());
+        this.pricePerMonth.set(Double.toString(ViewState.getInstance().getOffer().getPricePerMonth()));
+        this.deposit.set(Double.toString(ViewState.getInstance().getOffer().getDeposit()));
+        this.address.set(ViewState.getInstance().getOffer().getLocation());
+        this.type.set(ViewState.getInstance().getOffer().getLocation());
+        this.area.set(ViewState.getInstance().getOffer().getType());
+        this.floor.set(Double.toString(ViewState.getInstance().getOffer().getArea()));
+        this.numberOfRooms.set(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
+        this.landlordName.set(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
+        this.password.set("");
+        this.messageToLandlord.set("");
+        this.error.set("");
+
     }
     public StringProperty getTitle() {
         return title;
@@ -89,11 +103,19 @@ public class OfferViewViewModel {
     public void sendRequest(){
         if(ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") && ViewState.getInstance().getUser().getPassword().equals(password.get()))
             this.model.sendRequest(ViewState.getInstance().getUser().getUsername(),ViewState.getInstance().getOffer());
+        else
+            this.error.set("Please insert the correct password");
     }
 
     public void acceptRequest(){
         if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
             this.model.acceptRequest(ViewState.getInstance().getOffer().getUsernameOfOfferer(),ViewState.getInstance().getOffer());
+
+    }
+
+    public void refuseRequest(){
+        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
+            this.model.refuseRequest(ViewState.getInstance().getOffer());
     }
 
 

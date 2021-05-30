@@ -21,9 +21,15 @@ public class ModelManager implements Model{
     }
 
     @Override
-    public void addOffer(Offer offer) {
-        this.propertyChangeSupport.firePropertyChange("Offers",null,offer);
-        offerList.addOffer(offer);
+    public Offer addOffer(Offer offer) {
+        for(Offer x: offerList.getOffers()){
+                if (x.getTitle().equals(offer.getTitle())) {
+                    return null;
+                }
+            }
+        this.offerList.getOffers().add(0, offer);
+        this.propertyChangeSupport.firePropertyChange("Offers", null, offer);
+        return offer;
     }
 
     @Override

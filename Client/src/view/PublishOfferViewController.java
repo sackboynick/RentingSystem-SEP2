@@ -13,7 +13,6 @@ import model.Offer;
 public class PublishOfferViewController extends ViewController{
     @FXML
     private TextField title, pricePerMonth, deposit, address, area, floor, numberOfRooms;
-    @FXML private CheckBox pets, smoking, balcony, freeWiFi;
     @FXML private TextArea description;
     @FXML private ChoiceBox<String> type;
 
@@ -28,31 +27,6 @@ public class PublishOfferViewController extends ViewController{
         floor.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getFloor());
         numberOfRooms.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getNumberOfRooms());
         type.accessibleTextProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getType());
-
-        pets.selectedProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                getViewModelFactory().getPublishOfferViewModel().isPets().set(aBoolean);
-            }
-        });
-        freeWiFi.selectedProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                getViewModelFactory().getPublishOfferViewModel().isFreeWifi().set(aBoolean);
-            }
-        });
-        smoking.selectedProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                getViewModelFactory().getPublishOfferViewModel().isSmoking().set(aBoolean);
-            }
-        });
-        balcony.selectedProperty().addListener(new ChangeListener<>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-                getViewModelFactory().getPublishOfferViewModel().isBalcony().set(aBoolean);
-            }
-        });
         reset();
     }
 
@@ -65,10 +39,6 @@ public class PublishOfferViewController extends ViewController{
         area.setText("");
         floor.setText("");
         numberOfRooms.setText("");
-        pets.setSelected(false);
-        smoking.setSelected(false);
-        balcony.setSelected(false);
-        freeWiFi.setSelected(false);
         type.setItems(FXCollections.observableArrayList(Offer.getTYPE()));
     }
 
@@ -78,7 +48,6 @@ public class PublishOfferViewController extends ViewController{
     }
 
     @FXML public void onBack(){
-
         getViewHandler().openView("offersList");
     }
 }

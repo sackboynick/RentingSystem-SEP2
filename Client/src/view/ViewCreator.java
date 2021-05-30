@@ -34,10 +34,10 @@ public abstract class ViewCreator {
             case "Login" -> "loginView.fxml";
             case "signUp" -> "signUpView.fxml";
             case "homePage" -> "homePageView.fxml";
-            case "userInterface" -> "userView.fxml";
-            case "offersList" -> "offersListView.fxml";
+            case "userInterface" -> "clientUserView.fxml";
+            case "offersList" -> "clientOffersListView.fxml";
             case "publishOffer" -> "publishOfferView.fxml";
-            case "offerView" -> "offerView.fxml";
+            case "offerView" -> "clientOfferView.fxml";
             case "sendMessageView" -> "sendMessageView.fxml";
             case "rentingListView" -> "rentingListView.fxml";
             case "rentingView" -> "rentingView.fxml";

@@ -26,6 +26,7 @@ public class SendMessageViewController extends ViewController{
     }
 
     public void reset(){
+        this.userTableView.setItems(getViewModelFactory().getSendMessageViewModel().getOnlineUsers());
         this.receiver.setText("");
         this.body.setText("");
         this.error.setText("");

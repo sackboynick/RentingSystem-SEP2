@@ -41,9 +41,14 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
 
     @Override
-    public void addOffer(Offer offer) throws RemoteException {
-        this.propertyChangeHandler.firePropertyChange("Offers",null,offer);
-        this.model.addOffer(offer);
+    public String addOffer(Offer offer) throws RemoteException {
+        if(this.model.addOffer(offer)!=null) {
+            this.propertyChangeHandler.firePropertyChange("Offers", null, offer);
+            return "Valid";
+        }
+        else
+            return "An offer with the same name already exist";
+
     }
 
     @Override

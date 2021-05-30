@@ -14,6 +14,7 @@ public class ViewModelFactory {
     private final SendMessageViewModel sendMessageViewModel;
     private final RentingViewViewModel rentingViewViewModel;
     private final RentingListViewModel rentingListViewModel;
+    private final MessageViewViewModel messageViewViewModel;
 
     public ViewModelFactory(Model model){
         this.loginViewModel=new LoginViewModel(model);
@@ -26,6 +27,7 @@ public class ViewModelFactory {
         this.sendMessageViewModel=new SendMessageViewModel(model);
         this.rentingListViewModel=new RentingListViewModel(model);
         this.rentingViewViewModel=new RentingViewViewModel(model);
+        this.messageViewViewModel=new MessageViewViewModel(model);
     }
 
     public LoginViewModel getLoginViewModel() {
@@ -66,5 +68,9 @@ public class ViewModelFactory {
 
     public RentingViewViewModel getRentingViewViewModel() {
         return rentingViewViewModel;
+    }
+
+    public MessageViewViewModel getMessageViewViewModel() {
+        return messageViewViewModel;
     }
 }

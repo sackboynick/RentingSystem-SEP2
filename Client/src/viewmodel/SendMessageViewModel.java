@@ -19,8 +19,9 @@ public class SendMessageViewModel implements PropertyChangeListener {
 
     public SendMessageViewModel(Model model){
         this.model=model;
+        this.model.updateOnlineUserList();
         this.onlineUsers= FXCollections.observableArrayList(model.getUsersOnline().getUsers());
-        model.addListener("OnlineUsers",this);
+        this.model.addListener("OnlineUsers",this);
         this.receiver=new SimpleStringProperty("");
         this.body=new SimpleStringProperty("");
         this.error=new SimpleStringProperty("");
@@ -58,9 +59,20 @@ public class SendMessageViewModel implements PropertyChangeListener {
 
     }
 
+    public void addUser(User user){
+        boolean result=false;
+        for(User x:onlineUsers){
+            if (x.getUsername().equals(user.getUsername())) {
+                result = true;
+                break;
+            }
+        }
+        if(!result)
+            this.onlineUsers.add(0,user);
+    }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        Platform.runLater(() -> this.onlineUsers.add(0,(User) evt.getNewValue()));
+        Platform.runLater(() -> addUser((User) evt.getNewValue()));
     }
 }

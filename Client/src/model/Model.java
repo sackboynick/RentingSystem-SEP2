@@ -3,8 +3,11 @@ package model;
 import utility.NamedPropertyChangeSubject;
 
 public interface Model extends NamedPropertyChangeSubject {
-    void addOffer(Offer offer);
+    String addOffer(Offer offer);
     User login(String username,String password);
+
+    void refuseRequest(Offer offer);
+
     boolean signUp(User user);
     OnlineUserList getUsersOnline();
     OfferList getOffers();

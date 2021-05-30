@@ -32,22 +32,19 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UserViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ServerUserViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
       <Button layoutX="64.0" layoutY="39.0" mnemonicParsing="false" onAction="#onBack" prefHeight="34.0" prefWidth="68.0" text="BACK" />
-      <Label fx:id="username" layoutX="284.0" layoutY="41.0" text="-username-">
+      <Label fx:id="username" layoutX="237.0" layoutY="41.0" text="-username-">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="465.0" layoutY="41.0" text="PROFILE">
+      <Label layoutX="403.0" layoutY="43.0" text="PROFILE">
          <font>
             <Font size="24.0" />
          </font>
@@ -57,18 +54,15 @@
       <Label layoutX="78.0" layoutY="234.0" text="First name:" />
       <Label layoutX="71.0" layoutY="282.0" text="Middle name:" />
       <Label layoutX="79.0" layoutY="324.0" text="Last name:" />
-      <Label layoutX="522.0" layoutY="193.0" text="Type of user:" />
-      <Label layoutX="486.0" layoutY="234.0" text="Number of deals closed:" />
+      <Label layoutX="373.0" layoutY="177.0" text="Type of user:" />
+      <Label layoutX="337.0" layoutY="218.0" text="Number of deals closed:" />
       <Label layoutX="92.0" layoutY="375.0" text="Phone:" />
-      <Label layoutX="394.0" layoutY="359.0" text="Send a message:" />
-      <TextArea fx:id="message" layoutX="551.0" layoutY="332.0" prefHeight="175.0" prefWidth="200.0" />
-      <Button layoutX="778.0" layoutY="479.0" mnemonicParsing="false" onAction="#sendMessage" text="SEND" />
       <Label layoutX="183.0" layoutY="177.0" text="-username-" />
       <Label fx:id="firstName" layoutX="183.0" layoutY="234.0" text="-first name-" />
       <Label fx:id="middleName" layoutX="175.0" layoutY="282.0" text="-middlename-" />
       <Label fx:id="lastName" layoutX="186.0" layoutY="324.0" text="-lastname-" />
       <Label fx:id="phone" layoutX="195.0" layoutY="375.0" text="-phone-" />
-      <Label fx:id="role" layoutX="652.0" layoutY="193.0" text="-role-" />
-      <Label fx:id="deals" layoutX="670.0" layoutY="234.0" text="-numberofdeals-" />
+      <Label fx:id="role" layoutX="503.0" layoutY="177.0" text="-role-" />
+      <Label fx:id="deals" layoutX="521.0" layoutY="218.0" text="-numberofdeals-" />
    </AnchorPane>
 </VBox>

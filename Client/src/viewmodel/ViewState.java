@@ -2,6 +2,7 @@ package viewmodel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Message;
 import model.Offer;
 import model.Renting;
 import model.User;
@@ -16,6 +17,7 @@ public class ViewState {
     private Offer offer;
     private User displayedUser;
     private Renting displayedRenting;
+    private Message displayedMessage;
 
     private ViewState(){}
 
@@ -45,6 +47,10 @@ public class ViewState {
         this.displayedUser = displayedUser;
     }
 
+    public void setDisplayedMessage(Message displayedMessage) {
+        this.displayedMessage = displayedMessage;
+    }
+
     public User getUser() {
         return user;
     }
@@ -56,4 +62,9 @@ public class ViewState {
     public User getDisplayedUser() {
         return displayedUser;
     }
+
+    public Message getDisplayedMessage() {
+        return displayedMessage;
+    }
+
 }

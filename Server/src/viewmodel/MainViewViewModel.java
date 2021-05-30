@@ -32,6 +32,18 @@ public class MainViewViewModel implements PropertyChangeListener {
         return FXCollections.observableArrayList(model.getOffers().getOffers());
     }
 
+    public void addUser(User user){
+        boolean result=false;
+        for(User x:users){
+            if (x.getUsername().equals(user.getUsername())) {
+                result = true;
+                break;
+            }
+        }
+        if(!result)
+            this.users.add(0,user);
+    }
+
     public ObservableList<User> getUsers() {
         return users;
     }
@@ -44,7 +56,7 @@ public class MainViewViewModel implements PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
             if(evt.getPropertyName().equals("OnlineUsers"))
-                this.users.add(0,(User) evt.getNewValue());
+                addUser((User) evt.getNewValue());
             else if(evt.getPropertyName().equals("Offers"))
                 this.offers.add(0,(Offer) evt.getNewValue());
         });

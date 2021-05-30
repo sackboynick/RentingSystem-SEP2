@@ -36,8 +36,9 @@ public class ModelManager implements Model,PropertyChangeListener {
     }
 
     @Override
-    public void addOffer(Offer offer) {
-        rmiClient.addOffer(offer);
+    public String addOffer(Offer offer) {
+        return rmiClient.addOffer(offer);
+
     }
 
     @Override
@@ -82,6 +83,10 @@ public class ModelManager implements Model,PropertyChangeListener {
         this.rmiClient.acceptRequest(usernameOfOfferer,offer);
     }
 
+    @Override public void refuseRequest(Offer offer){
+        this.rmiClient.refuseRequest(offer);
+    }
+
     @Override
     public boolean signUp(User user) {
         return rmiClient.signUp(user);
@@ -102,6 +107,7 @@ public class ModelManager implements Model,PropertyChangeListener {
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
             case "OnlineUsers" -> {
+                this.onlineUserList.getUsers().add((User) evt.getNewValue());
                 this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, evt.getNewValue());
             }
             case "Offers" -> {

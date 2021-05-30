@@ -26,12 +26,13 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     }
 
     @Override
-    public void addOffer(Offer offer) {
+    public String addOffer(Offer offer) {
         try {
-            server.addOffer(offer);
+            return server.addOffer(offer);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+        return "Remote Exception";
     }
 
     @Override
@@ -117,6 +118,15 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     public void acceptRequest(String usernameOfOfferer, Offer offer) {
         try {
             this.server.acceptRequest(usernameOfOfferer, offer);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void refuseRequest(Offer offer) {
+        try {
+            this.server.refuseRequest(offer);
         } catch (RemoteException e) {
             e.printStackTrace();
         }

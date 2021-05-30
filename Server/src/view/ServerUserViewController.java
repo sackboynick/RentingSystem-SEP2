@@ -8,14 +8,17 @@ import model.Message;
 import viewmodel.ViewState;
 
 
-public class UserViewController extends ViewController {
+public class ServerUserViewController extends ViewController {
     @FXML
     private Label username,firstName,middleName,lastName,phone,deals,role;
-    @FXML
-    private TextArea message;
 
     @Override
     protected void init() {
+        reset();
+    }
+
+    public void reset(){
+        getViewModelFactory().getUserViewViewModel().setUserInfo();
         this.username.textProperty().bind(getViewModelFactory().getUserViewViewModel().getUsername());
         this.firstName.textProperty().bind(getViewModelFactory().getUserViewViewModel().getFirstName());
         this.middleName.textProperty().bind(getViewModelFactory().getUserViewViewModel().getMiddleName());
@@ -23,20 +26,11 @@ public class UserViewController extends ViewController {
         this.phone.textProperty().bind(getViewModelFactory().getUserViewViewModel().getPhone());
         this.deals.textProperty().bind(getViewModelFactory().getUserViewViewModel().getNumberOfDeals());
         this.role.textProperty().bind(getViewModelFactory().getUserViewViewModel().getRole());
-        this.message.setText("");
     }
 
-    public void reset(){
-
-    }
-
-    @FXML public void sendMessage(){
-        getViewModelFactory().getUserViewViewModel().sendMessage();
-        this.message.setText("");
-    }
 
     @FXML
     public void onBack(){
-        getViewHandler().openView("homePage");
+        getViewHandler().openView("mainView");
     }
 }

@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import model.Message;
 import viewmodel.ViewState;
 
-public class OfferViewController extends ViewController{
+public class ServerOfferViewController extends ViewController{
     @FXML private Label title, description, address,type, numberOfRooms,pricePerMonth,deposit,area,floor,landlordName;
 
 
