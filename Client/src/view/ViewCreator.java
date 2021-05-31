@@ -39,8 +39,8 @@ public abstract class ViewCreator {
             case "publishOffer" -> "publishOfferView.fxml";
             case "offerView" -> "clientOfferView.fxml";
             case "sendMessageView" -> "sendMessageView.fxml";
-            case "rentingListView" -> "rentingListView.fxml";
-            case "rentingView" -> "rentingView.fxml";
+            case "rentingListView" -> "clientRentingListView.fxml";
+            case "rentingView" -> "clientRentingView.fxml";
             case "messageView" -> "messageView.fxml";
             case "userOffersList" -> "userOffersList.fxml";
             default -> throw new IllegalStateException("Unexpected value: " + id);

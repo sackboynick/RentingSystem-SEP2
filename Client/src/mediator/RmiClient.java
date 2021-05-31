@@ -150,6 +150,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
             case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
             case "Message" -> this.propertyChangeSupport.firePropertyChange("Message",event.getValue1(),event.getValue2());
             case "Renting" -> this.propertyChangeSupport.firePropertyChange("Renting",event.getValue1(),event.getValue2());
+            case "Reload" -> this.propertyChangeSupport.firePropertyChange("Reload",null,event.getValue2());
         }
     }
 }

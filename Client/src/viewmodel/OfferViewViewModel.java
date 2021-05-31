@@ -7,13 +7,16 @@ import javafx.beans.property.StringProperty;
 import model.Model;
 
 import javax.swing.text.View;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class OfferViewViewModel {
+public class OfferViewViewModel implements PropertyChangeListener {
     private final Model model;
     private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,password,messageToLandlord,error;
 
     public OfferViewViewModel(Model model){
         this.model=model;
+        this.model.addListener("Reload",this);
         this.title=new SimpleStringProperty();
         this.description=new SimpleStringProperty();
         this.pricePerMonth=new SimpleStringProperty();
@@ -44,8 +47,6 @@ public class OfferViewViewModel {
         this.landlordName.set(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
         this.password.set("");
         this.messageToLandlord.set("");
-        this.error.set("");
-
     }
     public StringProperty getTitle() {
         return title;
@@ -130,5 +131,10 @@ public class OfferViewViewModel {
             else
                 error.set(result);
         }
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        setInterface();
     }
 }

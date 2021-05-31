@@ -26,7 +26,7 @@ public class ModelManager implements Model{
                 if (x.getTitle().equals(offer.getTitle())) {
                     return null;
                 }
-            }
+        }
         this.offerList.getOffers().add(0, offer);
         this.propertyChangeSupport.firePropertyChange("Offers", null, offer);
         return offer;
@@ -94,18 +94,33 @@ public class ModelManager implements Model{
                 }
                 else
                     renting1.setTenantFeedback(s);
+
+                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
             }
         }
     }
 
     @Override
-    public void closeDeal(String usernameOfOfferer, Offer offer) {
+    public Offer closeDeal(String usernameOfOfferer, Offer offer) {
         offerList.getOffers().removeIf(offer1 -> offer.toString().equals(offer1.toString()));
         User tenant;
         for(User user:userList.getUsersArraylist()){
             if(user.getUsername().equals(usernameOfOfferer)) {
                 tenant = user;
                 rentingList.getRentingArrayList().add(new Renting(tenant, offer.getLandlord(), offer));
+                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
+                return offer;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void refuseRequest(Offer offer) {
+        for(Offer x: offerList.getOffers()){
+            if(x.getTitle().equals(offer.getTitle())) {
+                x.makeOffer("");
+                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
             }
         }
     }

@@ -4,6 +4,8 @@ import model.*;
 import utility.NamedPropertyChangeSubject;
 import utility.observer.listener.GeneralListener;
 import utility.observer.subject.PropertyChangeHandler;
+
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.net.MalformedURLException;
@@ -13,15 +15,14 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
+public class RmiServer implements RemoteModel, PropertyChangeListener{
     private final PropertyChangeHandler<String,Object> propertyChangeHandler;
-    private final PropertyChangeSupport propertyChangeSupport;
     private final Model model;
 
     public RmiServer(Model model){
         this.propertyChangeHandler =new PropertyChangeHandler<>(this,true);
-        this.propertyChangeSupport=new PropertyChangeSupport(this);
         this.model=model;
+        this.model.addListener("ReloadLists",this);
         try {
             startRegistry();
             UnicastRemoteObject.exportObject(this, 0);
@@ -44,6 +45,7 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     public String addOffer(Offer offer) throws RemoteException {
         if(this.model.addOffer(offer)!=null) {
             this.propertyChangeHandler.firePropertyChange("Offers", null, offer);
+            System.out.println(offer);
             return "Valid";
         }
         else
@@ -74,10 +76,6 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
         return model.getOffers();
     }
 
-    @Override
-    public void closeDeal(Offer offer,User landlord,User tenant) throws RemoteException {
-        this.model.getRentingList().getRentingArrayList().add(new Renting(tenant,landlord,offer));
-    }
 
     @Override
     public String sendMessage(User sender, String receiver, String body) throws RemoteException {
@@ -104,19 +102,16 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
 
     @Override
     public void acceptRequest(String usernameOfOfferer, Offer offer) {
-        this.model.closeDeal(usernameOfOfferer,offer);
-    }
-
-
-    @Override
-    public void addListener(String propertyName, PropertyChangeListener listener) {
-        this.propertyChangeSupport.addPropertyChangeListener(propertyName, listener);
+        if(this.model.closeDeal(usernameOfOfferer,offer)!=null)
+            this.propertyChangeHandler.firePropertyChange("Reload",null,"Reload");
     }
 
     @Override
-    public void removeListener(String propertyName, PropertyChangeListener listener) {
-        this.propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
+    public void refuseRequest(Offer offer) throws RemoteException {
+        this.model.refuseRequest(offer);
     }
+
+
 
 
     @Override
@@ -127,5 +122,12 @@ public class RmiServer implements RemoteModel, NamedPropertyChangeSubject{
     @Override
     public boolean removeListener(GeneralListener<String, Object> listener, String... propertyNames) throws RemoteException {
         return this.propertyChangeHandler.removeListener(listener, propertyNames);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        switch (evt.getPropertyName()) {
+            case "ReloadLists" -> this.propertyChangeHandler.firePropertyChange("Reload",null,evt.getNewValue());
+        }
     }
 }

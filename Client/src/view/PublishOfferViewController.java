@@ -4,15 +4,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import model.Offer;
 
 public class PublishOfferViewController extends ViewController{
     @FXML
     private TextField title, pricePerMonth, deposit, address, area, floor, numberOfRooms;
+    @FXML private Label error;
     @FXML private TextArea description;
     @FXML private ChoiceBox<String> type;
 
@@ -27,6 +25,7 @@ public class PublishOfferViewController extends ViewController{
         floor.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getFloor());
         numberOfRooms.textProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getNumberOfRooms());
         type.accessibleTextProperty().bindBidirectional(getViewModelFactory().getPublishOfferViewModel().getType());
+        this.error.textProperty().bind(getViewModelFactory().getPublishOfferViewModel().getError());
         reset();
     }
 
@@ -44,7 +43,7 @@ public class PublishOfferViewController extends ViewController{
 
     @FXML public void createOffer(){
         getViewModelFactory().getPublishOfferViewModel().publishOffer();
-        getViewHandler().openView("offersList");
+        reset();
     }
 
     @FXML public void onBack(){

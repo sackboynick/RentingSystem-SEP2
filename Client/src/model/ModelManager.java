@@ -3,6 +3,7 @@ package model;
 import mediator.RmiClient;
 import viewmodel.ViewState;
 
+import javax.swing.text.View;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -23,6 +24,7 @@ public class ModelManager implements Model,PropertyChangeListener {
         this.rmiClient.addListener("Offers",this);
         this.rmiClient.addListener("Message",this);
         this.rmiClient.addListener("Renting",this);
+        this.rmiClient.addListener("Reload",this);
     }
 
     @Override
@@ -38,7 +40,6 @@ public class ModelManager implements Model,PropertyChangeListener {
     @Override
     public String addOffer(Offer offer) {
         return rmiClient.addOffer(offer);
-
     }
 
     @Override
@@ -117,6 +118,7 @@ public class ModelManager implements Model,PropertyChangeListener {
             case "Message" -> {
                 if(evt.getOldValue().toString().equals(ViewState.getInstance().getUser().getUsername())) {
                     Message message=(Message)  evt.getNewValue();
+                    ViewState.getInstance().getUser().addMessageOrRequest(message);
                     System.out.println(message.toString());
                     this.propertyChangeSupport.firePropertyChange("Message",null,evt.getNewValue());
                 }
@@ -127,6 +129,11 @@ public class ModelManager implements Model,PropertyChangeListener {
                     if(renting!=null)
                        this.propertyChangeSupport.firePropertyChange("Renting",null,evt.getNewValue());
                 }
+            }
+            case "Reload"->{
+                this.onlineUserList=this.rmiClient.getUsersOnline();
+                this.offerList=this.rmiClient.getOffers();
+                this.propertyChangeSupport.firePropertyChange("Reload",null,evt.getNewValue());
             }
         }
     }

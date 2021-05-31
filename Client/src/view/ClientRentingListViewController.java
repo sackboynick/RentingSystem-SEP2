@@ -7,7 +7,7 @@ import javafx.scene.control.TableView;
 import model.Renting;
 import viewmodel.ViewState;
 
-public class RentingListViewController extends ViewController{
+public class ClientRentingListViewController extends ViewController{
     @FXML private TableView<Renting> rentingTableView;
     @FXML private TableColumn<Renting,String> tenant,landlord,offer;
 

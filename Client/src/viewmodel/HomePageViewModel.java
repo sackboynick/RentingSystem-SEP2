@@ -22,6 +22,7 @@ public class HomePageViewModel implements PropertyChangeListener {
         this.model.addListener("OnlineUsers",this);
         this.model.addListener("Offers",this);
         this.model.addListener("Message",this);
+        this.model.addListener("Reload",this);
         this.onlineUsers=FXCollections.observableArrayList();
         this.offers=FXCollections.observableArrayList();
         this.messages=FXCollections.observableArrayList();
@@ -77,6 +78,7 @@ public class HomePageViewModel implements PropertyChangeListener {
             case "OnlineUsers" -> Platform.runLater(() -> addUser( (User) evt.getNewValue()));
             case "Offers" -> Platform.runLater(() -> this.offers.add(0, (Offer) evt.getNewValue()));
             case "Message" -> Platform.runLater(() -> this.messages.add(0, (Message) evt.getNewValue()));
+            case "Reload" -> Platform.runLater(this::updateLists);
         }
 
     }

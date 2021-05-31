@@ -99,7 +99,7 @@ public class User  implements Serializable {
     }
 
     public void addMessageOrRequest(Message message){
-        this.messagesAndRequests.add(message);
+        this.messagesAndRequests.add(0,message);
     }
     @Override
     public String toString(){

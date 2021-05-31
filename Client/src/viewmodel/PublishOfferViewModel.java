@@ -4,6 +4,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import model.Model;
 import model.Offer;
 
@@ -72,4 +73,7 @@ public class PublishOfferViewModel {
             error.set("");
         }
 
+    public StringProperty getError() {
+        return error;
+    }
 }

@@ -35,6 +35,7 @@ public class ClientOfferViewController extends ViewController{
 
     public void reset(){
         if(ViewState.getInstance().getOffer()!=null) {
+            this.error.setText("");
             if ((ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") || ViewState.getInstance().getOffer().getUsernameOfOfferer() == null) && ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername())) {
                 alertMessage.setText("No requests available at the moment!");
                 this.accept.setVisible(false);
@@ -82,7 +83,7 @@ public class ClientOfferViewController extends ViewController{
 
     @FXML public void sendRequest(){
         getViewModelFactory().getOfferViewViewModel().sendRequest();
-        reset();
+        getViewHandler().openView("offersList");
     }
 
     @FXML public void acceptRequest(){
@@ -92,7 +93,7 @@ public class ClientOfferViewController extends ViewController{
 
     @FXML public void refuseRequest(){
         getViewModelFactory().getOfferViewViewModel().refuseRequest();
-        reset();
+        getViewHandler().openView("offersList");
     }
 
 

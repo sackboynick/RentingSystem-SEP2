@@ -23,6 +23,7 @@ public class OffersListViewModel implements PropertyChangeListener {
     public OffersListViewModel(Model model){
         this.model=model;
         this.model.addListener("Offers",this);
+        this.model.addListener("Reload",this);
         this.offers=FXCollections.observableArrayList();
         this.minPrice=new SimpleStringProperty();
         this.maxPrice=new SimpleStringProperty();
@@ -61,8 +62,12 @@ public class OffersListViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        if(evt.getPropertyName().equals("Offers"))
         Platform.runLater(() -> {
             this.offers.add(0, (Offer) evt.getNewValue());
         });
+        else if(evt.getPropertyName().equals("Reload")){
+            Platform.runLater(this::updateOffersListFromModel);
+        }
     }
 }

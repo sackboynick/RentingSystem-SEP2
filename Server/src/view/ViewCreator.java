@@ -37,7 +37,8 @@ public abstract class ViewCreator {
             case "usersList" -> "usersListView.fxml";
             case "offersList" -> "serverOffersListView.fxml";
             case "serverOverview" -> "serverOverview.fxml";
-            case "rentingList" -> "rentingListView.fxml";
+            case "rentingList" -> "serverRentingListView.fxml";
+            case "rentingView" -> "serverRentingView.fxml";
             default -> throw new IllegalStateException("Unexpected value: " + id);
         };
         FXMLLoader loader = new FXMLLoader();
