@@ -34,41 +34,82 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientUserViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientUserViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
-      <Button layoutX="64.0" layoutY="39.0" mnemonicParsing="false" onAction="#onBack" prefHeight="34.0" prefWidth="68.0" text="BACK" />
-      <Label fx:id="username" layoutX="284.0" layoutY="41.0" text="-username-">
+      <Button layoutX="29.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBack" prefHeight="18.0" prefWidth="62.0" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="username" layoutX="148.0" layoutY="23.0" text="-username-">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="465.0" layoutY="41.0" text="PROFILE">
+      <Label layoutX="296.0" layoutY="23.0" text="PROFILE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="79.0" layoutY="177.0" text="Username:" />
+      <Label layoutX="46.0" layoutY="155.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label layoutX="98.0" layoutY="185.0" />
-      <Label layoutX="78.0" layoutY="234.0" text="First name:" />
-      <Label layoutX="71.0" layoutY="282.0" text="Middle name:" />
-      <Label layoutX="79.0" layoutY="324.0" text="Last name:" />
-      <Label layoutX="522.0" layoutY="193.0" text="Type of user:" />
-      <Label layoutX="486.0" layoutY="234.0" text="Number of deals closed:" />
-      <Label layoutX="92.0" layoutY="375.0" text="Phone:" />
-      <Label layoutX="394.0" layoutY="359.0" text="Send a message:" />
-      <TextArea fx:id="message" layoutX="551.0" layoutY="332.0" prefHeight="175.0" prefWidth="200.0" />
-      <Button layoutX="778.0" layoutY="479.0" mnemonicParsing="false" onAction="#sendMessage" text="SEND" />
-      <Label layoutX="183.0" layoutY="177.0" text="-username-" />
-      <Label fx:id="firstName" layoutX="183.0" layoutY="234.0" text="-first name-" />
-      <Label fx:id="middleName" layoutX="175.0" layoutY="282.0" text="-middlename-" />
-      <Label fx:id="lastName" layoutX="186.0" layoutY="324.0" text="-lastname-" />
-      <Label fx:id="phone" layoutX="195.0" layoutY="375.0" text="-phone-" />
-      <Label fx:id="role" layoutX="652.0" layoutY="193.0" text="-role-" />
-      <Label fx:id="deals" layoutX="670.0" layoutY="234.0" text="-numberofdeals-" />
+      <Label layoutX="45.0" layoutY="183.0" text="First name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="28.0" layoutY="211.0" text="Middle name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="45.0" layoutY="242.0" text="Last name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="296.0" layoutY="184.0" text="Type of user:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="226.0" layoutY="211.0" text="Number of deals closed:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="332.0" layoutY="155.0" text="Phone:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="usernameLeft" layoutX="123.0" layoutY="155.0" text="-username-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="firstName" layoutX="123.0" layoutY="184.0" text="-first name-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="middleName" layoutX="121.0" layoutY="212.0" text="-middlename-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lastName" layoutX="121.0" layoutY="242.0" text="-lastname-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="phone" layoutX="394.0" layoutY="155.0" text="-phone-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="role" layoutX="394.0" layoutY="184.0" text="-role-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="deals" layoutX="394.0" layoutY="212.0" text="-numberofdeals-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </AnchorPane>
 </VBox>

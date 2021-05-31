@@ -36,37 +36,88 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="589.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientOffersListViewController">
+<VBox prefHeight="526.0" prefWidth="888.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientOffersListViewController">
    <AnchorPane prefHeight="593.0" prefWidth="900.0" VBox.vgrow="ALWAYS">
-      <Button layoutX="58.0" layoutY="39.0" mnemonicParsing="false" onAction="#back" text="BACK" />
-      <Label layoutX="327.0" layoutY="42.0" text="OFFERS LIST">
+      <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#back" text="BACK">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Button>
+      <Label layoutX="338.0" layoutY="23.0" text="OFFERS LIST">
          <font>
             <Font size="39.0" />
          </font>
       </Label>
-      <Label layoutX="584.0" layoutY="123.0" text="FILTERS" />
-      <Label layoutX="584.0" layoutY="171.0" text="Price:" />
-      <Label layoutX="585.0" layoutY="218.0" text="Number of rooms: (min)" />
-      <Label layoutX="584.0" layoutY="263.0" text="Type:" />
-      <Label layoutX="584.0" layoutY="305.0" text="Floor:" />
-      <Label layoutX="584.0" layoutY="350.0" text="Deposit (max):" />
-      <TextField layoutX="633.0" layoutY="166.0" prefHeight="26.0" prefWidth="64.0" />
-      <Text layoutX="705.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="25.69091796875" />
-      <TextField layoutX="718.0" layoutY="166.0" prefHeight="26.0" prefWidth="64.0" />
-      <TextField layoutX="750.0" layoutY="213.0" prefHeight="26.0" prefWidth="64.0" />
-      <TextField layoutX="632.0" layoutY="300.0" prefHeight="26.0" prefWidth="64.0" />
-      <TextField layoutX="689.0" layoutY="345.0" prefHeight="26.0" prefWidth="70.0" />
-      <Button layoutX="58.0" layoutY="466.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN OFFER DETAILS" />
-      <Button layoutX="331.0" layoutY="453.0" mnemonicParsing="false" onAction="#publishOffer" text="PUBLISH AN OFFER" />
-      <Button layoutX="335.0" layoutY="510.0" mnemonicParsing="false" text="SEND A MESSAGE" />
-      <Button layoutX="757.0" layoutY="501.0" mnemonicParsing="false" text="APPLY FILTERS" />
-      <TableView fx:id="offerTableView" layoutX="47.0" layoutY="128.0" prefHeight="303.0" prefWidth="510.0">
+      <Label layoutX="561.0" layoutY="104.0" text="FILTER SEARCH">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="567.0" layoutY="146.0" text="Price:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="565.0" layoutY="185.0" text="Number of rooms:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="567.0" layoutY="221.0" text="Type:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="566.0" layoutY="261.0" text="Floor:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="558.0" layoutY="302.0" text="Deposit:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField layoutX="612.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="minimum">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Text layoutX="696.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-" wrappingWidth="20.0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Text>
+      <TextField layoutX="706.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField layoutX="692.0" layoutY="180.0" prefHeight="26.0" prefWidth="64.0" promptText="min">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField layoutX="612.0" layoutY="256.0" prefHeight="30.0" prefWidth="72.0" promptText="number">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField layoutX="612.0" layoutY="297.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button layoutX="14.0" layoutY="422.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN OFFER DETAILS">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button fx:id="publishAnOffer" layoutX="181.0" layoutY="422.0" mnemonicParsing="false" onAction="#publishOffer" text="PUBLISH AN OFFER">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="332.0" layoutY="422.0" mnemonicParsing="false" onAction="#openSendMessage" text="SEND A MESSAGE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="745.0" layoutY="422.0" mnemonicParsing="false" text="APPLY FILTERS">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <TableView fx:id="offerTableView" layoutX="14.0" layoutY="104.0" prefHeight="303.0" prefWidth="535.0">
         <columns>
-            <TableColumn fx:id="title" prefWidth="112.0" text="Title" />
-          <TableColumn fx:id="pricePerMonth" prefWidth="124.0" text="Price per month" />
-          <TableColumn fx:id="deposit" text="Deposit" />
-            <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="landlord" prefWidth="118.0" text="Landlord" />
+            <TableColumn fx:id="title" prefWidth="105.60000038146973" text="Title" />
+          <TableColumn fx:id="pricePerMonth" prefWidth="130.4000244140625" text="Price per month" />
+          <TableColumn fx:id="deposit" prefWidth="99.20001220703125" text="Deposit" />
+            <TableColumn fx:id="type" prefWidth="84.0" text="Type" />
+            <TableColumn fx:id="landlord" prefWidth="112.80000610351567" text="Landlord" />
         </columns>
       </TableView>
    </AnchorPane>

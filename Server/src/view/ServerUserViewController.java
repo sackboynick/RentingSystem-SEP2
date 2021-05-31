@@ -10,7 +10,7 @@ import viewmodel.ViewState;
 
 public class ServerUserViewController extends ViewController {
     @FXML
-    private Label username,firstName,middleName,lastName,phone,deals,role;
+    private Label username,firstName,middleName,lastName,phone,deals,role,usernameLeft;
 
     @Override
     protected void init() {
@@ -26,6 +26,7 @@ public class ServerUserViewController extends ViewController {
         this.phone.textProperty().bind(getViewModelFactory().getUserViewViewModel().getPhone());
         this.deals.textProperty().bind(getViewModelFactory().getUserViewViewModel().getNumberOfDeals());
         this.role.textProperty().bind(getViewModelFactory().getUserViewViewModel().getRole());
+        this.usernameLeft.textProperty().bind(getViewModelFactory().getUserViewViewModel().getUsername());
     }
 
 
