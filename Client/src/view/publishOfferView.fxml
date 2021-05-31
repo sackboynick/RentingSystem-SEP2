@@ -36,33 +36,90 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PublishOfferViewController">
+<VBox prefHeight="489.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PublishOfferViewController">
    <AnchorPane VBox.vgrow="ALWAYS">
-      <Button layoutX="49.0" layoutY="47.0" mnemonicParsing="false" onAction="#onBack" text="BACK" />
-      <Button layoutX="641.0" layoutY="477.0" mnemonicParsing="false" onAction="#createOffer" text="PUBLISH OFFER" />
-      <Label layoutX="97.0" layoutY="174.0" text="Title:" />
-      <Label layoutX="96.0" layoutY="222.0" text="Description:" />
-      <Label layoutX="76.0" layoutY="348.0" text="Price per month:" />
-      <Label layoutX="103.0" layoutY="383.0" text="Deposit:" />
-      <Label layoutX="102.0" layoutY="422.0" text="Address:" />
-      <Label layoutX="551.0" layoutY="179.0" text="Area:" />
-      <Label layoutX="550.0" layoutY="219.0" text="Floor:" />
-      <Label layoutX="513.0" layoutY="257.0" text="Number of room:" />
-      <ChoiceBox fx:id="type" layoutX="190.0" layoutY="464.0" prefWidth="150.0" />
-      <Label layoutX="112.0" layoutY="469.0" text="Type:" />
-      <TextArea fx:id="description" layoutX="190.0" layoutY="213.0" prefHeight="117.0" prefWidth="200.0" />
-      <TextField fx:id="title" layoutX="190.0" layoutY="169.0" />
-      <TextField fx:id="pricePerMonth" layoutX="190.0" layoutY="343.0" />
-      <TextField fx:id="deposit" layoutX="190.0" layoutY="379.0" />
-      <TextField fx:id="address" layoutX="190.0" layoutY="418.0" />
-      <TextField fx:id="area" layoutX="641.0" layoutY="174.0" />
-      <TextField fx:id="floor" layoutX="641.0" layoutY="214.0" />
-      <TextField fx:id="numberOfRooms" layoutX="641.0" layoutY="252.0" />
-      <Label layoutX="301.0" layoutY="60.0" text="PUBLISH AN OFFER">
+      <Button layoutX="41.0" layoutY="29.0" mnemonicParsing="false" onAction="#onBack" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="536.0" layoutY="394.0" mnemonicParsing="false" onAction="#createOffer" text="PUBLISH OFFER" />
+      <Label layoutX="80.0" layoutY="130.0" text="Title:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="340.0" layoutY="264.0" text="Description:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="7.0" layoutY="177.0" text="Price per month:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="54.0" layoutY="218.0" text="Deposit:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="53.0" layoutY="264.0" text="Address:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="391.0" layoutY="130.0" text="Area:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="389.0" layoutY="177.0" text="Floor:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="305.0" layoutY="218.0" prefHeight="18.0" prefWidth="120.0" text="Number of room:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <ChoiceBox fx:id="type" layoutX="132.0" layoutY="311.0" prefWidth="150.0" />
+      <Label layoutX="68.0" layoutY="314.0" text="Type:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextArea fx:id="description" layoutX="430.0" layoutY="264.0" prefHeight="118.0" prefWidth="218.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+      <TextField fx:id="title" layoutX="120.0" layoutY="125.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="pricePerMonth" layoutX="120.0" layoutY="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="deposit" layoutX="119.0" layoutY="214.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="address" layoutX="119.0" layoutY="259.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="area" layoutX="430.0" layoutY="125.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="floor" layoutX="430.0" layoutY="172.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="numberOfRooms" layoutX="430.0" layoutY="213.0">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Label layoutX="212.0" layoutY="21.0" text="PUBLISH AN OFFER">
          <font>
             <Font size="31.0" />
          </font>
       </Label>
-      <Label fx:id="error" layoutX="709.0" layoutY="314.0" text="Label" textFill="RED" />
+      <Label fx:id="error" layoutX="37.0" layoutY="397.0" text="Label" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </AnchorPane>
 </VBox>

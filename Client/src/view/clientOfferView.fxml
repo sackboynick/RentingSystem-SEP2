@@ -32,50 +32,109 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientOfferViewController">
+<VBox prefHeight="565.0" prefWidth="679.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ClientOfferViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
-        <Button layoutX="52.0" layoutY="41.0" mnemonicParsing="false" onAction="#onBack" text="BACK" />
-        <Label layoutX="376.0" layoutY="37.0" text="offerName">
+        <Button layoutX="29.0" layoutY="37.0" mnemonicParsing="false" onAction="#onBack" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label fx:id="offerTitle" layoutX="273.0" layoutY="37.0" text="offerName">
             <font>
                 <Font size="28.0" />
             </font>
         </Label>
-        <Label layoutX="70.0" layoutY="122.0" text="Title:" />
-        <Label layoutX="47.0" layoutY="164.0" text="Description:" />
-        <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="158.0" layoutY="164.0" prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER" />
-        <Label fx:id="title" layoutX="165.0" layoutY="122.0" text="-title-" />
-        <Label layoutX="61.0" layoutY="284.0" text="Address:" />
-        <Label fx:id="address" layoutX="165.0" layoutY="284.0" text="-address-" />
-        <Label layoutX="72.0" layoutY="322.0" text="Type:" />
-        <Label fx:id="type" layoutX="176.0" layoutY="322.0" text="-type-" />
-        <Label layoutX="317.0" layoutY="164.0" text="Price per month:" />
-        <Label layoutX="344.0" layoutY="198.0" text="Deposit:" />
-        <Label layoutX="354.0" layoutY="234.0" text="Area:" />
-        <Label layoutX="30.0" layoutY="362.0" text="Number of rooms:" />
-        <Label layoutX="353.0" layoutY="270.0" text="Floor:" />
-        <Label fx:id="pricePerMonth" layoutX="456.0" layoutY="164.0" text="-pricePerMonth." />
-        <Label fx:id="deposit" layoutX="479.0" layoutY="198.0" text="-deposit-" />
-        <Label fx:id="area" layoutX="490.0" layoutY="234.0" text="-area-" />
-        <Label fx:id="floor" layoutX="492.0" layoutY="270.0" text="-floor-" />
-        <Label fx:id="numberOfRooms" layoutX="166.0" layoutY="362.0" text="-numberOfRooms-" />
-        <Label layoutX="354.0" layoutY="309.0" text="Landlord:" />
-        <Button fx:id="message" layoutX="746.0" layoutY="485.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="47.0" prefWidth="87.0" text="SEND MESSAGE" textAlignment="CENTER" wrapText="true" />
-        <Button fx:id="request" layoutX="653.0" layoutY="258.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="85.0" prefWidth="205.0" text="SEND REQUEST TO THE LANDLORD" textAlignment="CENTER" wrapText="true" />
-        <Label fx:id="alertMessage" layoutX="588.0" layoutY="92.0" prefHeight="85.0" prefWidth="270.0" text="*this action will be unreversible, therefore you need to insert your password to be able to send a request to the landlord*" textAlignment="CENTER" wrapText="true" />
-        <TextField fx:id="password" layoutX="682.0" layoutY="193.0" />
-        <Label fx:id="error" layoutX="747.0" layoutY="226.0" text="-error-" textFill="RED" />
-        <Button fx:id="accept" layoutX="653.0" layoutY="263.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="74.0" prefWidth="87.0" text="ACCEPT" />
-        <Button fx:id="refuse" layoutX="771.0" layoutY="263.0" mnemonicParsing="false" onAction="#refuseRequest" prefHeight="74.0" prefWidth="87.0" text="REFUSE" />
-        <Label fx:id="landlordName" layoutX="456.0" layoutY="309.0" text="-landlordusername-" />
-        <TextArea fx:id="messageToLandlord" layoutX="337.0" layoutY="408.0" prefHeight="124.0" prefWidth="388.0" />
+        <Label layoutX="57.0" layoutY="132.0" text="Title:">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Label>
+        <Label layoutX="13.0" layoutY="206.0" text="Description:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="98.0" layoutY="207.0" prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="title" layoutX="98.0" layoutY="130.0" text="-title-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="31.0" layoutY="154.0" text="Address:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="address" layoutX="98.0" layoutY="154.0" text="-address-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="50.0" layoutY="183.0" text="Type:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="type" layoutX="99.0" layoutY="185.0" text="-type-" />
+        <Label layoutX="288.0" layoutY="144.0" text="Price per month:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="337.0" layoutY="164.0" text="Deposit:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="355.0" layoutY="183.0" text="Area:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="274.0" layoutY="120.0" text="Number of rooms:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="354.0" layoutY="206.0" text="Floor:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="pricePerMonth" layoutX="413.0" layoutY="144.0" text="-pricePerMonth.">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="deposit" layoutX="397.0" layoutY="164.0" text="-deposit-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="area" layoutX="400.0" layoutY="184.0" text="-area-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="floor" layoutX="400.0" layoutY="206.0" text="-floor-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="numberOfRooms" layoutX="407.0" layoutY="120.0" text="-numberOfRooms-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="334.0" layoutY="226.0" text="Landlord:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Button fx:id="message" layoutX="531.0" layoutY="454.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="30.0" prefWidth="123.0" text="SEND MESSAGE" textAlignment="CENTER" wrapText="true" />
+        <Button fx:id="request" layoutX="12.0" layoutY="375.0" mnemonicParsing="false" onAction="#sendRequest" prefHeight="54.0" prefWidth="241.0" text="SEND REQUEST TO THE LANDLORD" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label fx:id="alertMessage" layoutX="9.0" layoutY="427.0" prefHeight="85.0" prefWidth="270.0" text="*this action will be unreversible, therefore you need to insert your password to be able to send a request to the landlord*" textAlignment="CENTER" wrapText="true" />
+        <TextField fx:id="password" layoutX="53.0" layoutY="327.0" promptText="Password" />
+        <Label fx:id="error" layoutX="109.0" layoutY="359.0" text="-error-" textFill="RED" />
+        <Button fx:id="accept" layoutX="13.0" layoutY="386.0" mnemonicParsing="false" onAction="#acceptRequest" prefHeight="30.0" prefWidth="87.0" text="ACCEPT" />
+        <Button fx:id="refuse" layoutX="169.0" layoutY="386.0" mnemonicParsing="false" onAction="#refuseRequest" prefHeight="30.0" prefWidth="87.0" text="REFUSE" />
+        <Label fx:id="landlordName" layoutX="400.0" layoutY="226.0" text="-landlordusername-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <TextArea fx:id="messageToLandlord" layoutX="288.0" layoutY="289.0" prefHeight="150.0" prefWidth="367.0" promptText="Message body" />
 
     </AnchorPane>
 </VBox>

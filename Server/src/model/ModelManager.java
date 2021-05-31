@@ -17,7 +17,7 @@ public class ModelManager implements Model{
         this.offerList=new OfferList();
         this.userList=new UserList();
         this.rentingList=new RentingList();
-        this.offerList.addOffer(new Offer("title","description",345,1000,"Horsens","room",453, 3,4,new User("dfdss","fds","","","",345246,"")));
+        this.offerList.addOffer(new Offer("title","description",345,1000,"Horsens","room",453, 3,4,new User("nick","fds","","","",345246,"")));
     }
 
     @Override

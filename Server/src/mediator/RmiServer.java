@@ -49,7 +49,7 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
             return "Valid";
         }
         else
-            return "An offer with the same name already exist";
+            return "An offer with the same name already exists";
 
     }
 
@@ -88,6 +88,7 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
     @Override
     public void sendRequest(String offerer, Offer offer) throws RemoteException {
         this.model.sendRequest(offerer,offer);
+        this.propertyChangeHandler.firePropertyChange("Reload",null,"Reload");
     }
 
     @Override
@@ -98,6 +99,7 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
     @Override
     public void publishFeedback(String role, String s,Renting renting) throws RemoteException {
         this.model.publishFeedback(role,s,renting);
+        this.propertyChangeHandler.firePropertyChange("Reload",null,"Reload");
     }
 
     @Override
@@ -109,6 +111,7 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
     @Override
     public void refuseRequest(Offer offer) throws RemoteException {
         this.model.refuseRequest(offer);
+        this.propertyChangeHandler.firePropertyChange("Reload",null,"Reload");
     }
 
 

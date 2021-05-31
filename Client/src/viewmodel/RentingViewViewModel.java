@@ -49,12 +49,12 @@ public class RentingViewViewModel{
 
     public void setRentingInfo(){
         if(ViewState.getInstance().getDisplayedRenting()!=null) {
-            this.landlord.clear();
-            this.tenant.clear();
-            this.offer.clear();
-            this.landlord.setAll(ViewState.getInstance().getDisplayedRenting().getLandlord());
-            this.tenant.setAll(ViewState.getInstance().getDisplayedRenting().getTenant());
-            this.offer.setAll(ViewState.getInstance().getDisplayedRenting().getOffer());
+            this.landlord.removeAll();
+            this.tenant.removeAll();
+            this.offer.removeAll();
+            this.landlord.add(ViewState.getInstance().getDisplayedRenting().getLandlord());
+            this.tenant.add(ViewState.getInstance().getDisplayedRenting().getTenant());
+            this.offer.add(ViewState.getInstance().getDisplayedRenting().getOffer());
             this.date.set(ViewState.getInstance().getDisplayedRenting().getDate().toString());
         }
     }

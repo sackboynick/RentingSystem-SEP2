@@ -11,7 +11,6 @@ import javax.swing.text.View;
 public class OfferViewViewModel {
     private final Model model;
     private StringProperty title, description, pricePerMonth, deposit, address, type, area, floor, numberOfRooms,landlordName,messageToLandlord;
-    private BooleanProperty pets,smoking,balcony,freeWifi;
 
     public OfferViewViewModel(Model model){
         this.model=model;
@@ -30,10 +29,6 @@ public class OfferViewViewModel {
         this.floor=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
         this.numberOfRooms=new SimpleStringProperty(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
         this.landlordName=new SimpleStringProperty(ViewState.getInstance().getOffer().getLandlord().getUsername());
-        this.pets=new SimpleBooleanProperty();
-        this.smoking=new SimpleBooleanProperty();
-        this.balcony=new SimpleBooleanProperty();
-        this.freeWifi=new SimpleBooleanProperty();
         this.messageToLandlord=new SimpleStringProperty();
     }
     public StringProperty getTitle() {
@@ -74,22 +69,6 @@ public class OfferViewViewModel {
 
     public StringProperty getLandlordName(){
         return landlordName;
-    }
-
-    public BooleanProperty isBalcony() {
-        return balcony;
-    }
-
-    public BooleanProperty isFreeWifi() {
-        return freeWifi;
-    }
-
-    public BooleanProperty isPets() {
-        return pets;
-    }
-
-    public BooleanProperty isSmoking() {
-        return smoking;
     }
 
 

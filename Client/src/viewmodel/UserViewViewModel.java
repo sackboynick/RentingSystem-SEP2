@@ -68,7 +68,7 @@ public class UserViewViewModel {
 
     public void sendMessage(){
         if(!message.get().equals(""))
-            this.model.sendMessage(ViewState.getInstance().getUser(), username.get(), message.toString());
+            this.model.sendMessage(ViewState.getInstance().getUser(), ViewState.getInstance().getDisplayedUser().getUsername(), message.toString());
     }
 
 }

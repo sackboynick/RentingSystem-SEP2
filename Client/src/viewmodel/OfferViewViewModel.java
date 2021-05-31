@@ -40,11 +40,11 @@ public class OfferViewViewModel implements PropertyChangeListener {
         this.pricePerMonth.set(Double.toString(ViewState.getInstance().getOffer().getPricePerMonth()));
         this.deposit.set(Double.toString(ViewState.getInstance().getOffer().getDeposit()));
         this.address.set(ViewState.getInstance().getOffer().getLocation());
-        this.type.set(ViewState.getInstance().getOffer().getLocation());
-        this.area.set(ViewState.getInstance().getOffer().getType());
-        this.floor.set(Double.toString(ViewState.getInstance().getOffer().getArea()));
-        this.numberOfRooms.set(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
-        this.landlordName.set(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
+        this.type.set(ViewState.getInstance().getOffer().getType());
+        this.area.set(Double.toString(ViewState.getInstance().getOffer().getArea()));
+        this.floor.set(Integer.toString(ViewState.getInstance().getOffer().getFloor()));
+        this.numberOfRooms.set(Integer.toString(ViewState.getInstance().getOffer().getRoomsNumber()));
+        this.landlordName.set(ViewState.getInstance().getOffer().getLandlord().getUsername());
         this.password.set("");
         this.messageToLandlord.set("");
     }
@@ -109,13 +109,13 @@ public class OfferViewViewModel implements PropertyChangeListener {
     }
 
     public void acceptRequest(){
-        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
+        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") && ViewState.getInstance().getUser().getPassword().equals(password.get()))
             this.model.acceptRequest(ViewState.getInstance().getOffer().getUsernameOfOfferer(),ViewState.getInstance().getOffer());
 
     }
 
     public void refuseRequest(){
-        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals(""))
+        if(!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("")  && ViewState.getInstance().getUser().getPassword().equals(password.get()))
             this.model.refuseRequest(ViewState.getInstance().getOffer());
     }
 

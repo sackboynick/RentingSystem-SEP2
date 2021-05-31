@@ -65,8 +65,8 @@ public class PublishOfferViewModel {
     }
 
 
-    public void publishOffer(){
-        String result=model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(deposit.get()),address.get(), type.get(), Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
+    public void publishOffer(String value){
+        String result=model.addOffer(new Offer(title.get(), description.get(), Double.parseDouble(pricePerMonth.get()),Double.parseDouble(deposit.get()),address.get(), value, Double.parseDouble(area.get()),Integer.parseInt(floor.get()),Integer.parseInt(numberOfRooms.get()),ViewState.getInstance().getUser()));
         if(!result.equals("Valid"))
             error.set(result);
         else

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class RentingList implements Serializable {
     @Serial
-    private static final long serialVersionUID = 6529685098645757695L;
+    private static final long serialVersionUID = 6529685067546757695L;
     private ArrayList<Renting> rentingArrayList;
 
 

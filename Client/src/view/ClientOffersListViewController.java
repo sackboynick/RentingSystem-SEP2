@@ -45,4 +45,7 @@ public class ClientOffersListViewController extends ViewController{
             getViewHandler().openView("offerView");
         }
     }
-}
+
+    @FXML public void openSendMessage(){
+        getViewHandler().openView("sendMessageView");
+    }}

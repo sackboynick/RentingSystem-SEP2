@@ -15,12 +15,13 @@ import java.beans.PropertyChangeListener;
 public class OffersListViewModel implements PropertyChangeListener {
 
     private final Model model;
-    private final ObservableList<Offer> offers;
+    private ObservableList<Offer> offers;
     private final StringProperty title,landlordName,type,pricePerMonth,numberOfOffers;
 
     public OffersListViewModel(Model model){
         this.model=model;
         this.model.addListener("Offer",this);
+        this.model.addListener("ReloadLists",this);
         this.offers= FXCollections.observableArrayList(model.getOffers().getOffers());
         this.title=new SimpleStringProperty();
         this.landlordName=new SimpleStringProperty();
@@ -59,8 +60,14 @@ public class OffersListViewModel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         Platform.runLater(() -> {
-            this.offers.add(0,(Offer) evt.getNewValue());
-            this.numberOfOffers.setValue(Integer.toString(offers.size()));
+            switch (evt.getPropertyName()) {
+                case "Offers" -> {
+                    this.offers.add(0, (Offer) evt.getNewValue());
+                    this.numberOfOffers.setValue(Integer.toString(offers.size()));
+                }
+                case "ReloadLists" -> this.offers = FXCollections.observableArrayList(model.getOffers().getOffers());
+            }
+
         });
     }
 }

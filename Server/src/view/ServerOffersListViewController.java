@@ -17,12 +17,15 @@ public class ServerOffersListViewController extends ViewController {
 
     @Override
     protected void init() {
-        this.offerTableView.setItems(getViewModelFactory().getOffersListViewModel().getOffers());
+        reset();
         this.title.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTitle()));
         this.landlord.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLandlord().getUsername()));
         this.type.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
         this.pricePerMonth.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getPricePerMonth())));
         this.numberOfOffers.textProperty().bind(getViewModelFactory().getOffersListViewModel().getNumberOfOffers());
+    }
+    public void reset(){
+        this.offerTableView.setItems(getViewModelFactory().getOffersListViewModel().getOffers());
     }
 
     @FXML public void deleteOffer(){

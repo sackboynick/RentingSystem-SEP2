@@ -12,8 +12,8 @@ import java.beans.PropertyChangeListener;
 
 public class MainViewViewModel implements PropertyChangeListener {
     private final Model model;
-    private final ObservableList<User> users;
-    private final ObservableList<Offer> offers;
+    private ObservableList<User> users;
+    private ObservableList<Offer> offers;
 
 
     public MainViewViewModel(Model model){
@@ -22,6 +22,7 @@ public class MainViewViewModel implements PropertyChangeListener {
         this.offers=getOffersFromModel();
         this.model.addListener("OnlineUsers",this);
         this.model.addListener("Offers",this);
+        this.model.addListener("ReloadLists",this);
 
     }
 
@@ -59,6 +60,10 @@ public class MainViewViewModel implements PropertyChangeListener {
                 addUser((User) evt.getNewValue());
             else if(evt.getPropertyName().equals("Offers"))
                 this.offers.add(0,(Offer) evt.getNewValue());
+            if(evt.getPropertyName().equals("ReloadLists")){
+                this.offers=getOffersFromModel();
+                this.users=getOnlineUsersFromModel();
+            }
         });
     }
 }

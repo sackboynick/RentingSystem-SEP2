@@ -36,29 +36,40 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="view.UsersListViewController">
-    <AnchorPane VBox.vgrow="ALWAYS">
-        <Button onAction="#onBack" layoutX="44.0" layoutY="35.0" mnemonicParsing="false" text="BACK"/>
-        <Label layoutX="205.0" layoutY="37.0" text="USERS LIST">
+<VBox prefHeight="479.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.UsersListViewController">
+    <AnchorPane prefHeight="426.0" prefWidth="552.0" VBox.vgrow="ALWAYS">
+        <Button layoutX="25.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBack" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label layoutX="177.0" layoutY="23.0" text="USERS LIST">
             <font>
-                <Font size="40.0"/>
+                <Font size="40.0" />
             </font>
         </Label>
-        <TableView fx:id="userTableView" layoutX="71.0" layoutY="115.0" prefHeight="200.0" prefWidth="408.0">
+        <TableView fx:id="userTableView" layoutX="25.0" layoutY="115.0" prefHeight="208.0" prefWidth="501.0">
             <columns>
-                <TableColumn fx:id="username" prefWidth="104.0" text="Username"/>
-                <TableColumn fx:id="firstName" prefWidth="100.0" text="First Name"/>
-                <TableColumn fx:id="lastName" prefWidth="111.0" text="Last name"/>
-                <TableColumn fx:id="role" prefWidth="92.0" text="Role"/>
+                <TableColumn fx:id="username" prefWidth="138.4000244140625" text="Username" />
+                <TableColumn fx:id="firstName" prefWidth="128.0" text="First Name" />
+                <TableColumn fx:id="lastName" prefWidth="125.60003662109375" text="Last name" />
+                <TableColumn fx:id="role" prefWidth="109.5999755859375" text="Role" />
             </columns>
         </TableView>
-        <Button layoutX="497.0" layoutY="115.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="72.0"
-                prefWidth="122.0" text="DELETE USER PERMANENTLY" textAlignment="CENTER" wrapText="true"/>
-        <Button layoutX="497.0" layoutY="243.0" mnemonicParsing="false" onAction="#openUserInterface"
-                prefHeight="72.0" prefWidth="122.0" text="OPEN USER'S INTERFACE" textAlignment="CENTER"
-                wrapText="true"/>
-        <Label layoutX="71.0" layoutY="342.0" text="Total users:"/>
-        <Label fx:id="numberOfUsers" layoutX="169.0" layoutY="342.0" text="-totalUsers-"/>
+        <Button layoutX="271.0" layoutY="371.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="30.0" prefWidth="255.0" text="DELETE USER PERMANENTLY" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button layoutX="322.0" layoutY="335.0" mnemonicParsing="false" onAction="#openUserInterface" prefHeight="30.0" prefWidth="204.0" text="OPEN USER'S INTERFACE" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label layoutX="25.0" layoutY="376.0" text="Total users:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label fx:id="numberOfUsers" layoutX="107.0" layoutY="376.0" text="-totalUsers-">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
     </AnchorPane>
 </VBox>

@@ -12,7 +12,7 @@ public class User  implements Serializable {
     private int dealsClosed;
     private final ArrayList<Message> messagesAndRequests;
 
-    private static final String[] ROLES={"Admin","Landlord","Tenant"};
+    private static final String[] ROLES={"Landlord","Tenant"};
 
     public User(String username,String firstName,String middleName,String lastName,String password,long phone,String role){
         setUsername(username);

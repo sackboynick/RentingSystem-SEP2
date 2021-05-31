@@ -70,8 +70,8 @@ public class ModelManager implements Model,PropertyChangeListener {
     }
 
     @Override
-    public RentingList getRentingList(String username) {
-        return this.rmiClient.getRentingList(username);
+    public RentingList getRentingList() {
+        return this.rmiClient.getRentingList(ViewState.getInstance().getUser().getUsername());
     }
 
     @Override
@@ -131,7 +131,6 @@ public class ModelManager implements Model,PropertyChangeListener {
                 }
             }
             case "Reload"->{
-                this.onlineUserList=this.rmiClient.getUsersOnline();
                 this.offerList=this.rmiClient.getOffers();
                 this.propertyChangeSupport.firePropertyChange("Reload",null,evt.getNewValue());
             }

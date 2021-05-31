@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import viewmodel.ViewState;
 
 public class ClientOfferViewController extends ViewController{
-    @FXML private Label title, description, address,type, numberOfRooms,pricePerMonth,deposit,area,floor,landlordName,error,alertMessage;
+    @FXML private Label offerTitle,title, description, address,type, numberOfRooms,pricePerMonth,deposit,area,floor,landlordName,error,alertMessage;
     @FXML private TextArea messageToLandlord;
     @FXML private TextField password;
     @FXML private Button request,accept,refuse,message;
@@ -17,6 +17,7 @@ public class ClientOfferViewController extends ViewController{
     @Override
     protected void init() {
         getViewModelFactory().getOfferViewViewModel().setInterface();
+        this.offerTitle.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getTitle());
         this.title.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getTitle());
         this.description.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getDescription());
         this.address.textProperty().bind(getViewModelFactory().getOfferViewViewModel().getAddress());
@@ -53,6 +54,7 @@ public class ClientOfferViewController extends ViewController{
                 this.messageToLandlord.setVisible(true);
                 this.message.setVisible(true);
             } else if ((!ViewState.getInstance().getOffer().getUsernameOfOfferer().equals("") || ViewState.getInstance().getOffer().getUsernameOfOfferer() != null) && ViewState.getInstance().getOffer().getLandlord().getUsername().equals(ViewState.getInstance().getUser().getUsername())) {
+                this.error.setText("You just received an offer from "+ViewState.getInstance().getOffer().getUsernameOfOfferer());
                 alertMessage.setText("*this action will be unreversible, therefore you need to insert your password to be able to send a request to the landlord*");
                 this.accept.setVisible(true);
                 this.refuse.setVisible(true);
@@ -83,16 +85,19 @@ public class ClientOfferViewController extends ViewController{
 
     @FXML public void sendRequest(){
         getViewModelFactory().getOfferViewViewModel().sendRequest();
+        if(error.getText().equals(""))
         getViewHandler().openView("offersList");
     }
 
     @FXML public void acceptRequest(){
         getViewModelFactory().getOfferViewViewModel().acceptRequest();
+        if(error.getText().equals(""))
         getViewHandler().openView("homePage");
     }
 
     @FXML public void refuseRequest(){
         getViewModelFactory().getOfferViewViewModel().refuseRequest();
+        if(error.getText().equals(""))
         getViewHandler().openView("offersList");
     }
 

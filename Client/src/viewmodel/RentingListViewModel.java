@@ -20,7 +20,7 @@ public class RentingListViewModel implements PropertyChangeListener {
 
     public void updateRentingList(){
         if(ViewState.getInstance().getUser()!=null)
-            this.rentings= FXCollections.observableArrayList(model.getRentingList(ViewState.getInstance().getUser().getUsername()).getRentingArrayList());
+            this.rentings= FXCollections.observableArrayList(model.getRentingList().getRentingArrayList());
 
     }
 
@@ -30,6 +30,7 @@ public class RentingListViewModel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+        updateRentingList();
         this.rentings.add(0,(Renting) evt.getNewValue());
     }
 }

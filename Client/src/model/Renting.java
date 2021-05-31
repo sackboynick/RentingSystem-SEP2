@@ -23,14 +23,6 @@ public class Renting  implements Serializable {
     }
 
 
-    public void setLandlordFeedback(String landlordFeedback) {
-        this.landlordFeedback = landlord.getUsername()+" said that : "+landlordFeedback;
-    }
-
-    public void setTenantFeedback(String tenantFeedback){
-        this.tenantFeedback=tenant.getUsername()+" said that : "+tenantFeedback;
-    }
-
     public String getLandlordFeedback() {
         return landlordFeedback;
     }

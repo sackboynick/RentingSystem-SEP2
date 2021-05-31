@@ -23,7 +23,8 @@ public class ClientUserViewController extends ViewController {
         this.phone.textProperty().bind(getViewModelFactory().getUserViewViewModel().getPhone());
         this.deals.textProperty().bind(getViewModelFactory().getUserViewViewModel().getNumberOfDeals());
         this.role.textProperty().bind(getViewModelFactory().getUserViewViewModel().getRole());
-        this.message.setText("");
+        this.usernameLeft.textProperty().bind(getViewModelFactory().getUserViewViewModel().getUsername());
+        reset();
     }
 
     public void reset(){

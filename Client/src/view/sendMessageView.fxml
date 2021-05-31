@@ -36,27 +36,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="501.0" prefWidth="794.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="view.SendMessageViewController">
+<VBox prefHeight="541.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SendMessageViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
-        <Button onAction="#onBack" layoutX="70.0" layoutY="56.0" mnemonicParsing="false" text="BACK" />
-        <Label layoutX="254.0" layoutY="62.0" text="SEND A MESSAGE">
+        <Button layoutX="24.0" layoutY="22.0" mnemonicParsing="false" onAction="#onBack" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label layoutX="217.0" layoutY="22.0" text="SEND A MESSAGE">
             <font>
                 <Font size="32.0" />
             </font>
         </Label>
-        <TextArea fx:id="body" layoutX="294.0" layoutY="231.0" prefHeight="200.0" prefWidth="413.0" wrapText="true" />
-        <TextField fx:id="receiver" layoutX="294.0" layoutY="154.0" />
-        <Button layoutX="636.0" layoutY="445.0" mnemonicParsing="false" onAction="#sendMessage" text="SEND MESSAGE" />
-        <Label fx:id="error" layoutX="541.0" layoutY="146.0" text="-errorLabel-" textFill="RED" />
-        <Label layoutX="221.0" layoutY="159.0" text="Username" />
-        <Label layoutX="250.0" layoutY="243.0" text="Body:" />
+        <TextArea fx:id="body" layoutX="241.0" layoutY="147.0" prefHeight="285.0" prefWidth="414.0" promptText="Body" wrapText="true">
+         <font>
+            <Font size="14.0" />
+         </font></TextArea>
+        <TextField fx:id="receiver" layoutX="241.0" layoutY="111.0" promptText="Username">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <Button layoutX="502.0" layoutY="442.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="28.0" prefWidth="153.0" text="SEND MESSAGE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Label fx:id="error" layoutX="241.0" layoutY="447.0" text="-errorLabel-" textFill="RED">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
         <TableView fx:id="userTableView" layoutX="14.0" layoutY="111.0" prefHeight="322.0" prefWidth="200.0">
             <columns>
                 <TableColumn fx:id="username" prefWidth="115.0" text="Username" />
                 <TableColumn fx:id="role" prefWidth="84.0" text="Role" />
             </columns>
         </TableView>
-        <Label layoutX="66.0" layoutY="94.0" text="USERS ONLINE" />
-        <Button layoutX="61.0" layoutY="451.0" mnemonicParsing="false" onAction="#selectUser" text="SELECT USER" />
+        <Label layoutX="15.0" layoutY="86.0" text="USERS ONLINE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Button layoutX="64.0" layoutY="442.0" mnemonicParsing="false" onAction="#selectUser" text="SELECT USER">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
     </AnchorPane>
 </VBox>

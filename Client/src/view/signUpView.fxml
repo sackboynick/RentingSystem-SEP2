@@ -36,28 +36,72 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="411.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpViewController">
+<VBox prefHeight="358.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
-        <Label layoutX="115.0" layoutY="54.0" text="REGISTER A NEW ACCOUNT">
+        <Label layoutX="140.0" layoutY="29.0" text="REGISTER A NEW ACCOUNT">
             <font>
               <Font size="32.0" />
             </font>
         </Label>
-        <Label layoutX="50.0" layoutY="142.0" text="Username:" />
-        <Label layoutX="53.0" layoutY="197.0" text="Password:" />
-        <Label layoutX="373.0" layoutY="137.0" text="First name:" />
-        <Label layoutX="366.0" layoutY="184.0" text="Middle name:" />
-        <Label layoutX="374.0" layoutY="240.0" text="Last name:" />
-        <Label layoutX="388.0" layoutY="293.0" text="Phone:" />
-        <ChoiceBox fx:id="role" layoutX="144.0" layoutY="266.0" prefWidth="150.0" />
-        <TextField fx:id="username" layoutX="133.0" layoutY="137.0" />
-        <TextField fx:id="password" layoutX="133.0" layoutY="192.0" />
-        <TextField fx:id="firstName" layoutX="455.0" layoutY="132.0" />
-        <TextField fx:id="middleName" layoutX="455.0" layoutY="179.0" />
-        <TextField fx:id="lastName" layoutX="455.0" layoutY="235.0" />
-        <TextField fx:id="phone" layoutX="455.0" layoutY="288.0" />
-        <Button layoutX="288.0" layoutY="342.0" mnemonicParsing="false" onAction="#signUp" prefHeight="40.0" prefWidth="124.0" text="SIGN UP" />
-      <Button layoutX="22.0" layoutY="34.0" mnemonicParsing="false" onAction="#onBack" text="BACK" />
-      <Label fx:id="error" layoutX="64.0" layoutY="332.0" prefHeight="50.0" prefWidth="115.0" text="Label" textAlignment="CENTER" textFill="RED" wrapText="true" />
+        <Label layoutX="340.0" layoutY="126.0" text="First name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="322.0" layoutY="169.0" text="Middle name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="340.0" layoutY="212.0" text="Last name:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Label layoutX="364.0" layoutY="252.0" text="Phone:">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <ChoiceBox fx:id="role" layoutX="157.0" layoutY="209.0" prefHeight="26.0" prefWidth="128.0" />
+        <TextField fx:id="username" layoutX="133.0" layoutY="121.0" promptText="4+ characters">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="password" layoutX="133.0" layoutY="164.0" promptText="6+ characters">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="firstName" layoutX="417.0" layoutY="121.0" promptText="Strings only">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="middleName" layoutX="417.0" layoutY="164.0" promptText="Strings only">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="lastName" layoutX="417.0" layoutY="207.0" promptText="Strings only">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <TextField fx:id="phone" layoutX="417.0" layoutY="247.0" promptText="Numbers only">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+        <Button layoutX="540.0" layoutY="302.0" mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="105.0" text="SIGN UP">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Button layoutX="33.0" layoutY="29.0" mnemonicParsing="false" onAction="#onBack" text="BACK">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+      <Label fx:id="error" layoutX="36.0" layoutY="277.0" prefHeight="50.0" prefWidth="115.0" text="Label" textAlignment="CENTER" textFill="RED" wrapText="true" />
+      <Label layoutX="57.0" layoutY="126.0" prefHeight="20.0" prefWidth="73.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="60.0" layoutY="169.0" prefHeight="20.0" prefWidth="67.0" text="Password:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
     </AnchorPane>
 </VBox>

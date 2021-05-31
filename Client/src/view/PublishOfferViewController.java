@@ -42,7 +42,9 @@ public class PublishOfferViewController extends ViewController{
     }
 
     @FXML public void createOffer(){
-        getViewModelFactory().getPublishOfferViewModel().publishOffer();
+        if(type.getValue()!=null)
+        getViewModelFactory().getPublishOfferViewModel().publishOffer(type.getValue());
+        else error.setText("Please do not leave any blank field");
         reset();
     }
 

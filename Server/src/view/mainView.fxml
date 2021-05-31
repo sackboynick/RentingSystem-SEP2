@@ -36,22 +36,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="565.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+<VBox prefHeight="513.0" prefWidth="906.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
-        <Label layoutX="380.0" layoutY="51.0" text="SERVER SIDE">
+        <Label layoutX="351.0" layoutY="26.0" text="SERVER SIDE">
             <font>
-                <Font size="21.0" />
+                <Font size="36.0" />
             </font>
         </Label>
-        <ListView fx:id="onlineUsersList" layoutX="50.0" layoutY="150.0" prefHeight="200.0" prefWidth="245.0" />
-        <Label layoutX="50.0" layoutY="120.0" text="USERS ONLINE" />
-        <Button layoutX="62.0" layoutY="399.0" mnemonicParsing="false" onAction="#openUserInterface" text="OPEN A USER'S PROFILE" />
-        <ListView fx:id="offersList" layoutX="446.0" layoutY="150.0" prefHeight="200.0" prefWidth="440.0" />
-        <Label layoutX="450.0" layoutY="120.0" text="CURRENT OFFERS" />
-        <Button layoutX="89.0" layoutY="452.0" mnemonicParsing="false" onAction="#openUsersList" text="MANAGE USERS" />
-        <Button layoutX="313.0" layoutY="403.0" mnemonicParsing="false" onAction="#openRentingList" prefHeight="98.0" prefWidth="177.0" text="MANAGE DEALS" />
-        <Button layoutX="643.0" layoutY="399.0" mnemonicParsing="false" onAction="#openOffersList" text="MANAGE OFFERS" />
-        <Button layoutX="602.0" layoutY="359.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN AN OFFER'S INTERFACE" />
-        <Button layoutX="643.0" layoutY="501.0" mnemonicParsing="false" onAction="#openServerOverview" text="OPEN SERVER OVERVIEW" />
+        <ListView fx:id="onlineUsersList" layoutX="28.0" layoutY="150.0" prefHeight="200.0" prefWidth="370.0" />
+        <Label layoutX="28.0" layoutY="120.0" text="USERS ONLINE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Button layoutX="28.0" layoutY="367.0" mnemonicParsing="false" onAction="#openUserInterface" text="OPEN A USER'S PROFILE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <ListView fx:id="offersList" layoutX="502.0" layoutY="150.0" prefHeight="200.0" prefWidth="370.0" />
+        <Label layoutX="502.0" layoutY="120.0" text="CURRENT OFFERS">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+        <Button layoutX="28.0" layoutY="411.0" mnemonicParsing="false" onAction="#openUsersList" text="MANAGE USERS">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button layoutX="383.0" layoutY="366.0" mnemonicParsing="false" onAction="#openRentingList" prefHeight="30.0" prefWidth="141.0" text="MANAGE DEALS">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button layoutX="748.0" layoutY="411.0" mnemonicParsing="false" onAction="#openOffersList" text="MANAGE OFFERS">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button layoutX="672.0" layoutY="367.0" mnemonicParsing="false" onAction="#openOfferInterface" text="OPEN AN OFFER'S INTERFACE">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
+        <Button layoutX="363.0" layoutY="411.0" mnemonicParsing="false" onAction="#openServerOverview" text="OPEN SERVER OVERVIEW">
+         <font>
+            <Font size="14.0" />
+         </font></Button>
     </AnchorPane>
 </VBox>
