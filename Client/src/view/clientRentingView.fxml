@@ -89,7 +89,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <TextArea fx:id="feedback" layoutX="544.0" layoutY="240.0" prefHeight="143.0" prefWidth="234.0" promptText="Body" />
+            <TextArea fx:id="feedback" layoutX="544.0" layoutY="240.0" prefHeight="143.0" prefWidth="234.0" promptText="Body" wrapText="true" />
             <Label layoutX="90.0" layoutY="459.0" text="-date-">
                <font>
                   <Font size="14.0" />

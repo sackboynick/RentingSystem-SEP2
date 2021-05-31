@@ -55,7 +55,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="343.0" layoutY="174.0" prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER">
+      <Label fx:id="description" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="343.0" layoutY="174.0" prefHeight="111.0" prefWidth="142.0" text="-description-" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></Label>

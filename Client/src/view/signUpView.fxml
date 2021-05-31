@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="358.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpViewController">
+<VBox prefHeight="388.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUpViewController">
     <AnchorPane VBox.vgrow="ALWAYS">
         <Label layoutX="140.0" layoutY="29.0" text="REGISTER A NEW ACCOUNT">
             <font>

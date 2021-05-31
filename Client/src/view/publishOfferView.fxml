@@ -80,7 +80,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextArea fx:id="description" layoutX="430.0" layoutY="264.0" prefHeight="118.0" prefWidth="218.0">
+      <TextArea fx:id="description" layoutX="430.0" layoutY="264.0" prefHeight="118.0" prefWidth="218.0" wrapText="true">
          <font>
             <Font size="14.0" />
          </font></TextArea>

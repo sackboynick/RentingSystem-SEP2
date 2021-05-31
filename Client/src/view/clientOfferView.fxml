@@ -134,7 +134,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-        <TextArea fx:id="messageToLandlord" layoutX="288.0" layoutY="289.0" prefHeight="150.0" prefWidth="367.0" promptText="Message body" />
+        <TextArea fx:id="messageToLandlord" layoutX="288.0" layoutY="289.0" prefHeight="150.0" prefWidth="367.0" promptText="Message body" wrapText="true" />
 
     </AnchorPane>
 </VBox>
