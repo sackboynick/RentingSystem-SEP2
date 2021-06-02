@@ -107,7 +107,7 @@ public class OffersListViewModel implements PropertyChangeListener {
             if (offer.getPricePerMonth() >= minPrice)
                 filteredCopY.add(offer);
         }
-        this.offers=filteredCopY;
+        this.offers = filteredCopY;
     }
 
     /**
@@ -117,11 +117,9 @@ public class OffersListViewModel implements PropertyChangeListener {
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if(evt.getPropertyName().equals("Offers"))
-        Platform.runLater(() -> {
-            this.offers.add(0, (Offer) evt.getNewValue());
-        });
-        else if(evt.getPropertyName().equals("Reload")){
+        if (evt.getPropertyName().equals("Offers"))
+            Platform.runLater(() -> this.offers.add(0, (Offer) evt.getNewValue()));
+        else if (evt.getPropertyName().equals("Reload")) {
             Platform.runLater(this::updateOffersListFromModel);
         }
     }

@@ -191,7 +191,22 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
         this.propertyChangeHandler.firePropertyChange("Reload",null,"Reload");
     }
 
-
+    /**
+     * The method delegates the model to obtain an OfferList object of the offers which respect the conditions.
+     *
+     * @param minPrice The minimum price for filter search.
+     * @param maxPrice The maximum price for filter search.
+     * @param noOfRooms The number of rooms in a Offer for filter search.
+     * @param type The type of Offer for filter search.
+     * @param floor The floor from Offer for filter search.
+     * @param deposit The deposit from Offer for filter search.
+     * @return the ArrayList with filtered offers stored in the database.
+     */
+    @Override
+    public ArrayList<Offer> applyFilters(double minPrice,
+                                         double maxPrice, int noOfRooms, String type, int floor, double deposit) {
+        return model.applyFilters(minPrice, maxPrice, noOfRooms, type, floor, deposit);
+    }
 
     /**
      * Method to add a listener to the PropertyChangeHandler object.

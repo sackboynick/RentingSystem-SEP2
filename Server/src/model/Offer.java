@@ -11,14 +11,14 @@ import java.io.Serializable;
 public class Offer implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757695L;
-    private String ID, title, description, location,type;
-    private static final String[] TYPE = {"Apartment", "House","Room"};
+    private String title, description, location, type;
+    private static final String[] TYPE = {"Apartment", "House", "Room"};
     private int roomsNumber, floor;
-    private double pricePerMonth, deposit,area;
-    private Date availableDate;
-    private boolean wiFi,pets,smoking,balcony;
+    private double pricePerMonth, deposit, area;
     private String usernameOfOfferer;
     private User landlord;
+    private int ID;
+
 
     /**
      * Ten-argument constructor.
@@ -44,8 +44,8 @@ public class Offer implements Serializable {
         setFloor(floor);
         setRoomsNumber(numberOfRooms);
         setLandlord(landlord);
-        this.availableDate=new Date();
-        this.usernameOfOfferer="";
+        this.usernameOfOfferer = "";
+        this.ID=0;
     }
 
 
@@ -264,7 +264,6 @@ public class Offer implements Serializable {
     public String toString(){
         return getTitle()+", offered by "+landlord.getUsername()+" for "+getPricePerMonth()+"kr/month";
     }
-
 
 
 }

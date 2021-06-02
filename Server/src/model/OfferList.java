@@ -39,13 +39,6 @@ public class OfferList  implements Serializable {
     }
 
 
-    public Offer getOfferByID(String ID) {
-        for(Offer offer:offers){
-            if(offer.getID().equals(ID))
-                return offer;
-        }
-        return null;
-    }
 
     /**
      * Method to obtain the list of offers in an ArrayList type.

@@ -4,6 +4,7 @@ import model.*;
 import utility.observer.subject.RemoteSubject;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 public interface RemoteModel extends RemoteSubject<String,Object>{
     String addOffer(Offer offer) throws RemoteException;
@@ -17,5 +18,6 @@ public interface RemoteModel extends RemoteSubject<String,Object>{
     void publishFeedback(String role, String s,Renting renting) throws RemoteException;
     void acceptRequest(String usernameOfOfferer, Offer offer) throws RemoteException;
     void refuseRequest(Offer offer) throws RemoteException;
-
+    ArrayList<Offer> applyFilters(double minPrice,
+                                  double maxPrice, int noOfRooms, String type, int floor, double deposit);
 }

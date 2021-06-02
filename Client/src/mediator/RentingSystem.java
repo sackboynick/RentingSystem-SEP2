@@ -2,6 +2,8 @@ package mediator;
 
 import model.*;
 
+import java.util.ArrayList;
+
 public interface RentingSystem {
     String addOffer(Offer offer);
     User login(String username,String password);
@@ -14,4 +16,6 @@ public interface RentingSystem {
     void publishFeedback(String role, String s,Renting renting);
     void acceptRequest(String usernameOfOfferer, Offer offer);
     void refuseRequest(Offer offer);
+    ArrayList<Offer> applyFilters(double minPrice,
+                           double maxPrice, int noOfRooms, String type, int floor, double deposit);
 }

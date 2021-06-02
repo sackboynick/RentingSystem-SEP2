@@ -107,7 +107,7 @@
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="745.0" layoutY="422.0" mnemonicParsing="false" text="APPLY FILTERS">
+      <Button layoutX="745.0" layoutY="422.0" mnemonicParsing="false" onAction="#applyFilters" text="APPLY FILTERS">
          <font>
             <Font size="14.0" />
          </font></Button>
@@ -120,5 +120,6 @@
             <TableColumn fx:id="landlord" prefWidth="112.80000610351567" text="Landlord" />
         </columns>
       </TableView>
+      <TextField fx:id="typeTextField" layoutX="617.0" layoutY="217.0" promptText="type" />
    </AnchorPane>
 </VBox>

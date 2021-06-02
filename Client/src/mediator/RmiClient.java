@@ -9,6 +9,7 @@ import java.beans.PropertyChangeSupport;
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  * The client program obtains a stub for the registry on the server's host and looks up the remote object's stub by name in the registry.
@@ -31,7 +32,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
             this.server = (RemoteModel) Naming.lookup("rmi://localhost:1099/HousingSystem");
             UnicastRemoteObject.exportObject(this, 0);
             server.addListener(this);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -128,7 +129,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public String sendMessage(User sender, String receiver, String body) {
         try {
-            return server.sendMessage(sender,receiver, body);
+            return server.sendMessage(sender, receiver, body);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -143,9 +144,9 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
      */
     @Override
     public void sendRequest(String offerer, Offer offer) {
-        try{
+        try {
             this.server.sendRequest(offerer, offer);
-        } catch (RemoteException e){
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
     }
@@ -212,6 +213,23 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         }
     }
 
+    /**
+     * Method invoked remotely from the server side to obtain the list of the Offer objects for filter search
+     *
+     * @param minPrice The minimum price for filter search.
+     * @param maxPrice The maximum price for filter search.
+     * @param noOfRooms The number of rooms in a Offer for filter search.
+     * @param type The type of Offer for filter search.
+     * @param floor The floor from Offer for filter search.
+     * @param deposit The deposit from Offer for filter search.
+     * @return the ArrayList with filtered offers stored in the database.
+     */
+    @Override
+    public ArrayList<Offer> applyFilters(double minPrice,
+                                         double maxPrice, int noOfRooms, String type, int floor, double deposit) {
+        return server.applyFilters(minPrice, maxPrice, noOfRooms, type, floor, deposit);
+    }
+
 
     /**
      * Method to add a listener to the PropertyChangeSupport object.
@@ -246,9 +264,9 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
         switch (event.getPropertyName()) {
             case "OnlineUsers" -> this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, event.getValue2());
             case "Offers" -> this.propertyChangeSupport.firePropertyChange("Offers", null, event.getValue2());
-            case "Message" -> this.propertyChangeSupport.firePropertyChange("Message",event.getValue1(),event.getValue2());
-            case "Renting" -> this.propertyChangeSupport.firePropertyChange("Renting",event.getValue1(),event.getValue2());
-            case "Reload" -> this.propertyChangeSupport.firePropertyChange("Reload",null,event.getValue2());
+            case "Message" -> this.propertyChangeSupport.firePropertyChange("Message", event.getValue1(), event.getValue2());
+            case "Renting" -> this.propertyChangeSupport.firePropertyChange("Renting", event.getValue1(), event.getValue2());
+            case "Reload" -> this.propertyChangeSupport.firePropertyChange("Reload", null, event.getValue2());
         }
     }
 }

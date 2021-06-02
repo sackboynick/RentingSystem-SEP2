@@ -18,8 +18,13 @@ public class OnlineUserList implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757690L;
     private final ArrayList<User> users;
+    private final UserModelInterface databaseUserModel;
 
+    /**
+     * Zero-argument constructor.
+     */
     public OnlineUserList(){
+        this.databaseUserModel=new UserModel();
         this.users=new ArrayList<>();
     }
 
@@ -31,14 +36,18 @@ public class OnlineUserList implements Serializable {
      * @return The User object corresponding to the account with the same credentials.
      */
     public User loginInUser(String username,String password,UserList userList){
-        for(User user : userList.getUsersArraylist()) {
-            if (user.forLogin(username, password)) {
-                {
-                    if(!users.contains(user))
-                        this.users.add(0, user);
+        try {
+            for(User user : databaseUserModel.getAllUsers().getUsersArraylist()) {
+                if (user.forLogin(username, password)) {
+                    {
+                        if(!users.contains(user))
+                            this.users.add(0, user);
+                    }
+                    return user;
                 }
-                return user;
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }

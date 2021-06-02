@@ -80,7 +80,7 @@ public class ModelManager implements Model, PropertyChangeListener {
      */
     @Override
     public User login(String username, String password) {
-        User user=rmiClient.login(username, password);
+        User user = rmiClient.login(username, password);
         ViewState.getInstance().setUser(user);
         return user;
     }
@@ -112,8 +112,8 @@ public class ModelManager implements Model, PropertyChangeListener {
      * @return A String containing the result of the action.
      */
     @Override
-    public String sendMessage(User sender,String receiver, String body) {
-        return rmiClient.sendMessage(sender,receiver,body);
+    public String sendMessage(User sender, String receiver, String body) {
+        return rmiClient.sendMessage(sender, receiver, body);
     }
 
     /**
@@ -124,7 +124,7 @@ public class ModelManager implements Model, PropertyChangeListener {
      */
     @Override
     public void sendRequest(String offerer, Offer offer) {
-        this.rmiClient.sendRequest(offerer,offer);
+        this.rmiClient.sendRequest(offerer, offer);
     }
 
     /**
@@ -157,7 +157,7 @@ public class ModelManager implements Model, PropertyChangeListener {
      */
     @Override
     public void acceptRequest(String usernameOfOfferer, Offer offer) {
-        this.rmiClient.acceptRequest(usernameOfOfferer,offer);
+        this.rmiClient.acceptRequest(usernameOfOfferer, offer);
     }
 
     /**
@@ -241,23 +241,23 @@ public class ModelManager implements Model, PropertyChangeListener {
                 this.propertyChangeSupport.firePropertyChange("Offers", null, evt.getNewValue());
             }
             case "Message" -> {
-                if(evt.getOldValue().toString().equals(ViewState.getInstance().getUser().getUsername())) {
-                    Message message=(Message)  evt.getNewValue();
+                if (evt.getOldValue().toString().equals(ViewState.getInstance().getUser().getUsername())) {
+                    Message message = (Message) evt.getNewValue();
                     ViewState.getInstance().getUser().addMessageOrRequest(message);
                     System.out.println(message.toString());
-                    this.propertyChangeSupport.firePropertyChange("Message",null,evt.getNewValue());
+                    this.propertyChangeSupport.firePropertyChange("Message", null, evt.getNewValue());
                 }
             }
             case "Renting" -> {
-                if(evt.getOldValue().toString().equals(ViewState.getInstance().getUser().getUsername())){
-                    Renting renting=(Renting) evt.getNewValue();
-                    if(renting!=null)
-                       this.propertyChangeSupport.firePropertyChange("Renting",null,evt.getNewValue());
+                if (evt.getOldValue().toString().equals(ViewState.getInstance().getUser().getUsername())) {
+                    Renting renting = (Renting) evt.getNewValue();
+                    if (renting != null)
+                        this.propertyChangeSupport.firePropertyChange("Renting", null, evt.getNewValue());
                 }
             }
-            case "Reload"->{
-                this.offerList=this.rmiClient.getOffers();
-                this.propertyChangeSupport.firePropertyChange("Reload",null,evt.getNewValue());
+            case "Reload" -> {
+                this.offerList = this.rmiClient.getOffers();
+                this.propertyChangeSupport.firePropertyChange("Reload", null, evt.getNewValue());
             }
         }
     }

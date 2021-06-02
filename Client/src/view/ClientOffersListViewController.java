@@ -2,11 +2,7 @@ package view;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import model.Offer;
 import viewmodel.ViewState;
 
@@ -39,7 +35,12 @@ public class ClientOffersListViewController extends ViewController {
         this.type.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType()));
         this.pricePerMonth.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getPricePerMonth())));
         this.deposit.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getDeposit())));
-
+        this.minPriceTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getMinPrice());
+        this.maxPriceTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getMaxPrice());
+        this.minRoomsTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getMinRooms());
+        this.floorTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getFloor());
+        this.depositTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getMaxDeposit());
+        this.typeTextField.textProperty().bindBidirectional(getViewModelFactory().getOffersListViewModel().getType());
     }
 
     /**
@@ -98,4 +99,5 @@ public class ClientOffersListViewController extends ViewController {
     @FXML
     public void openSendMessage() {
         getViewHandler().openView("sendMessageView");
-    }}
+    }
+}

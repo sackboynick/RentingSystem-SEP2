@@ -1,14 +1,29 @@
 package model;
 
+import databasemodel.modelinterfaces.*;
+import databasemodel.models.*;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+/**
+ * A class  used to manage a set of objects, which are the resources of the server.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 
-public class ModelManager implements Model{
+public class ModelManager implements Model {
     private final OnlineUserList onlineUserList;
     private final OfferList offerList;
     private final UserList userList;
     private final RentingList rentingList;
+    private final MessageInterface databaseMessageModel;
+    private final OfferModelInterface databaseOfferModel;
+    private final RentingModelInterface databaseRentingModel;
+    private final UserModelInterface databaseUserModel;
     private final PropertyChangeSupport propertyChangeSupport;
 
     /**
@@ -36,12 +51,16 @@ public class ModelManager implements Model{
      */
     @Override
     public Offer addOffer(Offer offer) {
-        for(Offer x: offerList.getOffers()){
+        try {
+            for (Offer x : databaseOfferModel.getAllOffers().getOffers()) {
                 if (x.getTitle().equals(offer.getTitle())) {
                     return null;
                 }
+            }
+            this.databaseOfferModel.createOffer(offer);//Adding offer to the database
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        this.offerList.getOffers().add(0, offer);
         this.propertyChangeSupport.firePropertyChange("Offers", null, offer);
         return offer;
     }
@@ -56,16 +75,34 @@ public class ModelManager implements Model{
      */
     @Override
     public User login(String username, String password) {
-        User user=this.onlineUserList.loginInUser(username,password,userList);
-        if(user!=null) {
+        try {
+            databaseUserModel.getAllUsers();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        User user = this.onlineUserList.loginInUser(username, password, userList);
+        if (user != null) {
             this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, user);
             return user;
         }
         return null;
     }
+
+    /**
+     * Getter for the list of offers.
+     *
+     * @return OfferList object of the offer list.
+     */
     @Override
-    public OfferList getOffers(){
+    public OfferList getOffers() {
+        try {
+            return databaseOfferModel.getAllOffers();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return offerList;
+
     }
 
     /**
@@ -75,6 +112,11 @@ public class ModelManager implements Model{
      */
     @Override
     public UserList getUsers() {
+        try {
+            return databaseUserModel.getAllUsers();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return userList;
     }
 
@@ -85,6 +127,11 @@ public class ModelManager implements Model{
      */
     @Override
     public RentingList getRentingList() {
+        try {
+            databaseRentingModel.getAllRentings();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return rentingList;
     }
 
@@ -97,10 +144,15 @@ public class ModelManager implements Model{
      * @return A String containing the result of the action telling if it ended successfully or if it faced any error.
      */
     @Override
-    public String sendMessage(User sender,String receiver, String body) {
-        for(User user: userList.getUsersArraylist()){
-            if(user.getUsername().equals(receiver)) {
-                user.addMessageOrRequest(new Message(body, sender));
+    public String sendMessage(User sender, String receiver, String body) {
+        for (User user : userList.getUsersArraylist()) {
+            if (user.getUsername().equals(receiver)) {
+                //  user.addMessageOrRequest(new Message(body, sender)); old version
+                try {
+                    databaseMessageModel.createMessage(user, receiver, body);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 return "Valid";
             }
         }
@@ -115,9 +167,14 @@ public class ModelManager implements Model{
      */
     @Override
     public void sendRequest(String offerer, Offer offer) {
-        for(Offer off: offerList.getOffers()){
-            if(off.getTitle().equals(offer.getTitle()))
-                off.makeOffer(offerer);
+
+        try {
+            for (Offer off : databaseOfferModel.getAllOffers().getOffers()) {
+                if (off.getTitle().equals(offer.getTitle()))
+                    off.makeOffer(offerer);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -129,12 +186,18 @@ public class ModelManager implements Model{
      */
     @Override
     public RentingList getUserRentingList(String username) {
-        RentingList rentings=new RentingList();
-        for(Renting renting: this.rentingList.getRentingArrayList()){
-            if(renting.getLandlord().getUsername().equals(username) || renting.getTenant().getUsername().equals(username))
-                rentings.getRentingArrayList().add(renting);
+//        RentingList rentings = new RentingList(); old version
+//        databaseRentingModel.getAllRentingsByUsername(username);
+//        for (Renting renting : this.rentingList.getRentingArrayList()) {
+//            if (renting.getLandlord().getUsername().equals(username) || renting.getTenant().getUsername().equals(username))
+//               rentings.getRentingArrayList().add(renting); old version
+//               }
+        try {
+            return databaseRentingModel.getAllRentingsByUsername(username);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return rentings;
+        return rentingList;
     }
 
     /**
@@ -145,31 +208,49 @@ public class ModelManager implements Model{
      * @param renting  The renting object interested.
      */
     @Override
-    public void publishFeedback(String role, String s,Renting renting) {
-        for(Renting renting1:rentingList.getRentingArrayList()){
-            if(renting1.toString().equals(renting.toString())) {
-                if(role.equals("Landlord")) {
-                    renting1.setLandlordFeedback(s);
-                }
-                else
-                    renting1.setTenantFeedback(s);
-
-                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
-            }
+    public void publishFeedback(String role, String feedback, Renting renting) {
+//        for (Renting renting1 : rentingList.getRentingArrayList()) { old version
+//            if (renting1.toString().equals(renting.toString())) {
+//                if (role.equals("Landlord")) {
+//                    renting1.setLandlordFeedback(s);
+//                } else
+//                    renting1.setTenantFeedback(s);
+        try {
+            databaseRentingModel.publishFeedBack(role, feedback, renting);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
+        this.propertyChangeSupport.firePropertyChange("ReloadLists", null, "reload");
     }
 
+
+    /**
+     * The method accept a request from a tenant and creates a Renting object and it passes it to the list.
+     *
+     * @param usernameOfOfferer String for the name of the user who sent the request.
+     * @param offer             Offer object of the offer interested.
+     */
     @Override
     public Offer closeDeal(String usernameOfOfferer, Offer offer) {
-        offerList.getOffers().removeIf(offer1 -> offer.toString().equals(offer1.toString()));
+        try {
+            databaseOfferModel.getAllOffers().getOffers().removeIf(offer1 -> offer.toString().equals(offer1.toString()));
+            databaseOfferModel.deleteOffer(offer);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         User tenant;
-        for(User user:userList.getUsersArraylist()){
-            if(user.getUsername().equals(usernameOfOfferer)) {
-                tenant = user;
-                rentingList.getRentingArrayList().add(new Renting(tenant, offer.getLandlord(), offer));
-                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
-                return offer;
+        try {
+            for (User user : databaseUserModel.getAllUsers().getUsersArraylist()) {
+                if (user.getUsername().equals(usernameOfOfferer)) {
+                    tenant = user;
+                    //                rentingList.getRentingArrayList().add(new Renting(tenant, offer.getLandlord(), offer)); old version
+                    databaseRentingModel.createRentingOffer(new Renting(tenant, offer.getLandlord(), offer));
+                    this.propertyChangeSupport.firePropertyChange("ReloadLists", null, "reload");
+                    return offer;
+                }
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
         return null;
     }
@@ -180,11 +261,16 @@ public class ModelManager implements Model{
      */
     @Override
     public void refuseRequest(Offer offer) {
-        for(Offer x: offerList.getOffers()){
-            if(x.getTitle().equals(offer.getTitle())) {
-                x.makeOffer("");
-                this.propertyChangeSupport.firePropertyChange("ReloadLists",null,"reload");
+        try {
+            databaseOfferModel.getAllOffers();
+            for (Offer x : databaseOfferModel.getAllOffers().getOffers()) {
+                if (x.getTitle().equals(offer.getTitle())) {
+                    x.makeOffer("");
+                    this.propertyChangeSupport.firePropertyChange("ReloadLists", null, "reload");
+                }
             }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -196,13 +282,21 @@ public class ModelManager implements Model{
      */
     @Override
     public boolean signUp(User user) {
-        for(User x: userList.getUsersArraylist())
-        {
-            if(x.getUsername().equals(user.getUsername()))
-                return false;
+        try {
+            for (User x : databaseUserModel.getAllUsers().getUsersArraylist()) {
+                if (x.getUsername().equals(user.getUsername()))
+                    return false;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        this.propertyChangeSupport.firePropertyChange("User",null,user);
-        userList.addUser(user);
+
+        this.propertyChangeSupport.firePropertyChange("User", null, user);
+        try {
+            databaseUserModel.createUser(user);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return true;
     }
 
@@ -216,6 +310,35 @@ public class ModelManager implements Model{
     }
 
 
+    /**
+     * The method delegates the model to obtain an OfferList object of the offers .
+     *
+     * @param minPrice  The minimum price for filter search.
+     * @param maxPrice  The maximum price for filter search.
+     * @param noOfRooms The number of rooms in a Offer for filter search.
+     * @param type      The type of Offer for filter search.
+     * @param floor     The floor from Offer for filter search.
+     * @param deposit   The deposit from Offer for filter search.
+     * @return the ArrayList with filtered offers stored in the database.
+     */
+    @Override
+    public ArrayList<Offer> applyFilters(double minPrice,
+                                         double maxPrice, int noOfRooms, String type, int floor, double deposit) {
+        try {
+            return databaseOfferModel.returnCombinedFilter(minPrice, maxPrice, noOfRooms, type, floor, deposit);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * Method to add a listener to the PropertyChangeSupport object.
+     *
+     * @param propertyName String containing the name of the property the listener will listen to.
+     * @param listener     PropertyChangeListener object which represents the listener to the property.
+     */
     @Override
     public void addListener(String propertyName, PropertyChangeListener listener) {
         this.propertyChangeSupport.addPropertyChangeListener(propertyName, listener);

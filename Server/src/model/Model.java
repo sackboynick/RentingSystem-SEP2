@@ -20,4 +20,6 @@ public interface Model extends NamedPropertyChangeSubject {
     void publishFeedback(String role, String s,Renting renting);
     Offer closeDeal(String usernameOfOfferer, Offer offer);
     void refuseRequest(Offer offer);
+    ArrayList<Offer> applyFilters(double minPrice,
+                                  double maxPrice, int noOfRooms, String type, int floor, double deposit);
 }
