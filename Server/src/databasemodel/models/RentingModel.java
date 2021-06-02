@@ -7,6 +7,7 @@ import model.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * A class  used to add, delete, retrieve data from closed deals  from database.
  *
@@ -14,6 +15,11 @@ import java.util.List;
  * @version 1.0.0 2021
  */
 public class RentingModel implements RentingModelInterface {
+    /**
+     * The method adds a message to the database Message schema.
+     *
+     * @return Makes the connection to the database
+     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://" + DatabaseVariables.HOST + ":"
@@ -22,6 +28,12 @@ public class RentingModel implements RentingModelInterface {
                 DatabaseVariables.NAME, DatabaseVariables.PASSWORD);
     }
 
+    /**
+     * The method adds the Renting object to the database Renting schema.
+     *
+     * @param renting The renting to be added.
+     * @return The Offer if the action is done successfully, null if not.
+     */
     @Override
     public Renting createRentingOffer(Renting renting)
             throws SQLException {
@@ -57,6 +69,12 @@ public class RentingModel implements RentingModelInterface {
 
     }
 
+    /**
+     * The method returns an Renting object from the database Renting schema.
+     *
+     * @param id The unique id of the Renting.
+     * @return The Renting with the indicated id.
+     */
     @Override
     public Renting readById(int id) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -115,6 +133,11 @@ public class RentingModel implements RentingModelInterface {
         }
     }
 
+    /**
+     * The method returns all the available rentings from the Renting schema.
+     *
+     * @return The RentingList containing all the offers.
+     */
     @Override
     public RentingList getAllRentings() throws SQLException {
         try (Connection connection = getConnection()) {
@@ -175,6 +198,12 @@ public class RentingModel implements RentingModelInterface {
         }
     }
 
+    /**
+     * The method returns a list of Renting objects with the same title  from the database Offer schema.
+     *
+     * @param searchString The title of the renting.
+     * @return The Renting with a similar title.
+     */
     @Override
     public List<Renting> readByRentingName(String searchString)
             throws SQLException {
@@ -235,6 +264,11 @@ public class RentingModel implements RentingModelInterface {
         }
     }
 
+    /**
+     * The method updates the Renting object from the database Renting schema.
+     *
+     * @param renting The renting.
+     */
     @Override
     public void updateRenting(Renting renting) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -257,6 +291,11 @@ public class RentingModel implements RentingModelInterface {
         }
     }
 
+    /**
+     * The method deletes the Renting object from the database Renting schema.
+     *
+     * @param renting The renting to be deleted.
+     */
     @Override
     public void deleteRenting(Renting renting) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -267,6 +306,13 @@ public class RentingModel implements RentingModelInterface {
         }
     }
 
+    /**
+     * The method adds to the database a feedback about landlord and vice versa after a deal is closed.
+     *
+     * @param role The role of the user.
+     * @param feedback The feedback to be added.
+     * @param renting The renting that have to be updated to.
+     */
     @Override
     public void publishFeedBack(String role, String feedback, Renting renting) throws SQLException {
 
@@ -282,7 +328,11 @@ public class RentingModel implements RentingModelInterface {
             }
         }
     }
-
+    /**
+     * The method returns all the rentings by a username.
+     *
+     * @param username The username of the user
+     */
     @Override
     public RentingList getAllRentingsByUsername(String username) throws SQLException {
         try (Connection connection = getConnection()) {

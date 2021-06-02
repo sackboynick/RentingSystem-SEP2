@@ -13,6 +13,11 @@ import java.util.List;
 
 public class UserModel implements UserModelInterface {
 
+    /**
+     * The method adds a message to the database Message schema.
+     *
+     * @return Makes the connection to the database
+     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://" + DatabaseVariables.HOST + ":"
@@ -21,6 +26,12 @@ public class UserModel implements UserModelInterface {
                 DatabaseVariables.NAME, DatabaseVariables.PASSWORD);
     }
 
+    /**
+     * The method adds a User object to the database User schema.
+     *
+     * @param user The user to be added.
+     * @return The User object.
+     */
     @Override
     public User createUser(User user) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -39,6 +50,12 @@ public class UserModel implements UserModelInterface {
         return user;
     }
 
+    /**
+     * The method returns a User object from the database User schema.
+     *
+     * @param username The user to be returned.
+     * @return The User object.
+     */
     @Override
     public User readByUsername(String username) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -63,6 +80,12 @@ public class UserModel implements UserModelInterface {
         }
     }
 
+    /**
+     * The method returns a User object from the database User schema.
+     *
+     * @param firstName The user First Name to be returned.
+     * @return The User object.
+     */
     @Override
     public List<User> readByName(String firstName) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -91,6 +114,11 @@ public class UserModel implements UserModelInterface {
         }
     }
 
+    /**
+     * The method returns a list with object from the database User schema.
+     *
+     * @return A User list with all the users from the database.
+     */
     @Override
     public UserList getAllUsers() throws SQLException {
         try (Connection connection = getConnection()) {
@@ -119,6 +147,12 @@ public class UserModel implements UserModelInterface {
 
     }
 
+    /**
+     * The method returns a list with object from the database User schema.
+     *
+     * @param username The user with the same username to be returned
+     * @return A User list with all the users with the same username.
+     */
     @Override
     public ArrayList<String> getAllMessagesByUsername(String username)
             throws SQLException {
@@ -138,7 +172,11 @@ public class UserModel implements UserModelInterface {
 
     }
 
-
+    /**
+     * The method updates a user in the database User schema.
+     *
+     * @param user The user to be updated
+     */
     @Override
     public void update(User user) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -156,6 +194,11 @@ public class UserModel implements UserModelInterface {
         }
     }
 
+    /**
+     * The method deletes a user object from the database User schema.
+     *
+     * @param user The user to be deleted
+     */
     @Override
     public void delete(User user) throws SQLException {
         try (Connection connection = getConnection()) {

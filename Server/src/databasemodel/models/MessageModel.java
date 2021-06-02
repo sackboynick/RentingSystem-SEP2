@@ -10,6 +10,7 @@ import model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * A class  used to add, delete, retrieve messages from database.
  *
@@ -17,7 +18,11 @@ import java.util.List;
  * @version 1.0.0 2021
  */
 public class MessageModel implements MessageInterface {
-
+    /**
+     * The method adds a message to the database Message schema.
+     *
+     * @return Makes the connection to the database
+     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://" + DatabaseVariables.HOST + ":"
@@ -47,7 +52,14 @@ public class MessageModel implements MessageInterface {
 
         }
     }
-
+    /**
+     * The method returns the  conversation between two users.
+     *
+     * @param senderName The sender username.
+     * @param receiver The receiver username.
+     * @return A conversation between two users
+     *
+     */
     @Override
     public List<String> getConversationByUsernames(String senderName, String receiver) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -60,9 +72,8 @@ public class MessageModel implements MessageInterface {
             while (resultSet.next()) {
 
                 messages.add(resultSet.getString("body_message"));
-
             }
-        return messages;
+            return messages;
         }
     }
 

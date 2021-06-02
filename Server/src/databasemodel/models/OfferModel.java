@@ -9,6 +9,7 @@ import model.User;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * A class  used to add, delete, retrieve Offer objects from database.
  *
@@ -16,6 +17,11 @@ import java.util.List;
  * @version 1.0.0 2021
  */
 public class OfferModel implements OfferModelInterface {
+    /**
+     * The method adds a message to the database Message schema.
+     *
+     * @return Makes the connection to the database
+     */
     private Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
                 "jdbc:postgresql://" + DatabaseVariables.HOST + ":"
@@ -24,6 +30,12 @@ public class OfferModel implements OfferModelInterface {
                 DatabaseVariables.NAME, DatabaseVariables.PASSWORD);
     }
 
+    /**
+     * The method adds the Offer object to the database Offer schema.
+     *
+     * @param offer The offer to be added.
+     * @return The Offer if the action is done successfully, null if not.
+     */
     @Override
     public Offer createOffer(Offer offer) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -34,7 +46,7 @@ public class OfferModel implements OfferModelInterface {
             statement.setString(3, offer.getDescription());
             statement.setString(4, offer.getLocation());
             statement.setString(5, offer.getType());
-            statement.setInt(6,  offer.getFloor());
+            statement.setInt(6, offer.getFloor());
             statement.setDouble(7, offer.getPricePerMonth());
             statement.setDouble(8, offer.getDeposit());
             statement.setDouble(9, offer.getArea());
@@ -55,6 +67,12 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns an Offer object from the database Offer schema.
+     *
+     * @param id The unique id of the offer.
+     * @return The Offer with the indicated id.
+     */
     @Override
     public Offer readById(int id) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -95,6 +113,12 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns an Offer object with the same title  from the database Offer schema.
+     *
+     * @param searchString The title of the offer.
+     * @return The Offer with a similar title.
+     */
     @Override
     public List<Offer> readByOfferTitle(String searchString)
             throws SQLException {
@@ -123,6 +147,11 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method updates the Offer object from the database Offer schema.
+     *
+     * @param offer The offer.
+     */
     @Override
     public void updateOffer(Offer offer) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -143,6 +172,11 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method deletes the Offer object from the database Offer schema.
+     *
+     * @param offer The offer to be deleted.
+     */
     @Override
     public void deleteOffer(Offer offer) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -153,6 +187,11 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns all the offers available in the Offer schema.
+     *
+     * @return The OfferList containing all the offers.
+     */
     @Override
     public OfferList getAllOffers() throws SQLException {
         try (Connection connection = getConnection()) {
@@ -192,12 +231,19 @@ public class OfferModel implements OfferModelInterface {
 
             OfferList offerList = new OfferList();
             for (int i = 0; i < offers.size(); i++) {
-            offerList.addOffer(offers.get(i));
+                offerList.addOffer(offers.get(i));
             }
             return offerList;
         }
     }
 
+    /**
+     * The method returns a list of Offer objects with a price per month between those 2 variables.
+     *
+     * @param min The minimum price per month for a offer.
+     * @param max The maximum price per month for a offer.
+     * @return The Offer object with the price between those two variables.
+     */
     @Override
     public List<Offer> returnPriceRange(double min, double max)
             throws SQLException {
@@ -239,12 +285,18 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns a list of offers from the database that have the same or more number of rooms.
+     *
+     * @param noOfRooms The  number of rooms .
+     * @return The Offer object with the minimum an bigger number of rooms;
+     */
     @Override
     public List<Offer> returnNumberOfRooms(int noOfRooms)
             throws SQLException {
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection
-                    .prepareStatement("SELECT * FROM Offer WHERE rooms_number EQUAL ? ");
+                    .prepareStatement("SELECT * FROM Offer WHERE rooms_number => ? ");
             statement.setInt(1, noOfRooms);
             ResultSet resultSet = statement.executeQuery();
             ArrayList<Offer> offers = new ArrayList<>();
@@ -279,6 +331,12 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns list of offers from the database with the same type.
+     *
+     * @param searchString The search title input.
+     * @return The a list of offers with the same title;
+     */
     @Override
     public List<Offer> returnOfferType(String searchString)
             throws SQLException {
@@ -319,6 +377,12 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns list of offers from the database that are located on the same floor.
+     *
+     * @param searchInt The floor number .
+     * @return A list of offers with the same floor number;
+     */
     @Override
     public List<Offer> returnOfferFloor(int searchInt)
             throws SQLException {
@@ -359,12 +423,18 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
+    /**
+     * The method returns a list of offers from the database that have the deposit indicated in the searchInt.
+     *
+     * @param searchInt The deposit amount .
+     * @return A list of offers with the deposit maximum or less indicated in searchInt;
+     */
     @Override
     public List<Offer> returnDeposit(double searchInt)
             throws SQLException {
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection
-                    .prepareStatement("SELECT * FROM Offer WHERE deposit EQUAL ? ");
+                    .prepareStatement("SELECT * FROM Offer WHERE deposit <= ? ");
             statement.setDouble(1, searchInt);
             ResultSet resultSet = statement.executeQuery();
             ArrayList<Offer> offers = new ArrayList<>();
@@ -399,10 +469,21 @@ public class OfferModel implements OfferModelInterface {
         }
     }
 
-
+    /**
+     * The method returns a list of offers from the database using a combined search filter
+     * and returns the objects that correspond to the arguments inserted.
+     *
+     * @param  minPrice The minimum price per month for a offer.
+     * @param maxPrice The maximum price per month for a offer.
+     * @param noOfRooms The minimum number of rooms .
+     * @param type The type of rent.
+     * @param floor The floor number.
+     * @param deposit The deposit amount.
+     * @return A list of offers sorted ;
+     */
     @Override
     public ArrayList<Offer> returnCombinedFilter(double minPrice,
-                                                        double maxPrice, int noOfRooms, String type, int floor, double deposit)
+                                                 double maxPrice, int noOfRooms, String type, int floor, double deposit)
             throws SQLException {
         ArrayList<Offer> offers = new ArrayList<>();
 

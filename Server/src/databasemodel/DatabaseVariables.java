@@ -1,5 +1,12 @@
 package databasemodel;
 
+
+/**
+ * A class that contains variables used to connect to the database.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 public class DatabaseVariables
 {
   public final static String HOST = "localhost";
