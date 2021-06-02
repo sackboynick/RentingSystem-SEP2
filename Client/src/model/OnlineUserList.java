@@ -14,6 +14,9 @@ public class OnlineUserList implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 652968509867757690L;
+    /**
+     * List of offers.
+     */
     private final ArrayList<User> users;
 
 

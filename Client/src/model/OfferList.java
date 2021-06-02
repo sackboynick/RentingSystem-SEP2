@@ -11,6 +11,9 @@ import java.util.ArrayList;
  */
 
 public class OfferList  implements Serializable {
+    /**
+     * List of offers.
+     */
     private final ArrayList<Offer> offers;
     @Serial
     private static final long serialVersionUID = 65296850986775769L;

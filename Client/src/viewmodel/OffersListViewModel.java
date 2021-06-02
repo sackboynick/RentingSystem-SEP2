@@ -41,26 +41,52 @@ public class OffersListViewModel implements PropertyChangeListener {
         this.maxDeposit = new SimpleStringProperty();
     }
 
-    public StringProperty getType() {
+
+    /**
+     * Getter for the type property.
+     * @return The StringProperty for the type of the offer.
+     */
+    public StringProperty getType(){
         return type;
     }
 
+
+    /**
+     * Getter for the min price property.
+     * @return StringProperty for the minimum price of the property.
+     */
     public StringProperty getMinPrice() {
         return minPrice;
     }
 
+    /**
+     * Getter for the max price property.
+     * @return StringProperty for the maximum price of the property.
+     */
     public StringProperty getMaxPrice() {
         return maxPrice;
     }
 
+    /**
+     * Getter for the max price of the deposit.
+     * @return StringProperty for the maximum price of the deposit.
+     */
     public StringProperty getMaxDeposit() {
         return maxDeposit;
     }
 
+    /**
+     * Getter for the number of rooms property.
+     * @return StringProperty for the number of rooms in the property.
+     */
     public StringProperty getMinRooms() {
         return minRooms;
     }
 
+    /**
+     * Getter for the number of the floor of the property.
+     * @return StringProperty for the number of the floor of the property.
+     */
     public StringProperty getFloor() {
         return floor;
     }

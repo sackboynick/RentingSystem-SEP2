@@ -11,12 +11,30 @@ import java.util.Date;
  */
 
 public class Renting  implements Serializable {
+    /**
+     * User object of the tenant.
+     */
     private final User tenant;
+    /**
+     * User object of the landlord.
+     */
     private final User landlord;
+    /**
+     * Offer object of the offer.
+     */
     private final Offer offer;
+    /**
+     * Date object of the date.
+     */
     private final Date date;
 
+    /**
+     * Feedback of the tenant.
+     */
     private final String tenantFeedback;
+    /**
+     * Feedback of the landlord.
+     */
     private final String landlordFeedback;
 
 

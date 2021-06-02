@@ -25,6 +25,15 @@ public class MessageModel implements MessageInterface {
                         + "currentSchema=" + DatabaseVariables.SCHEMA_NAME,
                 DatabaseVariables.NAME, DatabaseVariables.PASSWORD);
     }
+
+    /**
+     * The method adds a message to the database Message schema.
+     *
+     * @param user The offer to be added.
+     * @param receiver The offer to be added.
+     * @param body The offer to be added.
+     *
+     */
     @Override
     public void createMessage(User user, String receiver, String body) throws SQLException {
         try (Connection connection = getConnection()) {
@@ -57,13 +66,6 @@ public class MessageModel implements MessageInterface {
         }
     }
 
-    @Override
-    public void delete(Message message) throws SQLException {
 
-    }
 
-    @Override
-    public List<Message> getAllMessages() throws SQLException {
-        return null;
-    }
 }

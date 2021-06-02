@@ -13,6 +13,9 @@ import java.util.ArrayList;
 public class RentingList implements Serializable {
     @Serial
     private static final long serialVersionUID = 6529685067546757695L;
+    /**
+     * List of renting deals.
+     */
     private final ArrayList<Renting> rentingArrayList;
 
 

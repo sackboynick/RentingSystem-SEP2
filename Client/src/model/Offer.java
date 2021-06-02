@@ -16,11 +16,29 @@ import java.util.Random;
 public class Offer implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757695L;
+    /**
+     * Title, description, address and type of the property.
+     */
     private String  title, description, location,type;
+    /**
+     * The types of properties in the system.
+     */
     private static final String[] TYPE = {"Apartment", "House","Room"};
+    /**
+     * Number of rooms and floor of the property.
+     */
     private int roomsNumber, floor;
+    /**
+     * Price per month and deposit of the property.
+     */
     private double pricePerMonth, deposit,area;
+    /**
+     * Username of the offerer in the offer.
+     */
     private String usernameOfOfferer;
+    /**
+     * User object of the landlord
+     */
     private User landlord;
 
     /**
@@ -101,6 +119,13 @@ public class Offer implements Serializable {
         this.location = location;
     }
 
+    /**
+     * Setter for the username of the offerer
+     * @param usernameOfOfferer String for the username of the offerer
+     */
+    public void makeOffer(String usernameOfOfferer){
+        this.usernameOfOfferer=usernameOfOfferer;
+    }
 
     /**
      * Setter for the roomsNumber

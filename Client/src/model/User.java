@@ -13,11 +13,26 @@ import java.util.ArrayList;
 public class User  implements Serializable {
     @Serial
     private static final long serialVersionUID = 6529685098267757690L;
+    /**
+     * Data of the user.
+     */
     private String username, password,firstName,middleName,lastName,role;
+    /**
+     * Number of phone of the user.
+     */
     private long phone;
+    /**
+     * Number of deals closed of the user.
+     */
     private int dealsClosed;
+    /**
+     * List of messages of the user.
+     */
     private final ArrayList<Message> messagesAndRequests;
 
+    /**
+     * Types of users in the system.
+     */
     private static final String[] ROLES={"Landlord","Tenant"};
 
     /**

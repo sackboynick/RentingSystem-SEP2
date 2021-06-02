@@ -26,7 +26,6 @@ public class UsersListViewController extends ViewController{
      */
     @Override
     protected void init() {
-        this.userTableView.setItems(getViewModelFactory().getUsersListViewModel().getUsers());
         this.username.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getUsername()));
         this.firstName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFirstName()));
         this.lastName.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getLastName()));

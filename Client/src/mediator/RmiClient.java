@@ -137,7 +137,7 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     }
 
     /**
-     * Method invoked remotely from the server side to sendARequest toa landlord for a property.
+     * Method invoked remotely from the server side to send a request to a landlord for a property.
      *
      * @param offerer A String object of the username of the user who is making the offer for the landlord.
      * @param offer   The Offer object of the offer interested.
@@ -227,8 +227,14 @@ public class RmiClient implements RentingSystem, utility.observer.listener.Remot
     @Override
     public ArrayList<Offer> applyFilters(double minPrice,
                                          double maxPrice, int noOfRooms, String type, int floor, double deposit) {
-        return server.applyFilters(minPrice, maxPrice, noOfRooms, type, floor, deposit);
+        try {
+            return server.applyFilters(minPrice, maxPrice, noOfRooms, type, floor, deposit);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 
 
     /**
