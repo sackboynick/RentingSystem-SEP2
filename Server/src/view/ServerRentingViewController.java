@@ -11,6 +11,13 @@ import model.Offer;
 import model.User;
 import viewmodel.ViewState;
 
+/**
+ * JavaFX controller class for the ServerRentingView view.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
+
 public class ServerRentingViewController extends ViewController{
     @FXML
     private TableView<Offer> offer;
@@ -19,6 +26,9 @@ public class ServerRentingViewController extends ViewController{
     @FXML private TableColumn<Offer,String> title, type;
     @FXML private TableColumn<User,String> tUsername,tFirstName,tLastName,lUsername,lFirstName,lLastName;
 
+    /**
+     * Overridden method from the ViewController abstract class that initializes the controller after its root element has been completely processed
+     */
     @Override
     protected void init() {
         if(ViewState.getInstance().getDisplayedRenting()!=null) {
@@ -37,12 +47,18 @@ public class ServerRentingViewController extends ViewController{
         }
     }
 
+    /**
+     * Method executed everytime the view and the controller are set.
+     */
     public void reset(){
         this.offer.setItems(FXCollections.observableArrayList(ViewState.getInstance().getDisplayedRenting().getOffer()));
         this.tenant.setItems(FXCollections.observableArrayList(ViewState.getInstance().getDisplayedRenting().getTenant()));
         this.landlord.setItems(FXCollections.observableArrayList(ViewState.getInstance().getDisplayedRenting().getLandlord()));
     }
 
+    /**
+     * The method changes the view and displays the renting list view.
+     */
     @FXML public void onBack(){
         getViewHandler().openView("rentingList");
     }

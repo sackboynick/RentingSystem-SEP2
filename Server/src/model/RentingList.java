@@ -18,4 +18,12 @@ public class RentingList implements Serializable {
     public ArrayList<Renting> getRentingArrayList() {
         return rentingArrayList;
     }
+
+    /**
+     * The method adds the Renting object passed as argument to the list of renting deals.
+     * @param renting The Renting object to be added to the list.
+     */
+    public void addRenting(Renting renting) {
+        rentingArrayList.add(renting);
+    }
 }

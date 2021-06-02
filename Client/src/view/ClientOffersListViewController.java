@@ -10,6 +10,13 @@ import javafx.scene.control.Button;
 import model.Offer;
 import viewmodel.ViewState;
 
+/**
+ * JavaFX controller class for the clientOffersList view.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
+
 
 public class ClientOffersListViewController extends ViewController {
     @FXML
@@ -18,7 +25,12 @@ public class ClientOffersListViewController extends ViewController {
     private TableColumn<Offer, String> title, landlord, type, pricePerMonth, deposit;
     @FXML
     private Button publishAnOffer;
+    @FXML
+    TextField minPriceTextField, maxPriceTextField, minRoomsTextField, depositTextField, typeTextField, floorTextField;
 
+    /**
+     * Overridden method from the ViewController abstract class that initializes the controller after its root element has been completely processed
+     */
     @Override
     protected void init() {
         reset();
@@ -30,6 +42,9 @@ public class ClientOffersListViewController extends ViewController {
 
     }
 
+    /**
+     * Method executed everytime the view and the controller are set.
+     */
     public void reset() {
         getViewModelFactory().getOffersListViewModel().updateOffersListFromModel();
         publishAnOffer.setVisible(true);
@@ -40,16 +55,25 @@ public class ClientOffersListViewController extends ViewController {
 
     }
 
+    /**
+     * Changes the view and displays the HomePage
+     */
     @FXML
     public void back() {
         getViewHandler().openView("homePage");
     }
 
+    /**
+     * Changes the view and displays the publish offer interface
+     */
     @FXML
     public void publishOffer() {
         getViewHandler().openView("publishOffer");
     }
 
+    /**
+     * Changes the view and displays the details of the selected user.
+     */
     @FXML
     public void openOfferInterface() {
         Offer offer = this.offerTableView.getSelectionModel().getSelectedItem();
@@ -60,6 +84,18 @@ public class ClientOffersListViewController extends ViewController {
         }
     }
 
-    @FXML public void openSendMessage(){
+    /**
+     * Filters the search and returns the Offer list with preferred options.
+     */
+    @FXML
+    public void applyFilters() {
+        getViewModelFactory().getOffersListViewModel().applyFilters();
+    }
+
+    /**
+     * Changes the view and displays the view to send a message to an user
+     */
+    @FXML
+    public void openSendMessage() {
         getViewHandler().openView("sendMessageView");
     }}

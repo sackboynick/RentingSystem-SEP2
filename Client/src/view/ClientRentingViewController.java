@@ -8,6 +8,13 @@ import model.Offer;
 import model.User;
 import viewmodel.ViewState;
 
+
+/**
+ * JavaFX controller class for the clientRentingView view.
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
+
 public class ClientRentingViewController extends ViewController{
     @FXML
     private TableView<Offer> offer;
@@ -19,6 +26,9 @@ public class ClientRentingViewController extends ViewController{
     @FXML private Button publishButton;
 
 
+    /**
+     * Overridden method from the ViewController abstract class that initializes the controller after its root element has been completely processed
+     */
     @Override
     protected void init() {
         reset();
@@ -37,6 +47,9 @@ public class ClientRentingViewController extends ViewController{
 
     }
 
+    /**
+     * Method executed everytime the view and the controller are set.
+     */
     public void reset(){
         this.feedback.setVisible(false);
         this.publishButton.setVisible(false);
@@ -56,11 +69,16 @@ public class ClientRentingViewController extends ViewController{
     }
 
 
-
+    /**
+     * The method changes the view and displays the renting list view.
+     */
     @FXML public void onBack(){
         getViewHandler().openView("rentingListView");
     }
 
+    /**
+     * The method publishes the feedback written in the box.
+     */
     @FXML public void publishFeedback(){
         if(feedback.getText().equals("") || feedback.getText()==null) {
             this.error.setText("Please insert some text");

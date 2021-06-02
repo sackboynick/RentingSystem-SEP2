@@ -1,30 +1,34 @@
 package model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+/**
+ * A class representing a list of the users online.
+ * @author Group 8-SEP2
+ * @version 1.0.0 2021
+ */
 
 public class OnlineUserList implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 652968509867757690L;
     private final ArrayList<User> users;
-    private Model model;
 
 
-    public OnlineUserList(Model model){
-        this.users= new ArrayList<>();
-        this.model=model;
-    }
-
+    /**
+     * Zero-argument constructor.
+     */
     public OnlineUserList(){
         this.users=new ArrayList<>();
     }
 
 
+    /**
+     * Getter for the list of users.
+     * @return ArrayList of user objects.
+     */
     public ArrayList<User> getUsers() {
         return users;
     }

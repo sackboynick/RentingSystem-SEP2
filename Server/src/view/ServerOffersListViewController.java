@@ -6,8 +6,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import model.Offer;
-import model.User;
 import viewmodel.ViewState;
+
+/**
+ * JavaFX controller class for the ServerOffersList view.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 
 public class ServerOffersListViewController extends ViewController {
     @FXML
@@ -15,6 +21,9 @@ public class ServerOffersListViewController extends ViewController {
     @FXML private TableColumn<Offer,String> title,landlord,type,pricePerMonth;
     @FXML private Label numberOfOffers;
 
+    /**
+     * Overridden method from the ViewController abstract class that initializes the controller after its root element has been completely processed
+     */
     @Override
     protected void init() {
         reset();
@@ -24,16 +33,26 @@ public class ServerOffersListViewController extends ViewController {
         this.pricePerMonth.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getPricePerMonth())));
         this.numberOfOffers.textProperty().bind(getViewModelFactory().getOffersListViewModel().getNumberOfOffers());
     }
+    /**
+     * Method executed everytime the view and the controller are set.
+     */
     public void reset(){
         this.offerTableView.setItems(getViewModelFactory().getOffersListViewModel().getOffers());
     }
 
+    /**
+     * The method removes the offer selected from all the lists.
+     */
     @FXML public void deleteOffer(){
         Offer offer=this.offerTableView.getSelectionModel().getSelectedItem();
         if(offer!=null) {
             getViewModelFactory().getOffersListViewModel().removeOffer(offer);
         }
     }
+
+    /**
+     * The method changes the view and displays the interface with the details of the selected offer.
+     */
     @FXML
     public void openOfferInterface(){
         Offer offer=this.offerTableView.getSelectionModel().getSelectedItem();
@@ -44,6 +63,9 @@ public class ServerOffersListViewController extends ViewController {
         }
     }
 
+    /**
+     * The method changes the view and displays the main view.
+     */
     @FXML public void onBack(){
         getViewHandler().openView("mainView");
     }

@@ -1,65 +1,120 @@
 package viewmodel;
 
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Model;
 import model.Offer;
-import model.User;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Arrays;
 
+/**
+ * This class is used to let a controller communicate with the model manager.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 public class OffersListViewModel implements PropertyChangeListener {
     private ObservableList<Offer> offers;
     private final Model model;
-    private final StringProperty minPrice,maxPrice,minRooms,type,floor,maxDeposit;
+    private final StringProperty type,minPrice, maxPrice, maxDeposit,minRooms, floor;
 
-    public OffersListViewModel(Model model){
-        this.model=model;
-        this.model.addListener("Offers",this);
-        this.model.addListener("Reload",this);
-        this.offers=FXCollections.observableArrayList();
-        this.minPrice=new SimpleStringProperty();
-        this.maxPrice=new SimpleStringProperty();
-        this.minRooms=new SimpleStringProperty();
-        this.type=new SimpleStringProperty();
-        this.floor=new SimpleStringProperty();
-        this.maxDeposit=new SimpleStringProperty();
+
+    /**
+     * One-argument constructor.
+     *
+     * @param model The model object which will be delegated to get the data and to execute some methods.
+     */
+    public OffersListViewModel(Model model) {
+        this.model = model;
+        this.model.addListener("Offers", this);
+        this.model.addListener("Reload", this);
+        this.offers = FXCollections.observableArrayList();
+        this.minPrice = new SimpleStringProperty();
+        this.maxPrice = new SimpleStringProperty();
+        this.minRooms = new SimpleStringProperty();
+        this.type = new SimpleStringProperty();
+        this.floor = new SimpleStringProperty();
+        this.maxDeposit = new SimpleStringProperty();
     }
 
-    public void updateOffersListFromModel(){
-        this.offers=FXCollections.observableArrayList(model.getOffers().getOffers());
+    public StringProperty getType() {
+        return type;
+    }
+
+    public StringProperty getMinPrice() {
+        return minPrice;
+    }
+
+    public StringProperty getMaxPrice() {
+        return maxPrice;
+    }
+
+    public StringProperty getMaxDeposit() {
+        return maxDeposit;
+    }
+
+    public StringProperty getMinRooms() {
+        return minRooms;
+    }
+
+    public StringProperty getFloor() {
+        return floor;
+    }
+
+    /**
+     * This method updates the offer list in the viewModel using the data obtained from the model.
+     */
+    public void updateOffersListFromModel() {
+        this.offers = FXCollections.observableArrayList(model.getOffers().getOffers());
     }
 
 
+    /**
+     * Getter for the offer list.
+     *
+     * @return An ObservableList of the offers.
+     */
     public ObservableList<Offer> getOffers() {
         return offers;
     }
 
 
-    public void applyFilters(){
-        if(!minPrice.get().equals(""))
-            setMinPrice(Double.parseDouble(minPrice.get()));
-        if(!maxPrice.get().equals("")){
+    /**
+     * This method uses the properties to set some conditions in the offer list.
+     */
+    public void applyFilters() {
+//        if (!minPrice.get().equals(""))
+//            setMinPrice(Double.parseDouble(minPrice.get()));
+//        if (!maxPrice.get().equals("")) {
+//
+//        }
+        this.offers = FXCollections.observableArrayList(model.applyFilters( Double.parseDouble(minPrice.get()),Double.parseDouble(maxPrice.get()), Integer.parseInt(minRooms.get()), type.get(), Integer.parseInt( floor.get()), Double.parseDouble(maxDeposit.get())));
 
-        }
     }
 
-    public void setMinPrice(double minPrice){
-        ObservableList<Offer> filteredCopY=FXCollections.observableArrayList();
-        for(Offer offer: offers){
-            if(offer.getPricePerMonth()>=minPrice)
+    /**
+     * This method sets a minimum price in the offers of the offer list.
+     *
+     * @param minPrice The minimum price to set.
+     */
+    public void setMinPrice(double minPrice) {
+        ObservableList<Offer> filteredCopY = FXCollections.observableArrayList();
+        for (Offer offer : offers) {
+            if (offer.getPricePerMonth() >= minPrice)
                 filteredCopY.add(offer);
         }
         this.offers=filteredCopY;
     }
 
+    /**
+     * Method called whenever a change in the properties of the model happens, because this ViewModel is its listener.
+     *
+     * @param evt ObserverEvent object which contains details about the event.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         if(evt.getPropertyName().equals("Offers"))

@@ -3,20 +3,29 @@ package view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import model.Message;
-import viewmodel.ViewState;
 
 
+/**
+ * JavaFX controller class for the ServerUserView view.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 public class ServerUserViewController extends ViewController {
     @FXML
     private Label username,firstName,middleName,lastName,phone,deals,role,usernameLeft;
 
+    /**
+     * Overridden method from the ViewController abstract class that initializes the controller after its root element has been completely processed
+     */
     @Override
     protected void init() {
         reset();
     }
 
+    /**
+     * Method executed everytime the view and the controller are set.
+     */
     public void reset(){
         getViewModelFactory().getUserViewViewModel().setUserInfo();
         this.username.textProperty().bind(getViewModelFactory().getUserViewViewModel().getUsername());
@@ -30,6 +39,9 @@ public class ServerUserViewController extends ViewController {
     }
 
 
+    /**
+     * The method changes the view and displays the main view.
+     */
     @FXML
     public void onBack(){
         getViewHandler().openView("mainView");

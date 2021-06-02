@@ -8,16 +8,24 @@ import model.Model;
 import model.Offer;
 import model.User;
 
-import javax.swing.text.View;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+/**
+ * This class is used to let a controller communicate with the model manager.
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
 
 public class RentingViewViewModel{
     private final Model model;
-    private ObservableList<User> landlord,tenant;
-    private ObservableList<Offer> offer;
-    private StringProperty date,feedback;
+    private final ObservableList<User> landlord;
+    private final ObservableList<User> tenant;
+    private final ObservableList<Offer> offer;
+    private final StringProperty date;
+    private final StringProperty feedback;
 
+    /**
+     * One-argument constructor.
+     * @param model The model object which will be delegated to get the data and to execute some methods.
+     */
     public RentingViewViewModel(Model model){
         this.model=model;
         this.landlord= FXCollections.observableArrayList();
@@ -27,26 +35,49 @@ public class RentingViewViewModel{
         this.feedback=new SimpleStringProperty();
     }
 
+    /**
+     * Getter for the offer list.
+     * @return An ObservableList of Offer objects.
+     */
     public ObservableList<Offer> getOffer() {
         return offer;
     }
 
+    /**
+     * Getter for the list of landlords.
+     * @return An ObservableList of User objects.
+     */
     public ObservableList<User> getLandlord() {
         return landlord;
     }
 
+    /**
+     * Getter for the list of tenants.
+     * @return An ObservableList of User objects.
+     */
     public ObservableList<User> getTenant() {
         return tenant;
     }
 
+    /**
+     * Getter for the date property.
+     * @return The StringProperty for the date of the renting.
+     */
     public StringProperty getDate() {
         return date;
     }
 
+    /**
+     * Getter for the feedback property.
+     * @return The StringProperty for the feedback of the renting.
+     */
     public StringProperty getFeedback() {
         return feedback;
     }
 
+    /**
+     * The method sets the data for the viewModel.
+     */
     public void setRentingInfo(){
         if(ViewState.getInstance().getDisplayedRenting()!=null) {
             this.landlord.removeAll();
@@ -59,6 +90,9 @@ public class RentingViewViewModel{
         }
     }
 
+    /**
+     * The method publishes a feedback for the deal delegating the model.
+     */
     public void sendFeedback(){
         if(!feedback.get().equals("") && feedback.get()!=null) {
             if(ViewState.getInstance().getDisplayedRenting().getTenant().getUsername().equals(ViewState.getInstance().getUser().getUsername()))

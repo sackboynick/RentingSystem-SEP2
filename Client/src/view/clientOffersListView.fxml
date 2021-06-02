@@ -71,7 +71,7 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <TextField layoutX="612.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="minimum">
+      <TextField fx:id="minPriceTextField" layoutX="612.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="minimum">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -79,11 +79,11 @@
          <font>
             <Font name="Arial" size="14.0" />
          </font></Text>
-      <TextField layoutX="706.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
+      <TextField fx:id="maxPriceTextField" layoutX="706.0" layoutY="141.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TextField layoutX="692.0" layoutY="180.0" prefHeight="26.0" prefWidth="64.0" promptText="min">
+      <TextField fx:id="minRoomsTextField" layoutX="692.0" layoutY="180.0" prefHeight="26.0" prefWidth="64.0" promptText="min">
          <font>
             <Font size="14.0" />
          </font></TextField>
@@ -91,7 +91,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TextField layoutX="612.0" layoutY="297.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
+      <TextField fx:id="depositTextField" layoutX="612.0" layoutY="297.0" prefHeight="30.0" prefWidth="78.0" promptText="maximum">
          <font>
             <Font size="14.0" />
          </font></TextField>
