@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.databaseOfferModel = new OfferModel();
         this.databaseRentingModel = new RentingModel();
         this.databaseUserModel = new UserModel();
-        this.offerList.addOffer(new Offer("title", "description", 345, 1000, "Horsens", "room", 453, 3, 4, new User("nick", "fds", "", "", "", 345246, "")));
+        this.offerList.addOffer(new Offer("OfferSample", "DescriptionSample", 1000, 10000, "Horsens", "Room", 50, 3, 2, new User("Nick", "Nicola", "", "Santolini", "", 54385246, "Landlord")));
     }
 
 
