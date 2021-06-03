@@ -27,7 +27,8 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
     private final Model model;
 
     /**
-     * Zero-argument constructor. It registers the stub on the registry.
+     * One-argument constructor. It registers the stub on the registry.
+     * @param model the Model object to which some methods are delegated.
      */
     public RmiServer(Model model){
         this.propertyChangeHandler =new PropertyChangeHandler<>(this,true);
@@ -237,8 +238,8 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()) {
-            case "ReloadLists" -> this.propertyChangeHandler.firePropertyChange("Reload",null,evt.getNewValue());
+        if ("ReloadLists".equals(evt.getPropertyName())) {
+            this.propertyChangeHandler.firePropertyChange("Reload", null, evt.getNewValue());
         }
     }
 }

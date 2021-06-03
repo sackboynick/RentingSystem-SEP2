@@ -6,7 +6,6 @@ import viewmodel.ViewState;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 /**

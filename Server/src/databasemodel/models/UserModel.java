@@ -11,6 +11,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class used to add, delete, retrieve data from closed deals from database.
+ *
+ * @author Group8-SEP2
+ * @version 1.0.0 2021
+ */
+
 public class UserModel implements UserModelInterface {
 
     /**
@@ -97,7 +104,7 @@ public class UserModel implements UserModelInterface {
             User currentUser = null;
             while (rs.next()) {
                 String fn = rs.getString("first_name");
-                if (currentUser == null || fn != currentUser.getFirstName()) {
+                if (currentUser == null || !fn.equals(currentUser.getFirstName())) {
                     String username = rs.getString("username");
                     String password = rs.getString("password");
                     String firstName1 = rs.getString("first_name");
@@ -139,8 +146,8 @@ public class UserModel implements UserModelInterface {
                                 role));
             }
             UserList userList = new UserList();
-            for (int i = 0; i < users.size(); i++) {
-                userList.addUser((users.get(i)));
+            for (User user : users) {
+                userList.addUser(user);
             }
             return userList;
         }

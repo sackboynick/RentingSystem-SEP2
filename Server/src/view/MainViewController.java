@@ -16,8 +16,14 @@ import viewmodel.ViewState;
 
 public class MainViewController extends ViewController{
 
+    /**
+     * Offers list.
+     */
     @FXML
     public ListView<Offer> offersList;
+    /**
+     * Online users list.
+     */
     @FXML
     private ListView<User> onlineUsersList;
 

@@ -15,9 +15,15 @@ import java.time.LocalDateTime;
 public class Message implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757691L;
-    private final String body;
-    private final User sender;
 
+    /**
+     * Body of the message.
+     */
+    private final String body;
+    /**
+     * Sender of the message.
+     */
+    private final User sender;
     /**
      * Two-argument constructor. The body and the sender do not
      * need to respect any specific rule.

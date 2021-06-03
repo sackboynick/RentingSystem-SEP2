@@ -11,12 +11,34 @@ import java.io.Serializable;
 public class Offer implements Serializable {
     @Serial
     private static final long serialVersionUID = 652968509867757695L;
-    private String title, description, location, type;
-    private static final String[] TYPE = {"Apartment", "House", "Room"};
+    /**
+     * Title, description, address and type of the property.
+     */
+    private String  title, description, location,type;
+    /**
+     * The types of properties in the system.
+     */
+    private static final String[] TYPE = {"Apartment", "House","Room"};
+    /**
+     * Number of rooms and floor of the property.
+     */
     private int roomsNumber, floor;
-    private double pricePerMonth, deposit, area;
+    /**
+     * Price per month and deposit of the property.
+     */
+    private double pricePerMonth, deposit,area;
+    /**
+     * Username of the offerer in the offer.
+     */
     private String usernameOfOfferer;
+    /**
+     * User object of the landlord
+     */
     private User landlord;
+
+    /**
+     * Id of the offer.
+     */
     private int ID;
 
 

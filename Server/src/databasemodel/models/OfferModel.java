@@ -34,10 +34,9 @@ public class OfferModel implements OfferModelInterface {
      * The method adds the Offer object to the database Offer schema.
      *
      * @param offer The offer to be added.
-     * @return The Offer if the action is done successfully, null if not.
      */
     @Override
-    public Offer createOffer(Offer offer) throws SQLException {
+    public void createOffer(Offer offer) throws SQLException {
         try (Connection connection = getConnection()) {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO Offer(id,title,description,location,type,floor,price_per_month,deposit,area, number_of_rooms,available_date_from,landlord_username) VALUES (?,?,?,?,?,?,?,?,?,?,?)",
@@ -56,7 +55,7 @@ public class OfferModel implements OfferModelInterface {
             ResultSet keys = statement.getGeneratedKeys();
             statement.setInt(1, keys.getInt(1));// may threw exception
             if (keys.next()) {
-                return new Offer(offer.getTitle(),
+                new Offer(offer.getTitle(),
                         offer.getDescription(), offer.getPricePerMonth(),
                         offer.getDeposit(), offer.getLocation(), offer.getType(),
                         offer.getArea(), offer.getFloor(), offer.getRoomsNumber(),
@@ -230,8 +229,8 @@ public class OfferModel implements OfferModelInterface {
             }
 
             OfferList offerList = new OfferList();
-            for (int i = 0; i < offers.size(); i++) {
-                offerList.addOffer(offers.get(i));
+            for (Offer offer : offers) {
+                offerList.addOffer(offer);
             }
             return offerList;
         }

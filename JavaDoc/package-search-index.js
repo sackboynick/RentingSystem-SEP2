@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"mediator"},{"l":"model"},{"l":"utility"},{"l":"view"},{"l":"viewmodel"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"databasemodel"},{"l":"databasemodel.modelinterfaces"},{"l":"databasemodel.models"},{"l":"mediator"},{"l":"model"},{"l":"utility"},{"l":"view"},{"l":"viewmodel"}];updateSearchResults();
