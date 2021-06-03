@@ -66,7 +66,6 @@ public class RmiServer implements RemoteModel, PropertyChangeListener{
     public String addOffer(Offer offer) throws RemoteException {
         if(this.model.addOffer(offer)!=null) {
             this.propertyChangeHandler.firePropertyChange("Offers", null, offer);
-            System.out.println(offer);
             return "Valid";
         }
         else
