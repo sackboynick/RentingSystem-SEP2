@@ -39,6 +39,25 @@ public class OnlineUserList implements Serializable {
      * @return The User object corresponding to the account with the same credentials.
      */
     public User loginInUser(String username,String password,UserList userList){
+        for(User user : userList.getUsersArraylist()) {
+            if (user.forLogin(username, password)) {
+                {
+                    if(!users.contains(user))
+                        this.users.add(0, user);
+                }
+                return user;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * The method returns an User object if an user the database has the same credentials as the ones passed as arguments.
+     * @param username The String for the username of the user
+     * @param password The String for the password of the user
+     * @return The User object corresponding to the account with the same credentials.
+     */
+    public User loginInUser(String username,String password){
         try {
             for(User user : databaseUserModel.getAllUsers().getUsersArraylist()) {
                 if (user.forLogin(username, password)) {
@@ -49,8 +68,8 @@ public class OnlineUserList implements Serializable {
                     return user;
                 }
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
         return null;
     }

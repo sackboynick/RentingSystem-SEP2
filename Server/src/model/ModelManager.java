@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.databaseOfferModel = new OfferModel();
         this.databaseRentingModel = new RentingModel();
         this.databaseUserModel = new UserModel();
-        this.offerList.addOffer(new Offer("OfferSample", "DescriptionSample", 1000, 10000, "Horsens", "Room", 50, 3, 2, new User("Nick", "Nicola", "", "Santolini", "", 54385246, "Landlord")));
+        this.offerList.addOffer(new Offer("OfferSample", "DescriptionSample", 1000, 10000, "Location", "Room", 50, 3, 2, new User("Nick", "Nicola", "", "Santolini", "", 54385246, "Landlord")));
     }
 
 
@@ -81,7 +81,7 @@ public class ModelManager implements Model {
             throwables.printStackTrace();
         }
 
-        User user = this.onlineUserList.loginInUser(username, password, userList);
+        User user = this.onlineUserList.loginInUser(username, password);
         if (user != null) {
             this.propertyChangeSupport.firePropertyChange("OnlineUsers", null, user);
             return user;

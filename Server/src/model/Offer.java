@@ -100,7 +100,9 @@ public class Offer implements Serializable {
      * @param floor Integer for the floor of the property.
      */
     public void setFloor(int floor) {
-        this.floor = floor;
+        if(floor<0)
+        this.floor = -floor;
+        else this.floor=floor;
     }
 
 
@@ -134,7 +136,10 @@ public class Offer implements Serializable {
      * @param roomsNumber Integer for the number of rooms in the property
      */
     public void setRoomsNumber(int roomsNumber) {
-        this.roomsNumber = roomsNumber;
+        if(roomsNumber<0)
+            this.roomsNumber = -roomsNumber;
+        else
+            this.roomsNumber=roomsNumber;
     }
 
     /**
@@ -142,7 +147,11 @@ public class Offer implements Serializable {
      * @param pricePerMonth Double value ( decimal ) for the price of the property per month
      */
     public void setPricePerMonth(double pricePerMonth) {
-        this.pricePerMonth = pricePerMonth;
+
+        if(pricePerMonth<0)
+            this.pricePerMonth = -pricePerMonth;
+        else
+            this.pricePerMonth=pricePerMonth;
     }
 
     /**
@@ -166,7 +175,11 @@ public class Offer implements Serializable {
      * @param deposit Double value ( decimal ) for the price of the deposit of the property.
      */
     public void setDeposit(double deposit) {
-        this.deposit = deposit;
+
+        if(deposit<0)
+            this.deposit = -deposit;
+        else
+            this.deposit=deposit;
     }
 
     /**
@@ -174,7 +187,11 @@ public class Offer implements Serializable {
      * @param area Double value ( decimal ) for the area of the property.
      */
     public void setArea(double area){
-        this.area=area;
+
+        if(area<0)
+            this.area=-area;
+        else
+            this.area=area;
     }
 
     /**
